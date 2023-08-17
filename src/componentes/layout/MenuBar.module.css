@@ -1,0 +1,29 @@
+.containerMenu{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: linear-gradient(to top right , #B5E2FA ,#0FA3B1) ;
+    padding: 5px;
+    box-shadow: 0 8px 10px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 13.5px );
+    opacity: .8;
+
+}
+
+.iconPresente{
+    color: white;
+    font-size: 40px;
+}
+.lista_nav{
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    font-size: 20px;
+}
+.lista_nav a{
+    text-decoration: none;
+    color: #F9F7F3;
+}
+.lista_nav a:hover{
+    border-bottom: 4px solid #F7A072;
+}

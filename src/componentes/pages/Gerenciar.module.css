@@ -1,0 +1,47 @@
+.containerCards{
+    margin-top: 20px;
+}
+
+.introducao{
+    text-align: center;
+    color: #F7A072;
+    
+}
+
+
+.card{
+    display: grid;
+    align-items: center;
+    grid-template-rows: 1fr 1fr;
+    padding: 10px;
+    background-color: #F9F7F3;
+    box-shadow: 0 8px 10px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 8px;
+    max-width: 300px;
+  
+    text-align: center;
+}
+
+.card img{
+    width: 250px;
+}
+.card h2{
+    
+    color: #F7A072;
+    margin: 5px 0px 5px 0px ;
+}
+.card button{
+   
+ 
+    margin: 20px 0 20px 0;
+    
+    font-size: 18px;
+
+    cursor: pointer;
+    background: #F7A072 ;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    width: 70%;
+}
