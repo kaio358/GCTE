@@ -2,6 +2,8 @@ import Container from "../layout/Container"
 
 import styles from "./Gerenciar.module.css"
 
+import LinkButton from '../layout/LinkButton'
+
 import creche from "../../imgs/creche.jpg"
 import parquinho from "../../imgs/parquinho.jpg"
 import professora_sala_aula from "../../imgs/professora_sala_aula.jpg"
@@ -28,7 +30,7 @@ function Gerenciar(){
                     <div>
                         <h2>Manhã</h2>
                         <h3>Parquinho</h3>
-                        <button>Entrar</button>
+                        <button><LinkButton text="Entra" to="/tabela"/> </button>
 
                     </div>
 
