@@ -9,39 +9,54 @@
 }
 
 
-.card{
-    display: grid;
-    align-items: center;
-    grid-template-rows: 1fr 1fr;
-    padding: 10px;
-    background-color: #F9F7F3;
-    box-shadow: 0 8px 10px 0 rgba( 31, 38, 135, 0.37 );
-    border-radius: 8px;
-    max-width: 300px;
+
+
+.menu_lateral{
+    position: fixed;
+    display: flex;
   
-    text-align: center;
-}
-
-.card img{
-    width: 250px;
-}
-.card h2{
-    
-    color: #F7A072;
-    margin: 5px 0px 5px 0px ;
-}
-.card button{
-   
  
-    margin: 20px 0 20px 0;
+    right: 0;
+    top: 50%;
+    /* gap: 5px; */
     
-    font-size: 18px;
+}
+.inputMenu{
+    position: absolute;
+    display: none;
+}
 
-    cursor: pointer;
-    background: #F7A072 ;
-    color: white;
-    border: none;
-    border-radius: 20px;
+label{
+    
     padding: 5px;
-    width: 70%;
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+    /* border: 1px  solid black; */
+    box-shadow: 0 8px 5px 0 rgba( 31, 38, 135, 0.37 );
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-color: rgba(58, 59, 59, 0.849);
+    height: 52px;
+}
+
+.opcao_menu_lateral{
+    list-style: none;
+    display: none;
+    position: relative;
+    
+    top: -50vh;
+    height: 100vh;
+    padding: 10px;
+    
+   
+    font-size: large;
+    background-color: rgba(58, 59, 59, 0.849);
+    box-shadow: 0 8px 5px 0 rgba( 31, 38, 135, 0.37 );
+    color: #F9F7F3;
+    
+    transition: 0.55s ease-in-out;
+}
+.inputMenu:checked ~ .opcao_menu_lateral{
+    display: block;
 }
