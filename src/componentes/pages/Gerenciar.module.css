@@ -2,14 +2,37 @@
     margin-top: 20px;
 }
 
+.superior_ger{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+  
+}
 .introducao{
     text-align: center;
     color: #F7A072;
     
 }
+.icons_ger{
+    display: flex;
+}
 
+.icon_ger{
 
+    margin: 0 5px;
+    
+    border: 3px  dashed black;
+    border-radius: 50%;
+    padding: 15px;
+    /* border-style:; */
+}
+.icon_ger img{
+ 
+    width: 64px;
+}
 
+/* 
 
 .menu_lateral{
     position: fixed;
@@ -18,7 +41,7 @@
  
     right: 0;
     top: 50%;
-    /* gap: 5px; */
+
     
 }
 .inputMenu{
@@ -32,7 +55,7 @@ label{
     font-size: 40px;
     cursor: pointer;
     color: white;
-    /* border: 1px  solid black; */
+   
     box-shadow: 0 8px 5px 0 rgba( 31, 38, 135, 0.37 );
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
@@ -59,4 +82,4 @@ label{
 }
 .inputMenu:checked ~ .opcao_menu_lateral{
     display: block;
-}
+} */
