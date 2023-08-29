@@ -1,11 +1,12 @@
 
 import { useState, useEffect } from "react"
-import {LuChevronLeft} from "react-icons/lu"
+// import {LuChevronLeft} from "react-icons/lu"
 
 import Container from "../layout/Container"
 import styles from "./Gerenciar.module.css" 
 
 import Cards from "../layout/Cards"
+import InputFileImage from "../funcionalidades/InputFileImage"
 
 import creche from "../../imgs/creche.jpg"
 import parquinho from "../../imgs/parquinho.jpg"
@@ -70,6 +71,7 @@ function Gerenciar(){
                   
                 </ul>
             </div> */}
+            <InputFileImage/>
         </div>
     )
 }
