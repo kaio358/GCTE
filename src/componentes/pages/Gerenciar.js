@@ -6,7 +6,8 @@ import Container from "../layout/Container"
 import styles from "./Gerenciar.module.css" 
 
 import Cards from "../layout/Cards"
-import InputFileImage from "../funcionalidades/InputFileImage"
+import Mensagem from "../funcionalidades/Mensagem"
+
 
 import creche from "../../imgs/creche.jpg"
 import parquinho from "../../imgs/parquinho.jpg"
@@ -48,10 +49,10 @@ function Gerenciar(){
             
            <Container>
                
-                <Cards img={creche} periodo="Manhã" escola="Creche" eventPai={editou}/>
-                <Cards img={parquinho} periodo="Manhã" escola="Parquinho" eventPai={editou}/>
-                <Cards img={ensino_medio} periodo="Manhã" escola="Escola" eventPai={editou}/>
-                <Cards img={professora_sala_aula} periodo="Tarde" escola="Escola" eventPai={editou}/>
+                <Cards img={creche} periodo="Manhã" escola="Creche" idTabela={1} eventPai={editou}/>
+                <Cards img={parquinho} periodo="Manhã" escola="Parquinho" idTabela={2} eventPai={editou}/>
+                <Cards img={ensino_medio} periodo="Manhã" escola="Escola"  idTabela={3} eventPai={editou}/>
+                <Cards img={professora_sala_aula} periodo="Tarde" escola="Escola" idTabela={4} eventPai={editou}/>
                 
                
                
@@ -71,7 +72,11 @@ function Gerenciar(){
                   
                 </ul>
             </div> */}
-            <InputFileImage/>
+            <Mensagem>
+                ola
+            </Mensagem>
+
+  
         </div>
     )
 }

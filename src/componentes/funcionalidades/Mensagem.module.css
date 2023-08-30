@@ -1,0 +1,19 @@
+.corpo_mensagem{
+    position: absolute;
+
+    width: 400px;
+    
+}
+.parte_superior_mensagem{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    
+}
+.titulo_msg{
+    justify-self: center;
+}
+.cancelar{
+    justify-self: end;
+    color: red;
+    font-size: 20px;
+}
