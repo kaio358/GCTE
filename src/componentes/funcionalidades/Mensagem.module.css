@@ -1,13 +1,20 @@
 .corpo_mensagem{
     position: absolute;
-
+  
+    left: 40%;
+    top: 50%;
     width: 400px;
+
+    border: 1px solid #ccc;
+    box-shadow: 0.3px 5px 7px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 8px;
     
 }
 .parte_superior_mensagem{
     display: grid;
-    grid-template-columns: 80% 20%;
-    
+    grid-template-columns: 95% 5%;
+    background-color: #B5E2FA;
+    color: white;
 }
 .titulo_msg{
     justify-self: center;
@@ -15,5 +22,27 @@
 .cancelar{
     justify-self: end;
     color: red;
-    font-size: 20px;
+    font-size: 25px;
+    background-color: #efefef;
+    border-radius: 15px ;
+}
+
+.texto_mensagem{
+    padding: 10px 0;
+    text-align: center;
+    background-color: #efefef;
+}
+button{
+    margin: 3px  0;
+    padding: 5px;
+    width: 30%;
+    border-color:transparent ;
+    border-radius: 15px;
+    color: white;
+}
+button:nth-child(2){
+    background-color: #F7A072;
+}
+button:nth-child(3){
+    background-color:#0FA3B1 ;
 }

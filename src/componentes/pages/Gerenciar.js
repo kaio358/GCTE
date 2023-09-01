@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react"
+import { useState,useRef } from "react"
 // import {LuChevronLeft} from "react-icons/lu"
 
 import Container from "../layout/Container"
@@ -18,16 +18,32 @@ import icon_lapis from "../../imgs/icons/lapis.png"
 import icon_papel from "../../imgs/icons/folha-de-papel.png"
 
 function Gerenciar(){
+    const  [ teste,setTeste ] = useState([])
+    
+
+
     const [editou, setEditou] = useState(false)
+  
     var clicou = false
     function editar(){
+        const t = (
+            <Mensagem>
+                <p>Têm certeza em deletar o Creche no período de manhã?  </p>
+                <button>Sim</button> <button>Não</button>
+            </Mensagem> 
+            );
         if(!clicou){
             clicou= true
+           
+            setTeste(t)
+           
        
         }else{
             clicou = false
+           
           
         }
+        
         setEditou(clicou)
     }
     return(
@@ -72,11 +88,15 @@ function Gerenciar(){
                   
                 </ul>
             </div> */}
-            <Mensagem>
-                ola
-            </Mensagem>
+        {teste}
 
-  
+              
+        {/* <Mensagem>
+            <p>Têm certeza em deletar o Creche no período de manhã?  </p>
+            <button>Sim</button> <button>Não</button>
+        </Mensagem>  */}
+      
+     
         </div>
     )
 }
