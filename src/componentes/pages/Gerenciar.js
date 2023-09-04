@@ -18,32 +18,34 @@ import icon_lapis from "../../imgs/icons/lapis.png"
 import icon_papel from "../../imgs/icons/folha-de-papel.png"
 
 function Gerenciar(){
-    const  [ teste,setTeste ] = useState([])
+   
     
-
+    const [nome, setNome] = useState('')
+    const [fecharDelet,setFecharDelet] = useState(false)
 
     const [editou, setEditou] = useState(false)
-  
+    
+    function nomes(novo){
+        setNome(novo)
+    }
+    function atualizar(novo) {
+        setFecharDelet(novo)
+    }
     var clicou = false
     function editar(){
-        const t = (
-            <Mensagem>
-                <p>Têm certeza em deletar o Creche no período de manhã?  </p>
-                <button>Sim</button> <button>Não</button>
-            </Mensagem> 
-            );
+     
         if(!clicou){
             clicou= true
            
-            setTeste(t)
+    
            
        
         }else{
             clicou = false
            
-          
+            
         }
-        
+      
         setEditou(clicou)
     }
     return(
@@ -52,8 +54,8 @@ function Gerenciar(){
 
                 <h1 className={styles.introducao}>Gerenciamento</h1>
                 <div className={styles.icons_ger}>
-                    <div className={styles.icon_ger}>
-                        <img src={icon_lapis} onClick={()=> editar() } />
+                    <div className={styles.icon_ger} onClick={()=> editar() } >
+                        <img src={icon_lapis}/>
                     </div>
                     <div className={styles.icon_ger}>
                         <img src={icon_papel}  />
@@ -65,37 +67,25 @@ function Gerenciar(){
             
            <Container>
                
-                <Cards img={creche} periodo="Manhã" escola="Creche" idTabela={1} eventPai={editou}/>
-                <Cards img={parquinho} periodo="Manhã" escola="Parquinho" idTabela={2} eventPai={editou}/>
-                <Cards img={ensino_medio} periodo="Manhã" escola="Escola"  idTabela={3} eventPai={editou}/>
-                <Cards img={professora_sala_aula} periodo="Tarde" escola="Escola" idTabela={4} eventPai={editou}/>
+                <Cards img={creche} periodo="Manhã" escola="Creche" idTabela={1} eventPai={editou} atualizar={atualizar} nomes={nomes}/>
+                <Cards img={parquinho} periodo="Manhã" escola="Parquinho" idTabela={2} eventPai={editou} atualizar={atualizar} nomes={nomes}/>
+                <Cards img={ensino_medio} periodo="Manhã" escola="Escola"  idTabela={3} eventPai={editou} atualizar={atualizar} nomes={nomes}/>
+                <Cards img={professora_sala_aula} periodo="Tarde" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}/>
                 
                
                
                 
             </Container> 
+        
+    
+            {fecharDelet? 
+                <Mensagem atualizar={atualizar}>
+                    <p>Têm certeza em deletar o {nome} no período de manhã?  </p>
+                    <button>Sim</button> <button onClick={()=>atualizar(false)}>Não</button >
+                </Mensagem> :
+                ""
             
-            {/* <div className={styles.menu_lateral}>
-                <input type="checkbox" id="check_menu" className={styles.inputMenu}/>
-                <label for="check_menu">
-                    <LuChevronLeft/>
-
-                </label>
-                <ul className={styles.opcao_menu_lateral}>
-                    <li onClick={()=> editar() }>Editar</li>
-                    <li>Criar</li>
-                    <li>Excluir</li>
-                  
-                </ul>
-            </div> */}
-        {teste}
-
-              
-        {/* <Mensagem>
-            <p>Têm certeza em deletar o Creche no período de manhã?  </p>
-            <button>Sim</button> <button>Não</button>
-        </Mensagem>  */}
-      
+            }
      
         </div>
     )

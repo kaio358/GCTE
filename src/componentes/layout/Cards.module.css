@@ -29,3 +29,15 @@
     margin: 5px 0;
     padding: 5px;
 }
+
+.icon_deletar{
+    position: relative;
+    font-size: 30px;
+    top: -25px;
+    left: 55%;
+    color: red;
+    background-color: #F9F7F3;
+    box-shadow: 0 3px 5px 0 rgba( 31, 38, 135, 0.37 );
+    border-radius: 50%;
+   
+}
