@@ -1,0 +1,15 @@
+.formCriar{
+    position: absolute;
+    left: 25%;
+    top: 50%;
+    width: 50vw;
+    background-color: #F9F7F3;
+    text-align: center;
+    border: 2px dashed black;
+    border-radius: 5px;
+   
+    
+}
+.formCriar h1{
+    color: #F7A072;
+}

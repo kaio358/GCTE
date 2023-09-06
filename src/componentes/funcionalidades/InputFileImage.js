@@ -32,10 +32,10 @@ function InputFileImage({img,id}) {
     return(
         <div>
             <label class={styles.picture} for={id} tabIndex="0">
-                <span ref={pictureImage} class={styles.picture__image}><img src={img}/></span>
+                <span ref={pictureImage} class={styles.picture__image}>{img? <img src={img}/> :"Clique para inserir uma imagem" }</span>
             </label>
 
-            <input type="file" name="picture__input" className={styles.picture__input} id={id} onChange={carrega}></input>
+            <input type="file" name="picture__input" className={styles.picture__input} id={id} onChange={carrega}/>
         </div>
       
     )
