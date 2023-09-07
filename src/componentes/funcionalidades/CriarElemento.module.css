@@ -1,7 +1,7 @@
 .formCriar{
-    position: absolute;
+    position: fixed;
     left: 25%;
-    top: 50%;
+    top: 25%;
     width: 50vw;
     background-color: #F9F7F3;
     text-align: center;
@@ -12,4 +12,14 @@
 }
 .formCriar h1{
     color: #F7A072;
+}
+.iconFecharElemento {
+    position: relative;
+    top: 5px;
+    left: 45%;
+    justify-content: end;
+    font-size: 25px;
+    color:red ;
+
+  
 }

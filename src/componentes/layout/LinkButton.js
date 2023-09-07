@@ -2,10 +2,10 @@ import {Link} from 'react-router-dom'
 import styles from './LinkButton.module.css'
 
 
-function LinkButton({to,text}){
+function LinkButton({to,text,tipo}){
     return(
         <Link className={styles.btn} to={to} >
-            <button>{text}</button>
+            <button type={tipo} > {text} </button>
         </Link>
     )
 }

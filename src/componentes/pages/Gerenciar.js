@@ -24,7 +24,9 @@ function Gerenciar(){
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
 
+
     const [fecharDelet,setFecharDelet] = useState(false)
+
 
     const [editou, setEditou] = useState(false)
     const [novoElemento, setNovoElemento] = useState(false)
@@ -35,11 +37,18 @@ function Gerenciar(){
     function periodos(novo){
         setPeriodo(novo)
     }
+
+    
     function atualizar(novo) {
         setFecharDelet(novo)
     }
+
+    function fecharAba(novo) {
+        setNovoElemento(novo)
+    }
     var clicouEditar = false
     var clicouCriar = false
+
     function editar(){
         if(!clicouEditar){
             clicouEditar= true
@@ -96,7 +105,7 @@ function Gerenciar(){
             }
         {
             novoElemento?
-                <CriarElemento/>:
+                <CriarElemento fecharAba={fecharAba}/>:
                 ""
         }
         </div>

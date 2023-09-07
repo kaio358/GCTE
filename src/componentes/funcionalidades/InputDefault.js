@@ -3,7 +3,6 @@ import styles from "./InputDefault.module.css"
 function InputDefault(props){
  
     function mudarTexto(e){
-      
             props.texto(e.target.value)
 
     }
