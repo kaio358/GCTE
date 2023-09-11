@@ -8,7 +8,7 @@ function InputDefault(props){
     }
     
     return(
-        <input type='text' value={props.valor} onChange={mudarTexto} placeholder={props.tipo} className={styles.inputDefaultEstilo}/>
+        <input type='text' value={props.valor} onChange={mudarTexto} placeholder={props.tipo} className={styles.inputDefaultEstilo} name={props.nome}/>
     )
 }
 export default InputDefault

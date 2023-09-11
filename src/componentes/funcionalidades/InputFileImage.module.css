@@ -4,7 +4,7 @@
   
   .picture {
     margin: auto;
-    width: 250px;
+    width: 90%;
     aspect-ratio: 16/9;
     background: #ddd;
     display: flex;

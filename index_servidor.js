@@ -15,13 +15,16 @@ app.use(express.json());
 
 const conexao = require("./infraestrutura/conexao")
 const tabelas = require("./infraestrutura/tabelas")
+
+const rotaEscola = require("./rotas/rotaEscola")
+
 conexao.connect(erro=>{
     if(erro){
         console.log(erro);
     }else{
-
-        tabelas.init(conexao)
         
+        tabelas.init(conexao)
+        app.use("/",rotaEscola)
         server.listen(5000, () => {
             console.log("Conectado: http://localhost:5000");
         });

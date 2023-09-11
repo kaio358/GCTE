@@ -23,7 +23,7 @@ function CriarElemento(props){
         props.fecharAba(false)
     }
     return(
-        <form className={styles.formCriar} action="" method="POST">
+        <form className={styles.formCriar} action="/" method="POST">
              <ImCancelCircle onClick={abaElemento} className={styles.iconFecharElemento}/>
             <h1>Criar novo elemento</h1>
            
@@ -31,11 +31,11 @@ function CriarElemento(props){
                 <InputFileImage id={10}/>
             </div>
             <div>
-                <InputDefault valor={periodo} texto={textoPeriodo} tipo="Periodo"/>
+                <InputDefault valor={periodo} texto={textoPeriodo} tipo="Periodo" nome="periodoElemento"/>
             </div>
             <div>
                 
-                <InputDefault valor={escola} texto={textoEscola} tipo="Escola"/>
+                <InputDefault valor={escola} texto={textoEscola} tipo="Escola" nome="escolaElemento"/>
 
             </div>
             <div>
