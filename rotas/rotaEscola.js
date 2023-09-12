@@ -3,11 +3,12 @@ const rota = express()
 
 const Escola = require("../modelos/escola")
 
-rota.post('/gerenciar/escola',(req,res)=>{
+rota.post('/escola',(req,res)=>{
     const dados = {"nome":req.body.periodoElemento, "horario":req.body.escolaElemento}
     
     Escola.adiciona(dados)
-    res.send("dados recebidos : ", dados)
+    
+
 })
 
 

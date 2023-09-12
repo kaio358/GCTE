@@ -10,6 +10,8 @@ import LinkButton from "../layout/LinkButton"
 
 function CriarElemento(props){
 
+   
+
     const [periodo,setPeriodo] = useState("")
     function textoPeriodo(novo){
         setPeriodo(novo)
@@ -22,8 +24,23 @@ function CriarElemento(props){
     function abaElemento(){
         props.fecharAba(false)
     }
+    function enviar() {
+        fetch('http://localhost:5000/escola', {
+            method: 'POST',
+            body: JSON.stringify({
+                escolaElemento: escola,
+                periodoElemento: periodo
+             }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error))
+    }
     return(
-        <form className={styles.formCriar} action="/" method="POST">
+        <form className={styles.formCriar}  >
              <ImCancelCircle onClick={abaElemento} className={styles.iconFecharElemento}/>
             <h1>Criar novo elemento</h1>
            
@@ -38,7 +55,7 @@ function CriarElemento(props){
                 <InputDefault valor={escola} texto={textoEscola} tipo="Escola" nome="escolaElemento"/>
 
             </div>
-            <div>
+            <div onClick={enviar}>
                 <LinkButton text="Confirmar" tipo="submit"/>
             </div>
 

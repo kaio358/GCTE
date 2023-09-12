@@ -3,9 +3,11 @@
 class Tabelas{
     init(conexao){
         this.conexao = conexao
+       
         this.criarEscola()
         this.criarPagamento()
         this.criarPessoa()
+        
 
     }
     criarEscola(){
@@ -30,7 +32,7 @@ class Tabelas{
       
     }
     criarPessoa(){
-        const sql = `CREATE TABLE IF NOT EXISTS Pagamento ( 
+        const sql = `CREATE TABLE IF NOT EXISTS Pessoa ( 
         idpessoa INT NOT NULL AUTO_INCREMENT,
         nome VARCHAR(255) NOT NULL,
         endereco VARCHAR(100) NULL,
