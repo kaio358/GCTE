@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 
 import InputDefault from '../funcionalidades/InputDefault'
@@ -11,7 +11,24 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos})
 
     const [textPeriodo, setTextPeriodo] = useState(periodo)
     const [ textoEscola, setTextoEscola] = useState(escola)
+    const [conjPer,setConjPer] = useState([])
 
+    setInterval(() => {
+     
+     
+        if(textPeriodo != conjPer[0]){
+            
+            console.log(teste);
+            if ( teste) {
+                let separarData =   textPeriodo.split("T") 
+                console.log(separarData);
+                // let novoItem = [...conjPer, separarData[1]]
+                // setConjPer(novoItem)
+                // console.log(conjPer);
+            }
+        }
+
+    }, 6000);
 
     function textoNome(novo){
         setTextoEscola(novo )
@@ -37,7 +54,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos})
             </div>
             <div>
           
-                {eventPai? <InputDefault valor={textPeriodo} texto={textoPer} />:  <h2>{textPeriodo}</h2> }
+                {eventPai? <InputDefault inputTipo="datetime-local" valor={textPeriodo} texto={textoPer} />:  <h2>{textPeriodo}</h2> }
                 {eventPai? <InputDefault valor={textoEscola} texto={textoNome}/>:  <h3>{textoEscola}</h3> }
              
               

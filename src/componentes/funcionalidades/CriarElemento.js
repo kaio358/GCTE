@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import {ImCancelCircle} from "react-icons/im"
 
 import styles from "./CriarElemento.module.css"
@@ -25,12 +25,14 @@ function CriarElemento(props){
         props.fecharAba(false)
     }
     function enviar() {
+
+            
         fetch('http://localhost:5000/escola', {
             method: 'POST',
             body: JSON.stringify({
                 escolaElemento: escola,
                 periodoElemento: periodo
-             }),
+            }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -38,9 +40,11 @@ function CriarElemento(props){
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error(error))
+            
+     
     }
     return(
-        <form className={styles.formCriar}  >
+        <form className={styles.formCriar} >
              <ImCancelCircle onClick={abaElemento} className={styles.iconFecharElemento}/>
             <h1>Criar novo elemento</h1>
            
@@ -48,14 +52,14 @@ function CriarElemento(props){
                 <InputFileImage id={10}/>
             </div>
             <div>
-                <InputDefault valor={periodo} texto={textoPeriodo} tipo="Periodo" nome="periodoElemento"/>
+                <InputDefault inputTipo="datetime-local" valor={periodo} texto={textoPeriodo} tipo="Periodo" nome="periodoElemento"/>
             </div>
             <div>
                 
-                <InputDefault valor={escola} texto={textoEscola} tipo="Escola" nome="escolaElemento"/>
+                <InputDefault inputTipo="text" valor={escola} texto={textoEscola} tipo="Escola" nome="escolaElemento" />
 
             </div>
-            <div onClick={enviar}>
+            <div onClick={enviar} >
                 <LinkButton text="Confirmar" tipo="submit"/>
             </div>
 
