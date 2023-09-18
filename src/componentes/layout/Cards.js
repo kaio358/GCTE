@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef} from 'react'
 import {AiOutlineClose} from "react-icons/ai"
 
 import InputDefault from '../funcionalidades/InputDefault'
@@ -11,24 +11,36 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos})
 
     const [textPeriodo, setTextPeriodo] = useState(periodo)
     const [ textoEscola, setTextoEscola] = useState(escola)
-    const [conjPer,setConjPer] = useState([])
+    const [salvaDados,setSalvaDados] = useState()
+    const opacidade = useRef()
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const horario = new Date(`01/01/2000 ${textPeriodo}`);
+            let aux = textPeriodo;
+         
+        
 
-    setInterval(() => {
-     
-     
-        if(textPeriodo != conjPer[0]){
-            
-            console.log(teste);
-            if ( teste) {
-                let separarData =   textPeriodo.split("T") 
-                console.log(separarData);
-                // let novoItem = [...conjPer, separarData[1]]
-                // setConjPer(novoItem)
-                // console.log(conjPer);
+            if (!isNaN(horario.getTime())) {
+           
+                if (horario.getHours() < 12) {
+                setTextPeriodo("Manhã");
+                } else if (horario.getHours() <= 18) {
+                setTextPeriodo("Tarde");
+                } else {
+                setTextPeriodo("Noite");
+                }
+                setSalvaDados(aux);
+            } else {
+                setTextPeriodo(salvaDados);
             }
-        }
-
-    }, 6000);
+         
+        }, 6000);
+    
+        return () => {
+          clearInterval(intervalId);
+        };
+      }, []);
+    
 
     function textoNome(novo){
         setTextoEscola(novo )
@@ -54,7 +66,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos})
             </div>
             <div>
           
-                {eventPai? <InputDefault inputTipo="datetime-local" valor={textPeriodo} texto={textoPer} />:  <h2>{textPeriodo}</h2> }
+                {eventPai? <InputDefault inputTipo="time" valor={textPeriodo} texto={textoPer} />:  <h2 ref={opacidade}>{textPeriodo}</h2> }
                 {eventPai? <InputDefault valor={textoEscola} texto={textoNome}/>:  <h3>{textoEscola}</h3> }
              
               

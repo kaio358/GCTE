@@ -11,7 +11,7 @@ class Tabelas{
 
     }
     criarEscola(){
-        const sql = `CREATE TABLE IF NOT EXISTS Escola (idEscola INT NOT NULL AUTO_INCREMENT, nome VARCHAR(255) NULL,horario DATETIME NULL,PRIMARY KEY (idEscola))`
+        const sql = `CREATE TABLE IF NOT EXISTS Escola (idEscola INT NOT NULL AUTO_INCREMENT, nome VARCHAR(255) NULL,horario TIME NULL,PRIMARY KEY (idEscola))`
         this.conexao.query(sql,erro=>{
             if(erro){
                 console.log(erro);
