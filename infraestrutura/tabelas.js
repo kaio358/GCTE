@@ -44,14 +44,11 @@ class Tabelas{
         INDEX fk_Pessoa_Escola1_idx (Escola_idEscola ASC) VISIBLE,
         CONSTRAINT fk_pessoa_pagamento
           FOREIGN KEY (pagamento_idpagamento)
-          REFERENCES Pagamento (idpagamento)
-          ON DELETE NO ACTION
-          ON UPDATE NO ACTION,
+          REFERENCES Pagamento (idpagamento),
         CONSTRAINT fk_Pessoa_Escola1
           FOREIGN KEY (Escola_idEscola)
           REFERENCES Escola (idEscola)
-          ON DELETE NO ACTION
-          ON UPDATE NO ACTION)`
+          )`
         this.conexao.query(sql,erro=>{
             if(erro){
                 console.log(erro);

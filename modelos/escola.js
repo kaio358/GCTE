@@ -16,7 +16,16 @@ class Escola{
             }
         })
     }
-
+    deleta(id){
+        const sql = `DELETE FROM Escola WHERE idEscola = ${id}`
+        conexao.query(sql,(erro,resultado)=>{
+            if(erro){
+                console.log(erro);
+            }else{
+                console.log(resultado);
+            }
+        })
+    }
     
 }
 module.exports = new Escola

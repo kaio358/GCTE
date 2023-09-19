@@ -19,7 +19,7 @@ import icon_lapis from "../../imgs/icons/lapis.png"
 import icon_papel from "../../imgs/icons/folha-de-papel.png"
 
 function Gerenciar(){
-   
+    
     
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
@@ -65,6 +65,8 @@ function Gerenciar(){
         }
         setNovoElemento(clicouCriar)
     }
+
+
     return(
         <div className={styles.containerCards}>
             <div className={styles.superior_ger}>

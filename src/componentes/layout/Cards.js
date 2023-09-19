@@ -17,22 +17,22 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos})
         const intervalId = setInterval(() => {
             const horario = new Date(`01/01/2000 ${textPeriodo}`);
             let aux = textPeriodo;
-         
-        
+
 
             if (!isNaN(horario.getTime())) {
            
                 if (horario.getHours() < 12) {
-                setTextPeriodo("Manhã");
+                    setTextPeriodo("Manhã");
                 } else if (horario.getHours() <= 18) {
-                setTextPeriodo("Tarde");
+                    setTextPeriodo("Tarde");
                 } else {
-                setTextPeriodo("Noite");
+                    setTextPeriodo("Noite");
                 }
-                setSalvaDados(aux);
+          
             } else {
                 setTextPeriodo(salvaDados);
             }
+            setSalvaDados(aux);
          
         }, 6000);
     
@@ -66,7 +66,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos})
             </div>
             <div>
           
-                {eventPai? <InputDefault inputTipo="time" valor={textPeriodo} texto={textoPer} />:  <h2 ref={opacidade}>{textPeriodo}</h2> }
+                {eventPai? <InputDefault inputTipo="time"  texto={textoPer} />:  <h2 ref={opacidade}>{textPeriodo}</h2> }
                 {eventPai? <InputDefault valor={textoEscola} texto={textoNome}/>:  <h3>{textoEscola}</h3> }
              
               

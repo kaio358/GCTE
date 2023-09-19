@@ -10,6 +10,10 @@ rota.post('/escola',(req,res)=>{
     
 
 })
+rota.delete('/escola/:id',(req,res)=>{
+    
+})
+
 
 
 
