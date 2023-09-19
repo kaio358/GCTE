@@ -6,6 +6,20 @@ class Escola{
         this.nome = "";
         this.horario = 0;
     }
+  
+    lista(){
+        return new Promise((resolve, reject) => {
+            const sql = `SELECT * FROM Escola`
+            conexao.query(sql,(erro,resultado)=>{
+                if(erro){
+                    reject(erro);
+                }else{
+        
+                    resolve(resultado);
+                }
+            })
+        })
+    }
     adiciona(dados){
         const sql = `INSERT INTO Escola set ?`
         conexao.query(sql,dados,(erro,resultado)=>{
