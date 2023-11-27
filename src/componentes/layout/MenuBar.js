@@ -11,6 +11,7 @@ function MenuBar(){
             <ul className={styles.lista_nav}>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/gerenciar">Gerenciar</Link></li>
+                <li><Link to="/mensagens">Mensagens</Link></li>
             </ul>            
         </nav>
     )
