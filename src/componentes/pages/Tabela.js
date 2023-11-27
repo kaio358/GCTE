@@ -2,6 +2,7 @@ import {AiOutlineLine,AiOutlineClose,AiOutlineCheck} from "react-icons/ai";
 import { useState } from "react";
 
 import styles from "./Tabela.module.css"
+import BarraDeBusca from "../funcionalidades/BarraDeBusca";
 
 function Tabela(){
     const itens = [<AiOutlineLine /> ,<AiOutlineClose className={styles.iconRed} /> ,<AiOutlineCheck className={styles.iconGreen}/>]
@@ -21,6 +22,7 @@ function Tabela(){
     return(
         <div className={styles.divTab}>
             <h1>Tabela</h1>
+            <BarraDeBusca/>
             <table  className={styles.tabela_estilo}>
                 <thead className={styles.tabela_head}>
                     <tr>

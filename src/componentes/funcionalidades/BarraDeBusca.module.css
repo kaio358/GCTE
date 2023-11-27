@@ -1,0 +1,23 @@
+.caixaInputBarra{
+    display: flex;
+    justify-content: center;
+
+}
+
+.inputBarra{
+    border: none;
+    border-radius: 50px 0 0 50px;
+    box-shadow: var(--box-shadow);
+}
+.iconInput{
+    /* border: 1px solid black; */
+    box-shadow: var(--box-shadow);
+    border-radius: 0 50px 50px 0;
+    padding: 5px;
+    background-color: #F7A072;
+}
+.iconInput svg{
+    color: white;
+   
+    font-size: 25px;
+}

@@ -23,6 +23,7 @@ function Gerenciar(){
     
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
+    const [idEsc , setIdEsc] = useState()
 
 
     const [fecharDelet,setFecharDelet] = useState(false)
@@ -31,7 +32,7 @@ function Gerenciar(){
     const [editou, setEditou] = useState(false)
     const [novoElemento, setNovoElemento] = useState(false)
 
-    const [card, setCards] = useState()
+    const [card, setCards] = useState([])
 
     useEffect(()=>{
         fetch('http://localhost:5000/escola',{
@@ -43,7 +44,7 @@ function Gerenciar(){
     
     },[])
    
-     
+    
     
     function nomes(novo){
         setNome(novo)
@@ -60,6 +61,17 @@ function Gerenciar(){
     function fecharAba(novo) {
         setNovoElemento(novo)
     }
+    function deletar() {
+     
+        fetch(`http://localhost:5000/escola/:${idEsc}`,{
+        method:"DELETE",
+        headers:{
+            'Content-Type':'application/json'
+        }
+        }).then(resp=>resp.json())
+
+    }
+
     var clicouEditar = false
     var clicouCriar = false
 
@@ -105,11 +117,22 @@ function Gerenciar(){
                 <Cards img={ensino_medio} periodo="7:00" escola="Escola"  idTabela={3} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
                 <Cards img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
                 
-                {
-                    card? card.map(c=>{
-                        return <Cards img="http://placeholder/500" periodo={c.horario} escola={c.nome} idTabela={c.idEscola+5} eventPai={editou} atualizar={atualizar} nomes={nomes} periodos={periodos}/>
-                    }):""
-                }
+            
+                
+                {/* {
+                   
+                   card? card.map(c=>{
+                      
+                       return <Cards
+                        key={ setIdEsc(c.idEscola)} 
+                        img="http://placeholder.com/500"
+                        periodo={c.horario} 
+                        escola={c.nome} idTabela={c.idEscola+5} 
+                        eventPai={editou} atualizar={atualizar} 
+                        nomes={nomes} 
+                        periodos={periodos}/>
+                   }):""
+               } */}
                
                 
             </Container> 
@@ -118,7 +141,7 @@ function Gerenciar(){
             {fecharDelet? 
                 <Mensagem atualizar={atualizar}>
                     <p>Têm certeza em deletar o {nome} no período de {periodo}?  </p>
-                    <button>Sim</button> <button onClick={()=>atualizar(false)}>Não</button >
+                    <button onClick={deletar}>Sim</button> <button onClick={()=>atualizar(false)}>Não</button >
                 </Mensagem> :
                 ""
             
