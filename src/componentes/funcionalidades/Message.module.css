@@ -1,19 +1,43 @@
 .message_c{
     display: flex;
     justify-content: space-between;
+
     border-radius: 20px;
+    background-color: white;
     box-shadow: var(--box-shadow);
     width: 80%;
+   
+    margin: 10px auto;
+    
  
 }
+.foto_message img{
+    margin: 5px;
+    border-radius: 50%;
+    border: 2px solid gold;
+    
+}
+
 
 .corVer{
     background-color: red;
    
+}
+.corGreen{
+    background-color: green;
+}
+.conteudo_message{
+    align-self: center;
+}
+.conteudo_message span{
+    margin: 5px;
 }
 
 .classificacao_message{
     border-radius: 0 20px 20px 0;
     
     padding: 25px;
+}
+.importante_message{
+    font-weight: 600;
 }
