@@ -116,15 +116,16 @@ function Gerenciar(){
                 <Cards img={parquinho} periodo="14:00" escola="Parquinho" idTabela={2} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
                 <Cards img={ensino_medio} periodo="7:00" escola="Escola"  idTabela={3} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
                 <Cards img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
+                <Cards img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
                 
             
                 
-                {/* {
+                {
                    
                    card? card.map(c=>{
                       
                        return <Cards
-                        key={ setIdEsc(c.idEscola)} 
+                        key={ c.idEscola} 
                         img="http://placeholder.com/500"
                         periodo={c.horario} 
                         escola={c.nome} idTabela={c.idEscola+5} 
@@ -132,11 +133,12 @@ function Gerenciar(){
                         nomes={nomes} 
                         periodos={periodos}/>
                    }):""
-               } */}
+               }
                
                 
             </Container> 
         
+    
     
             {fecharDelet? 
                 <Mensagem atualizar={atualizar}>

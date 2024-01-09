@@ -6,7 +6,7 @@ function Message(props) {
                 <img src="https://placeholder.com/64"/>
             </div>
             <div className={styles.conteudo_message}>
-                <span>Kaio Luiz Ferreira</span>
+                <span>{props.nome_user}</span>
                 <span className={styles.importante_message}>{props.mensagem_pago_ou_nao}</span>
             </div>
             <div className={ ` ${styles.classificacao_message} ${styles[props.customCor]}` }>

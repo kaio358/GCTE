@@ -16,9 +16,9 @@ function CaixaDeMensagem() {
             </section>
             <section className={styles.box_message}>
                 <ul>
-                    <Message customCor={"corVer"} mensagem_pago_ou_nao={"Não pagou"}/>
-                    <Message customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/>
-                    <Message customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/>
+                    <Message nome_user={"Kaio Luiz Ferreira"} customCor={"corVer"} mensagem_pago_ou_nao={"Não pagou"}/>
+                    <Message nome_user={"Maria Eduarda"} customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/>
+                    <Message nome_user={"Fernando"} customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/>
                 </ul>
             </section>
         </div>

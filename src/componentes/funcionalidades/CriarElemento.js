@@ -52,7 +52,7 @@ function CriarElemento(props){
                 <InputFileImage id={10}/>
             </div>
             <div>
-                <InputDefault inputTipo="datetime-local" valor={periodo} texto={textoPeriodo} tipo="Periodo" nome="periodoElemento"/>
+                <InputDefault inputTipo="time" valor={periodo} texto={textoPeriodo} tipo="Periodo" nome="periodoElemento"/>
             </div>
             <div>
                 
