@@ -21,7 +21,18 @@ class Tabelas{
         })
     }
     criarPagamento(){
-        const sql = `CREATE TABLE IF NOT EXISTS Pagamento (idpagamento INT NOT NULL,valor REAL NULL,data DATE NULL,PRIMARY KEY (idpagamento))`
+        const sql = `CREATE TABLE IF NOT EXISTS Pagamento
+        (  
+            idpagamento INT NOT NULL,
+            pessoa_idpessoa INT NOT NULL,
+            valor REAL NULL,
+            data DATE NULL,
+            PRIMARY KEY (idpagamento), 
+            INDEX fk_Pagamento_Pessoa1_idx (pessoa_idpessoa ASC) VISIBLE,
+            CONSTRAINT fk_Pagamento_Pessoa1
+              FOREIGN KEY (pessoa_idpessoa)
+              REFERENCES Pessoa (idpessoa)
+        )`
         this.conexao.query(sql,erro=>{
             if(erro){
                 console.log(erro);
@@ -37,14 +48,11 @@ class Tabelas{
         nome VARCHAR(255) NOT NULL,
         endereco VARCHAR(100) NULL,
         telefone VARCHAR(15) NULL,
-        pagamento_idpagamento INT NOT NULL,
+      
         Escola_idEscola INT NOT NULL,
         PRIMARY KEY (idpessoa),
-        INDEX fk_pessoa_pagamento_idx (pagamento_idpagamento ASC) VISIBLE,
+      
         INDEX fk_Pessoa_Escola1_idx (Escola_idEscola ASC) VISIBLE,
-        CONSTRAINT fk_pessoa_pagamento
-          FOREIGN KEY (pagamento_idpagamento)
-          REFERENCES Pagamento (idpagamento),
         CONSTRAINT fk_Pessoa_Escola1
           FOREIGN KEY (Escola_idEscola)
           REFERENCES Escola (idEscola)
