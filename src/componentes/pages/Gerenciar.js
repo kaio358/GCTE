@@ -41,17 +41,22 @@ function Gerenciar(){
                 'Content-Type':'application/json'
             }
         }).then(resp=>resp.json()).then(data=>setCards(data)).catch(err=>console.log(err))
-    
+     
     },[])
    
     
-    
+    // para Cards
     function nomes(novo){
         setNome(novo)
     }
     function periodos(novo){
         setPeriodo(novo)
     }
+    function ids(novo){
+        setIdEsc(novo)
+    }
+
+
 
     
     function atualizar(novo) {
@@ -62,14 +67,14 @@ function Gerenciar(){
         setNovoElemento(novo)
     }
     function deletar() {
-     
+        
         fetch(`http://localhost:5000/escola/:${idEsc}`,{
         method:"DELETE",
         headers:{
             'Content-Type':'application/json'
         }
         }).then(resp=>resp.json())
-
+        atualizar(false)
     }
 
     var clicouEditar = false
@@ -112,26 +117,28 @@ function Gerenciar(){
             
            <Container>
                
-                <Cards img={creche} periodo="19:42" escola="Creche" idTabela={1} eventPai={editou} atualizar={atualizar} nomes={nomes} periodos={periodos}/>
-                <Cards img={parquinho} periodo="14:00" escola="Parquinho" idTabela={2} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
-                <Cards img={ensino_medio} periodo="7:00" escola="Escola"  idTabela={3} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
-                <Cards img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
-                <Cards img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
+                <Cards chave={555} img={creche} periodo="19:42" escola="Creche" idTabela={1} eventPai={editou} atualizar={atualizar} nomes={nomes} periodos={periodos} iDCard={ids}/>
+                <Cards chave={575} img={parquinho} periodo="14:00" escola="Parquinho" idTabela={2} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos} iDCard={ids}/>
+                <Cards chavve={585} img={ensino_medio} periodo="7:00" escola="Escola"  idTabela={3} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
+                <Cards chave={595} img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos} iDCard={ids}/>
+                <Cards chave={565} img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos} iDCard={ids}/>
                 
             
                 
                 {
                    
                    card? card.map(c=>{
-                      
+                       
                        return <Cards
-                        key={ c.idEscola} 
+                        chave={ c.idEscola} 
                         img="http://placeholder.com/500"
                         periodo={c.horario} 
                         escola={c.nome} idTabela={c.idEscola+5} 
                         eventPai={editou} atualizar={atualizar} 
                         nomes={nomes} 
-                        periodos={periodos}/>
+                        periodos={periodos}
+                        iDCard={ids}
+                        />
                    }):""
                }
                

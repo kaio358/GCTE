@@ -7,7 +7,7 @@ import LinkButton from '../layout/LinkButton'
 import styles from './Cards.module.css'
 
 
-function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos}){
+function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,chave, iDCard}){
 
     const [textPeriodo, setTextPeriodo] = useState(periodo)
     const [ textoEscola, setTextoEscola] = useState(escola)
@@ -53,12 +53,13 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos})
     function deletar(){
         nomes(textoEscola)
         periodos(textPeriodo)
+        iDCard(chave)
         atualizar(true)
     }
 
     
     return(
-        <div className={styles.card}>
+        <div className={styles.card} id={chave}>
         
             <div>
                 {eventPai? <AiOutlineClose className={styles.icon_deletar} onClick={deletar}/> : ''}
