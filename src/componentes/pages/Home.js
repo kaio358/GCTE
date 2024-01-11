@@ -35,12 +35,12 @@ function Home() {
                 <h3>Adicionar transação</h3>
                 <form id="form">
                     <div className={styles.form_control}>
-                        <label htmlForfor="text">Nome</label>
+                        <label htmlFor="text">Nome</label>
                         <input autofocus type="text" id="text" className={styles.inputTextHome} placeholder="Nome da transação" />
                     </div>
 
                     <div className="form_control">
-                    <label htmlfor="amount">Valor <br />
+                    <label  htmlFor="amount">Valor <br />
                         <small>(negativo - despesas, positivo - receitas)</small>
                     </label>
                     <input type="number" id="amount" className={styles.inputNumberHome} placeholder="Valor da transação" />

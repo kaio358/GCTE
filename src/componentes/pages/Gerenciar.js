@@ -67,12 +67,13 @@ function Gerenciar(){
         setNovoElemento(novo)
     }
     function deletar() {
-        
-        fetch(`http://localhost:5000/escola/:${idEsc}`,{
+       
+        fetch(`http://localhost:5000/escola/${idEsc}`,{
         method:"DELETE",
         headers:{
             'Content-Type':'application/json'
-        }
+        }, 
+        body:  JSON.stringify({ id: idEsc })
         }).then(resp=>resp.json())
         atualizar(false)
     }
@@ -119,7 +120,7 @@ function Gerenciar(){
                
                 <Cards chave={555} img={creche} periodo="19:42" escola="Creche" idTabela={1} eventPai={editou} atualizar={atualizar} nomes={nomes} periodos={periodos} iDCard={ids}/>
                 <Cards chave={575} img={parquinho} periodo="14:00" escola="Parquinho" idTabela={2} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos} iDCard={ids}/>
-                <Cards chavve={585} img={ensino_medio} periodo="7:00" escola="Escola"  idTabela={3} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos}/>
+                <Cards chavve={585} img={ensino_medio} periodo="7:00" escola="Escola"  idTabela={3} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos} iDCard={ids}/>
                 <Cards chave={595} img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos} iDCard={ids}/>
                 <Cards chave={565} img={professora_sala_aula} periodo="8:00" escola="Escola" idTabela={4} eventPai={editou} atualizar={atualizar} nomes={nomes}  periodos={periodos} iDCard={ids}/>
                 
