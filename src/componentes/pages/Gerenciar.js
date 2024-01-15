@@ -20,7 +20,8 @@ import icon_papel from "../../imgs/icons/folha-de-papel.png"
 
 function Gerenciar(){
     
-    
+    const url = window.location.href;
+
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
     const [idEsc , setIdEsc] = useState()
@@ -75,7 +76,10 @@ function Gerenciar(){
         }, 
         body:  JSON.stringify({ id: idEsc })
         }).then(resp=>resp.json())
+        
         atualizar(false)
+        window.location.reload();
+        
     }
 
     var clicouEditar = false

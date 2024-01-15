@@ -76,6 +76,7 @@ class Imagens{
     delete(id){
         const sql = `DELETE FROM Imagens WHERE idImagens=${id}`
         return new Promise((resolve,reject)=>{
+            
             conexao.query(sql, (erro, resultados) => { 
                 if(erro) {
                     reject(erro)
@@ -83,7 +84,6 @@ class Imagens{
                     resolve({id})
                 }
             })
-
         } )
     }
     conjuntoDeImagens(id){
@@ -96,7 +96,7 @@ class Imagens{
                     reject(erro);
                 } else {
                     for(let valor of resultados){
-                        imageArray.push( `data:${valor.tipo};base64,${valor.image.toString('base64')}`)
+                        imageArray.push( `data:${valor.tipo};base64,${valor.dados_imagens.toString('base64')}`)
                     }
     
                     resolve({image:imageArray});
