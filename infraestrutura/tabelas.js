@@ -7,7 +7,7 @@ class Tabelas{
         this.criarEscola()
         this.criarPagamento()
         this.criarPessoa()
-        
+        this.criarImagens()
 
     }
     criarEscola(){
@@ -65,6 +65,17 @@ class Tabelas{
             }
         })
       
+    }
+    criarImagens(){
+        const sql = "CREATE TABLE IF NOT EXISTS `Imagens` (`idImagens` INT NOT NULL AUTO_INCREMENT ,`nome` VARCHAR(45) NULL,tipo VARCHAR(45) ,`dados_imagens` LONGBLOB NULL,`Escola_idEscola` INT NULL,PRIMARY KEY (`idImagens`),FOREIGN KEY (`Escola_idEscola`) REFERENCES `Escola` (`idEscola`));"
+
+        this.conexao.query(sql, erro =>{
+            if(erro){
+                console.log(erro);
+            }else{
+                console.log('Tabela Imagens criada com sucesso');
+            }
+        })
     }
 }
 module.exports = new Tabelas
