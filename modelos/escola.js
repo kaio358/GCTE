@@ -40,6 +40,16 @@ class Escola{
             }
         })
     }
+    atualizar(id, nome, horario){
+        const sql = `UPDATE Escola SET nome=${nome}, horario=${horario} WHERE idEscola=${id}`
+        conexao.query(sql,(erro,resultado)=>{
+            if(erro){
+                console.log(erro);
+            }else{
+                console.log(resultado);
+            }
+        })
+    }
     
 }
 module.exports = new Escola

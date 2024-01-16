@@ -69,7 +69,7 @@ function Gerenciar(){
     }
     function deletar() {
        
-        fetch(`http://localhost:5000/escola/${idEsc}`,{
+        fetch(`http://localhost:5000/escola`,{
         method:"DELETE",
         headers:{
             'Content-Type':'application/json'
@@ -89,8 +89,10 @@ function Gerenciar(){
         if(!clicouEditar){
             clicouEditar= true
         }else{
+      
             clicouEditar = false  
         }
+        
         setEditou(clicouEditar)
     }
     function criarNovoElemento(){

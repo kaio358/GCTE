@@ -19,9 +19,13 @@ rota.post('/escola',(req,res)=>{
 })
 rota.delete('/escola',(req,res)=>{
     const id = req.body.id
+    console.log(id);
     Escola.deleta(id)
 })
-
+rota.put('/escola',(req,res)=>{
+    const id = req.body.id
+    
+})
 
 
 

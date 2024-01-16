@@ -12,6 +12,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
     const [textPeriodo, setTextPeriodo] = useState(periodo)
     const [ textoEscola, setTextoEscola] = useState(escola)
     const [salvaDados,setSalvaDados] = useState()
+    const [mudou,setMudou] = useState(false)
     const opacidade = useRef()
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -43,9 +44,11 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
     
 
     function textoNome(novo){
+        setMudou(true)
         setTextoEscola(novo )
     }
     function textoPer(novo){
+        setMudou(true)
         setTextPeriodo(novo)
     }
  
@@ -56,7 +59,13 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
         iDCard(chave)
         atualizar(true)
     }
-
+    if(!eventPai){
+        if(mudou){
+            console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
+            console.log();
+        }
+     
+    }
     
     return(
         <div className={styles.card} id={chave}>
