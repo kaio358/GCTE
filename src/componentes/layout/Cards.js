@@ -14,33 +14,35 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
     const [salvaDados,setSalvaDados] = useState()
     const [mudou,setMudou] = useState(false)
     const opacidade = useRef()
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            const horario = new Date(`01/01/2000 ${textPeriodo}`);
-            let aux = textPeriodo;
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         const horario = new Date(`01/01/2000 ${textPeriodo}`);
+    //         let aux = textPeriodo;
+    //         let cont = 0 
 
-
-            if (!isNaN(horario.getTime())) {
+    //         if (!isNaN(horario.getTime())  && cont == 0 ) {
            
-                if (horario.getHours() < 12) {
-                    setTextPeriodo("Manhã");
-                } else if (horario.getHours() <= 18) {
-                    setTextPeriodo("Tarde");
-                } else {
-                    setTextPeriodo("Noite");
-                }
-          
-            } else {
-                setTextPeriodo(salvaDados);
-            }
-            setSalvaDados(aux);
-         
-        }, 6000);
+    //             if (horario.getHours() < 12) {
+    //                 setTextPeriodo("Manhã");
+    //             } else if (horario.getHours() <= 18) {
+    //                 setTextPeriodo("Tarde");
+    //             } else {
+    //                 setTextPeriodo("Noite");
+    //             }
+    //             cont++
+    //         } else {
+            
+    //             cont = 0
+    //             setTextPeriodo(salvaDados);
+    //         }
+    //         setSalvaDados(aux);
+
+    //     }, 6000);
     
-        return () => {
-          clearInterval(intervalId);
-        };
-      }, []);
+    //     return () => {
+    //       clearInterval(intervalId);
+    //     };
+    //   }, []);
     
 
     function textoNome(novo){
@@ -60,9 +62,17 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
         atualizar(true)
     }
     if(!eventPai){
+  
         if(mudou){
+          
             console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
-            console.log();
+            fetch(`http://localhost:5000/escola`,{
+                method:'PUT',
+                headers:{
+                    'Content-type':'application/json'
+                },
+                body:JSON.stringify( {id:chave,nome:textoEscola,horario:textPeriodo})
+            }).then(resp => resp.json())
         }
      
     }

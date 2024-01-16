@@ -24,6 +24,9 @@ rota.delete('/escola',(req,res)=>{
 })
 rota.put('/escola',(req,res)=>{
     const id = req.body.id
+    const nome = req.body.nome
+    const horario = req.body.horario
+    Escola.atualizar(id,nome,horario)
     
 })
 
