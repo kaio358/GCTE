@@ -20,3 +20,4 @@ rota.get('/imagens',async (req,res)=>{
 })
 
 
+module.exports = rota

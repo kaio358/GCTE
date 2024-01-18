@@ -1,10 +1,17 @@
 import {AiOutlineLine,AiOutlineClose,AiOutlineCheck} from "react-icons/ai";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 import styles from "./Tabela.module.css"
 import BarraDeBusca from "../funcionalidades/BarraDeBusca";
 
+
 function Tabela(){
+    const localizacao = useLocation() 
+    console.log(localizacao);
+    // const idteste = localizacao.state.id
+    // console.log(idteste);
+
     const itens = [<AiOutlineLine /> ,<AiOutlineClose className={styles.iconRed} /> ,<AiOutlineCheck className={styles.iconGreen}/>]
     const [opcao, setOpcao] = useState(0)
     var i = 0 
@@ -18,6 +25,17 @@ function Tabela(){
         }
         setOpcao(i)
     }
+    useEffect(()=>{
+        fetch(`http://localhost:5000/pessoa/${2}`,{
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+            .then(resp => resp.json())
+            .then(dados => console.log(dados))
+            .catch(erro => console.log(erro))
+    })
   
     return(
         <div className={styles.divTab}>
