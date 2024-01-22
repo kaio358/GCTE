@@ -21,40 +21,10 @@
 }
 .tabela_head th{
     padding: 5px;
-    
-}
-.anEsp{
     background-color: #F7A072;
-}
-tbody tr{
-    font-weight: 300;
-    font-size: 18px;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #B5E2FA; 
-}
-
-
-tbody tr:nth-child(odd) {
-  background-color: #F9F7F3; 
-}
-
-
-
-.itemEspecifico{
-    background-color: #F9F7F3;
-  
     
-
+    
 }
-.itemEspecifico svg{
-    font-size: larger;
-  
-}
-.iconRed{
-    color: red;
-}
-.iconGreen{
-    color: rgb(108, 166, 21);
+.tabela_head th:not(.anEsp){
+    background-color: #0FA3B1;
 }

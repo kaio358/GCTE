@@ -1,0 +1,34 @@
+ 
+ 
+ 
+ tr{
+    font-weight: 300;
+    font-size: 18px;
+}
+
+tr:nth-child(even) {
+    background-color: #B5E2FA; 
+}
+
+ tr:nth-child(odd) {
+  background-color: #F9F7F3; 
+}
+
+
+
+.itemEspecifico{
+    background-color: #F9F7F3;
+  
+    
+
+}
+.itemEspecifico svg{
+    font-size: larger;
+  
+}
+.iconRed{
+    color: red;
+}
+.iconGreen{
+    color: rgb(108, 166, 21);
+}
