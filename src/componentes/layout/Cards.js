@@ -91,7 +91,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
              
               
               
-                <LinkButton text="Entra" to="/tabela"/> 
+                <LinkButton text="Entra" to={ `/tabela?id=${chave}` }  /> 
             </div>
         </div>
     )

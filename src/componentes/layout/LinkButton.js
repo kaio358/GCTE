@@ -4,7 +4,7 @@ import styles from './LinkButton.module.css'
 
 function LinkButton({to,text,tipo}){
     return(
-        <Link className={styles.btn} to={{pathname:to  ,state:{id:2}}} >
+        <Link className={styles.btn} to={to} >
             <button type={tipo} > {text} </button>
         </Link>
     )

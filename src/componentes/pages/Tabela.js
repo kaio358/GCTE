@@ -8,16 +8,17 @@ import Linha_tabela from "../layout/Linha_tabela";
 
 function Tabela(){
     const localizacao = useLocation() 
-    // console.log(localizacao);
-    // const idteste = localizacao.state.id
-    // console.log(idteste);
+
+    const idteste = localizacao.search
+    const ourNumber = idteste.match(/\d+/)[0]
+  
+
 
 
     const [pessoas,setPessoa] = useState()
 
-
     useEffect(()=>{
-        fetch(`http://localhost:5000/pessoa/${2}`,{
+        fetch(`http://localhost:5000/pessoa/${ourNumber}`,{
             method:'GET',
             headers:{
                 'Content-Type':'application/json'
