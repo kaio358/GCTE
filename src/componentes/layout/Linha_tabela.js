@@ -3,7 +3,7 @@ import styles from "./Linha_tabela_.module.css";
 import {AiOutlineLine,AiOutlineClose,AiOutlineCheck} from "react-icons/ai";
 import { useState } from "react";
 
-function Linha_tabela(){
+function Linha_tabela(props){
     const itens = [<AiOutlineLine /> ,<AiOutlineClose className={styles.iconRed} /> ,<AiOutlineCheck className={styles.iconGreen}/>]
     const [opcao, setOpcao] = useState(0)
 
@@ -23,11 +23,11 @@ function Linha_tabela(){
     }
     return(
         <tr>
-            <td>01</td>
-            <td>Body1 linha1</td>
-            <td colSpan="2">Laruo Sanches</td>
-            <td>Body3 linha1</td>
-            <td>Body3 linha1</td>
+            <td>{props.id}</td>
+            <td>{props.nome}</td>
+            <td colSpan="2">{props.escola}</td>
+            <td>{props.endereco}</td>
+            <td>{props.telefone}</td>
             <td>Body3 linha1</td>
             <td className={styles.itemEspecifico} onClick={troca } >{itens[opcao]}</td>
         </tr>

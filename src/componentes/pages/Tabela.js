@@ -48,11 +48,14 @@ function Tabela(){
                 </thead>
                 <tbody>
         
-                    <Linha_tabela/>
-                    <Linha_tabela/>
-                    {pessoas? pessoas.map(p=>{
-                        return p.idpessoa
-                    }) : "Seila"}
+                   
+             
+                    {pessoas? pessoas.pessoa.map(p=>{
+                        return pessoas.escola.map(e=>{
+                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone}/>   
+                        })
+                       
+                    }) : ""}
                 </tbody>
                
             </table>
@@ -60,3 +63,9 @@ function Tabela(){
     )
 }
 export default Tabela
+
+
+// pessoas.map(p=>{
+//     // return <Linha_tabela id={ p.idpessoa} nome={p.nome} endereco={p.endereco} telefone={p.telefone}/> 
+//     return p
+// })
