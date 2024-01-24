@@ -16,7 +16,7 @@ function Tabela(){
 
 
     const [pessoas,setPessoa] = useState()
-
+    const [valor,setValor] = useState([])
     useEffect(()=>{
         fetch(`http://localhost:5000/pessoa/${ourNumber}`,{
             method:'GET',
@@ -27,6 +27,20 @@ function Tabela(){
             .then(resp => resp.json())
             .then(dados => setPessoa(dados))
             .catch(erro => console.log(erro))
+        // console.log(pessoas.pessoa);
+        pessoas ? pessoas.pessoa.map(p=>{
+           
+            fetch(`http://localhost:5000/pagamento/${p.idpessoa}`,{
+                method:'GET',
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            })
+                .then(resp => resp.json())
+                .then(dados =>  valor.push(dados))
+                .catch(erro => console.log(erro))
+        }) : console.log("nada");
+        console.log(valor);
     })
   
     return(
@@ -50,7 +64,8 @@ function Tabela(){
         
                    
              
-                    {pessoas? pessoas.pessoa.map(p=>{
+                    {pessoas? pessoas.pessoa.map(p=>{        
+                            
                         return pessoas.escola.map(e=>{
                             return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone}/>   
                         })
