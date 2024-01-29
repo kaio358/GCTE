@@ -9,9 +9,9 @@ import Linha_tabela from "../layout/Linha_tabela";
 function Tabela(){
     const localizacao = useLocation() 
 
-    const idteste = localizacao.search
-    const ourNumber = idteste.match(/\d+/)[0]
-  
+    const idteste = localizacao.search;
+    const ourNumber = idteste.match(/\d+/)[0];
+
 
 
 
@@ -19,7 +19,7 @@ function Tabela(){
     const [valor,setValor] = useState()
 
     useEffect(() => {
-        fetch(`http://localhost:5000/pessoa/${ourNumber}`, {
+        fetch(`http://localhost:5000/pessoa/escola/${ourNumber}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json'
@@ -73,8 +73,11 @@ function Tabela(){
                     {pessoas? pessoas.pessoa.map((p,i)=>{        
                             
                         return pessoas.escola.map(e=>{
-                            
-                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor}/>   
+                            if(valor) {
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor}/>   
+                            }else{
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} />   
+                            }
                         })
                        
                     }) : ""}
@@ -85,9 +88,3 @@ function Tabela(){
     )
 }
 export default Tabela
-
-
-// pessoas.map(p=>{
-//     // return <Linha_tabela id={ p.idpessoa} nome={p.nome} endereco={p.endereco} telefone={p.telefone}/> 
-//     return p
-// })
