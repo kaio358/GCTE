@@ -28,7 +28,7 @@ function Linha_tabela(props){
             <td colSpan="2">{props.escola}</td>
             <td>{props.endereco}</td>
             <td>{props.telefone}</td>
-            <td>Body3 linha1</td>
+            <td>{props.valorPago}</td>
             <td className={styles.itemEspecifico} onClick={troca } >{itens[opcao]}</td>
         </tr>
     )

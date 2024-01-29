@@ -16,32 +16,38 @@ function Tabela(){
 
 
     const [pessoas,setPessoa] = useState()
-    const [valor,setValor] = useState([])
-    useEffect(()=>{
-        fetch(`http://localhost:5000/pessoa/${ourNumber}`,{
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json'
-            }
+    const [valor,setValor] = useState()
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/pessoa/${ourNumber}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         })
-            .then(resp => resp.json())
-            .then(dados => setPessoa(dados))
-            .catch(erro => console.log(erro))
-        // console.log(pessoas.pessoa);
-        pessoas ? pessoas.pessoa.map(p=>{
-           
-            fetch(`http://localhost:5000/pagamento/${p.idpessoa}`,{
-                method:'GET',
-                headers:{
-                    'Content-Type':'application/json'
+          .then(resp => resp.json())
+          .then(dados => {
+            setPessoa(dados);
+            return dados;
+          })
+          .then(dados => {
+            const promises = dados.pessoa.map(p => {
+              return fetch(`http://localhost:5000/pagamento/${p.idpessoa}`, {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json'
                 }
-            })
-                .then(resp => resp.json())
-                .then(dados =>  valor.push(dados))
-                .catch(erro => console.log(erro))
-        }) : console.log("nada");
-        console.log(valor);
-    })
+              })
+                .then(resp => resp.json());
+            });
+            return Promise.all(promises);
+          })
+          .then(dados => {
+            setValor(dados);
+          })
+          .catch(erro => console.log(erro));
+      }, []);
+      
   
     return(
         <div className={styles.divTab}>
@@ -64,10 +70,11 @@ function Tabela(){
         
                    
              
-                    {pessoas? pessoas.pessoa.map(p=>{        
+                    {pessoas? pessoas.pessoa.map((p,i)=>{        
                             
                         return pessoas.escola.map(e=>{
-                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone}/>   
+                            
+                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor}/>   
                         })
                        
                     }) : ""}
