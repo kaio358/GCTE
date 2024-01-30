@@ -43,6 +43,7 @@ function Tabela(){
             return Promise.all(promises);
           })
           .then(dados => {
+            
             setValor(dados);
           })
           .catch(erro => console.log(erro));
@@ -73,11 +74,17 @@ function Tabela(){
                     {pessoas? pessoas.pessoa.map((p,i)=>{        
                             
                         return pessoas.escola.map(e=>{
-                            if(valor) {
+
+                          if(valor) {
+                            if(valor[0][0]){
                               return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor}/>   
-                            }else{
+                            }
+                            else{
                               return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} />   
                             }
+                          }else{
+                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} />   
+                          }
                         })
                        
                     }) : ""}
