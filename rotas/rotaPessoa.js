@@ -13,9 +13,12 @@ rota.get("/pessoa/escola/:idEscola",async (req,res)=>{
     res.json({pessoa: lista_pessoas,escola:  nomeEscola})
 })
 
-rota.get("/pessoa/nome/:nome",(req,res)=>{
+rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
     const nome = req.params.nome
-    console.log(nome);
+    const id = req.params.id
+
+    const nomePessoas = await Pessoa.nomeLista(nome,id)
+    console.log(nomePessoas);
 })
 
 

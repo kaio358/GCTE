@@ -10,7 +10,7 @@ function BarraDeBusca() {
     }
     function procurar(){
         console.log(procuraNome);
-        fetch(`http://localhost:5000/pessoa/nome/${procuraNome}`,{
+        fetch(`http://localhost:5000/pessoa/nome/${procuraNome}/${2}`,{
             method:'GET',
             headers:{
                 'Content-type':'application/json'
