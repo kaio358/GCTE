@@ -1,7 +1,7 @@
 const express = require('express')
 const rota = express()
 
-const Imagens = require('../modelos/imagens')
+const Imagens = require('../modelos/Imagens')
 
 
 // pega imagens uma imagem

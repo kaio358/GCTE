@@ -32,6 +32,22 @@
     width: 64px;
 }
 
+
+/* botão da mensagem a ser deletada ou não  */
+.btn_mensagem{
+    margin: 3px  0;
+    padding: 5px;
+    width: 30%;
+    border-color:transparent ;
+    border-radius: 15px;
+    color: white;
+}
+.btn_mensagem:nth-child(2){
+    background-color: #F7A072;
+}
+.btn_mensagem:nth-child(3){
+    background-color:#0FA3B1 ;
+}
 /* 
 
 .menu_lateral{

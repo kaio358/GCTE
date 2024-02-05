@@ -1,7 +1,21 @@
 
+import { useState } from "react"
 import styles from "./Home.module.css"
 
 function Home() {
+    const [nome,setNome] = useState()
+    const [valor,setValor] = useState()
+    const [positivo,setPosito] = useState()
+    const [negativo,setNegativo]= useState()
+    function criarSaldo(){
+        if(valor<0){
+            setNegativo(parseFloat(valor*(-1)))
+        }else{
+            setPosito(parseFloat(valor))
+        }
+       
+    }
+
     return(
         <div className={styles.containerHome}>
            
@@ -16,12 +30,12 @@ function Home() {
                 <div className={styles.inc_exp_container}>
                     <div>
                     <h4>Receitas</h4>
-                    <p id="money-plus" className={ `${styles.money} ${styles.plus}`}>+ R$0.00</p>
+                    <p id="money-plus" className={ `${styles.money} ${styles.plus}`}>+ R$ {positivo}</p>
                     </div>
 
                     <div>
                     <h4>Despesas</h4>
-                    <p id="money-minus" className={`${styles.money} ${styles.minus}`}>- R$0.00</p>
+                    <p id="money-minus" className={`${styles.money} ${styles.minus}`}>- R$ {negativo}</p>
                     </div>
                 </div>
 
@@ -33,21 +47,21 @@ function Home() {
                 </ul>
 
                 <h3>Adicionar transação</h3>
-                <form id="form">
+                <div id="form">
                     <div className={styles.form_control}>
                         <label htmlFor="text">Nome</label>
-                        <input autofocus type="text" id="text" className={styles.inputTextHome} placeholder="Nome da transação" />
+                        <input type="text" id="text" className={styles.inputTextHome} placeholder="Nome da transação" onChange={(e)=>setNome(e.target.value)} />
                     </div>
 
                     <div className="form_control">
                     <label  htmlFor="amount">Valor <br />
                         <small>(negativo - despesas, positivo - receitas)</small>
                     </label>
-                    <input type="number" id="amount" className={styles.inputNumberHome} placeholder="Valor da transação" />
+                    <input type="number" id="amount" className={styles.inputNumberHome} placeholder="Valor da transação" onChange={(e)=>setValor(e.target.value)} />
                     </div>
 
-                    <button className={styles.btn}  >Adicionar</button>
-                </form>
+                    <button className={styles.btn} onClick={criarSaldo} >Adicionar</button>
+                </div>
                 </div>
 
 

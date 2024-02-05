@@ -35,6 +35,9 @@ h1 {
   margin: 0;
   color: #2e75cc;
 }
+h2{
+  margin-top: 15px;
+}
 
 h3 {
   border-bottom: 1px solid #bbb;
@@ -99,7 +102,9 @@ label {
 
   box-shadow: var(--box-shadow);
   color: #fff;
+  background-color: #F7A072;
   border: 0;
+  border-radius: 5px;
   display: block;
   font-size: 16px;
   margin: 10px 0 30px;

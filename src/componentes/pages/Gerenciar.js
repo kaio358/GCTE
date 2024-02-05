@@ -157,7 +157,7 @@ function Gerenciar(){
             {fecharDelet? 
                 <Mensagem atualizar={atualizar}>
                     <p>Têm certeza em deletar o {nome} no período de {periodo}?  </p>
-                    <button onClick={deletar}>Sim</button> <button onClick={()=>atualizar(false)}>Não</button >
+                    <button onClick={deletar} className={styles.btn_mensagem} >Sim</button> <button onClick={()=>atualizar(false)} className={styles.btn_mensagem}>Não</button >
                 </Mensagem> :
                 ""
             

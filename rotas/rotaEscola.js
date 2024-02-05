@@ -1,7 +1,7 @@
 const express = require("express")
 const rota = express()
 
-const Escola = require("../modelos/escola")
+const Escola = require("../modelos/Escola")
 
 rota.get('/escola',async (req,res)=>{
     const dados = await Escola.lista()

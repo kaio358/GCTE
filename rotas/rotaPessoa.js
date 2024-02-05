@@ -1,8 +1,8 @@
 const express = require("express")
 const rota = express()
 
-const Pessoa = require("../modelos/pessoa")
-const Escola = require("../modelos/escola")
+const Pessoa = require("../modelos/Pessoa")
+const Escola = require("../modelos/Escola")
 
 rota.get("/pessoa/escola/:idEscola",async (req,res)=>{
     const id =  req.params.idEscola
