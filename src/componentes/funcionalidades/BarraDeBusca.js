@@ -2,14 +2,13 @@
 import { CiSearch } from "react-icons/ci";
 import styles from "./BarraDeBusca.module.css"
 import { useState } from "react";
-function BarraDeBusca() {
+function BarraDeBusca({buscaNomes}) {
     const [procuraNome, setProcuraNome] = useState()
     function escrevendo(event){
-        console.log(event.target.value);
         setProcuraNome(event.target.value)
     }
     function procurar(){
-        console.log(procuraNome);
+      
         fetch(`http://localhost:5000/pessoa/nome/${procuraNome}/${2}`,{
             method:'GET',
             headers:{
@@ -17,7 +16,7 @@ function BarraDeBusca() {
             }
         })
         .then(resp=> resp.json())
-        .then(dados=>console.log(dados))
+        .then(dados=>buscaNomes(dados))
     }
 
     return(

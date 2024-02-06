@@ -18,6 +18,8 @@ function Tabela(){
     const [pessoas,setPessoa] = useState()
     const [valor,setValor] = useState()
 
+
+
     useEffect(() => {
         fetch(`http://localhost:5000/pessoa/escola/${ourNumber}`, {
           method: 'GET',
@@ -48,12 +50,15 @@ function Tabela(){
           })
           .catch(erro => console.log(erro));
       }, []);
-      
+    function buscaNome(novo){
+      // console.log(novo, pessoas);
+      setPessoa(novo)
+    }
   
     return(
         <div className={styles.divTab}>
             <h1>Tabela</h1>
-            <BarraDeBusca/>
+            <BarraDeBusca buscaNomes={buscaNome}/>
             <table  className={styles.tabela_estilo}>
                 <thead className={styles.tabela_head}>
                     <tr>

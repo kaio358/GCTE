@@ -18,7 +18,8 @@ rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
     const id = req.params.id
 
     const nomePessoas = await Pessoa.nomeLista(nome,id)
-    console.log(nomePessoas);
+    const nomeEscola = await Escola.pegaNomeEscola(id)
+    res.json({pessoa: nomePessoas,escola:  nomeEscola})
 })
 
 

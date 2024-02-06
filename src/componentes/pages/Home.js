@@ -76,7 +76,6 @@ function Home() {
                     </label>
                     <input type="number" id="amount" className={styles.inputNumberHome} placeholder="Valor da transação" onChange={(e)=>setValor(e.target.value)} />
                     </div>
-
                     <button className={styles.btn} onClick={criarSaldo} >Adicionar</button>
                 </div>
                 </div>
