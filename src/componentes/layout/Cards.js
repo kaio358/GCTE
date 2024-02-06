@@ -78,7 +78,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
     }
     
     return(
-        <div className={styles.card} id={chave}>
+        <div className={styles.card} id={chave} key={chave}>
         
             <div>
                 {eventPai? <AiOutlineClose className={styles.icon_deletar} onClick={deletar}/> : ''}

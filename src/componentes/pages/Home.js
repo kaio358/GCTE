@@ -5,17 +5,31 @@ import styles from "./Home.module.css"
 function Home() {
     const [nome,setNome] = useState()
     const [valor,setValor] = useState()
-    const [positivo,setPosito] = useState()
-    const [negativo,setNegativo]= useState()
-    function criarSaldo(){
-        if(valor<0){
-            setNegativo(parseFloat(valor*(-1)))
-        }else{
-            setPosito(parseFloat(valor))
-        }
-       
-    }
+    const [positivo,setPosito] = useState(0)
+    const [negativo,setNegativo]= useState(0)
+    const [total,setTotal] = useState(0)
+    const [lista_li,setLista_li] = useState([])
 
+    var cont = 0
+
+    function criarSaldo(){
+        cont ++;
+        let tipo 
+        setTotal(parseFloat(total)+parseFloat(valor))
+        if(valor<0){
+            tipo = 'minus'
+            setNegativo(parseFloat(negativo)+parseFloat(valor*(-1)))
+        }else{
+            tipo = 'plus'
+            setPosito(parseFloat(positivo)+ parseFloat(valor))
+        }
+    
+        criarLi(tipo, cont)
+    }
+    function criarLi(tipo, cont){
+        let li = <li className={styles[tipo]} key={cont}>Salário <span>{valor}</span><button className={styles.delete_btn}>x</button></li>
+        lista_li.push(li)
+    }
     return(
         <div className={styles.containerHome}>
            
@@ -25,7 +39,7 @@ function Home() {
             <div className={styles.container}>
                 <h4>Saldo atual</h4>
                 
-                <h1 id="balance" className={styles.balance}>R$ 0.00</h1>
+                <h1 id="balance" className={styles.balance}>R$ {total}</h1>
 
                 <div className={styles.inc_exp_container}>
                     <div>
@@ -41,9 +55,12 @@ function Home() {
 
                 <h3>Transações</h3>
                 <ul id="transactions" className={styles.transactions}>
-                {/* <!-- <li class="minus">
-                Salário <span>-$400</span><button class="delete-btn">x</button>
-                </li> --> */}
+                {lista_li? lista_li.map(l=>{
+                        return l
+                    }) 
+                    :''
+                }
+       
                 </ul>
 
                 <h3>Adicionar transação</h3>

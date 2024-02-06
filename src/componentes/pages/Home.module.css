@@ -24,10 +24,12 @@
     align-items: center;
     justify-content: center;
     font-family: 'Lato', sans-serif;
+
 }
 .container {
   margin: 30px auto;
   width: 350px;
+  
 }
 
 h1 {
@@ -113,7 +115,7 @@ label {
 }
 
 .btn:focus,
-.delete-btn:focus {
+.delete_btn:focus {
   outline: 0;
 }
 
