@@ -14,12 +14,10 @@
     color: #F7A072;
     
 }
-.icons_ger{
-    display: flex;
-}
+
 
 .icon_ger{
-
+    display: flex;
     margin: 0 5px;
     
     border: 3px  dashed black;

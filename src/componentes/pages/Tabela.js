@@ -6,6 +6,8 @@ import styles from "./Tabela.module.css"
 import BarraDeBusca from "../funcionalidades/BarraDeBusca";
 import Linha_tabela from "../layout/Linha_tabela";
 
+import icon_papel from "../../imgs/icons/folha-de-papel.png"
+
 function Tabela(){
     const localizacao = useLocation() 
 
@@ -58,7 +60,13 @@ function Tabela(){
     return(
         <div className={styles.divTab}>
             <h1>Tabela</h1>
-            <BarraDeBusca buscaNomes={buscaNome}/>
+            <div className={styles.parteSuperiorTabela}>
+              <BarraDeBusca buscaNomes={buscaNome}/>
+              <div className={styles.icon_ger} >
+                          <img src={icon_papel}  />
+              </div>
+
+            </div>
             <table  className={styles.tabela_estilo}>
                 <thead className={styles.tabela_head}>
                     <tr>
