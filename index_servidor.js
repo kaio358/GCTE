@@ -21,6 +21,10 @@ const rotaImagens = require("./rotas/rotaImagens")
 const rotaPessoa = require("./rotas/rotaPessoa")
 const rotaPagamento = require("./rotas/rotaPagamento")
 
+
+
+
+
 conexao.connect(erro=>{
     if(erro){
         console.log(erro);

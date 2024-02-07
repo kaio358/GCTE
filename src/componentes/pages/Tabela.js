@@ -7,6 +7,7 @@ import BarraDeBusca from "../funcionalidades/BarraDeBusca";
 import Linha_tabela from "../layout/Linha_tabela";
 
 import icon_papel from "../../imgs/icons/folha-de-papel.png"
+import AbaInputClientes from "../funcionalidades/AbaInputClientes";
 
 function Tabela(){
     const localizacao = useLocation() 
@@ -70,6 +71,7 @@ function Tabela(){
               </div>
 
             </div>
+            {/* <AbaInputClientes/> */}
             <table  className={styles.tabela_estilo}>
                 <thead className={styles.tabela_head}>
                     <tr>
