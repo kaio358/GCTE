@@ -1,3 +1,10 @@
+:root{
+  --cor_principal: #0E65B0; 
+  --cor_destque: #FF6600 ;
+  --cor_complemento:#FFD700 ;
+}
+
+
 .App {
   text-align: center;
 }

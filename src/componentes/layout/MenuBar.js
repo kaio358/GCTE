@@ -1,12 +1,15 @@
 import {Link} from 'react-router-dom'
-import {HiGift} from 'react-icons/hi2'
+// import {HiGift} from 'react-icons/hi2'
 import styles from './MenuBar.module.css'
+
+import elefante from '../../imgs/icons/icone_site_2.png'
 
 function MenuBar(){
     return(
         <nav className={styles.containerMenu}>
             <div>
-                {<HiGift className={styles.iconPresente}/>}
+                <img src={elefante} className={styles.icone_site}/>
+                {/* {<HiGift className={styles.iconPresente}/>} */}
             </div>
             <ul className={styles.lista_nav}>
                 <li><Link to="/">Home</Link></li>

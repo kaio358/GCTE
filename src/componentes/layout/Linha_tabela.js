@@ -1,4 +1,4 @@
-import styles from "./Linha_tabela_.module.css";
+import styles from "./Linha_tabela.module.css";
 
 import {AiOutlineLine,AiOutlineClose,AiOutlineCheck} from "react-icons/ai";
 import { useState } from "react";

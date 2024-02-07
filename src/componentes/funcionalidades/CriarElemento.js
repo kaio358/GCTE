@@ -46,7 +46,7 @@ function CriarElemento(props){
      
     }
     return(
-        <form className={styles.formCriar} >
+        <form className={styles.formCriar}  >
              <ImCancelCircle onClick={abaElemento} className={styles.iconFecharElemento}/>
             <h1>Criar novo elemento</h1>
            

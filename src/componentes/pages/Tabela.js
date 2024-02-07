@@ -53,17 +53,20 @@ function Tabela(){
           .catch(erro => console.log(erro));
       }, []);
     function buscaNome(novo){
-      // console.log(novo, pessoas);
       setPessoa(novo)
+    }
+
+    function abrirAba() {
+      
     }
   
     return(
         <div className={styles.divTab}>
             <h1>Tabela</h1>
             <div className={styles.parteSuperiorTabela}>
-              <BarraDeBusca buscaNomes={buscaNome}/>
-              <div className={styles.icon_ger} >
-                          <img src={icon_papel}  />
+              <BarraDeBusca buscaNomes={buscaNome} />
+              <div className={styles.icon_ger} onClick={abrirAba}  >
+                <img src={icon_papel}  />
               </div>
 
             </div>
