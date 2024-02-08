@@ -41,3 +41,14 @@
     padding: 5px;
     width: 70%;
 }
+
+.input_dias{
+    text-align: center;
+
+    border-style: none none solid none;
+    border-radius: 10px;
+    box-shadow: 0 3px 5px 0 rgba( 31, 38, 135, 0.37 );
+    margin: 7px 0;
+    padding: 5px;
+    width: 60%;
+}

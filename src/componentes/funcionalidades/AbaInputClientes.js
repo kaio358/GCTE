@@ -32,6 +32,10 @@ function AbaInputClientes(props){
     function textoParcelas(novo){
         setParcelas(novo)
     }
+    const [dias,setDias] = useState("")
+    function textoDias(e){
+        setDias(e.target.value)
+    }
 
     function  enviar() {
         fetch("http://localhost:5000/pessoa/inserir",{
@@ -41,7 +45,8 @@ function AbaInputClientes(props){
                 endereco:endereco,
                 telefone:telefone,
                 valor:preco,
-                parcelas:parcelas
+                parcelas:parcelas,
+                dias:dias
             }),
             headers:{
                 'Content-Type':'application/json'
@@ -68,7 +73,11 @@ function AbaInputClientes(props){
                 <InputDefault inputTipo="number" valor={preco} texto={textoPreco} tipo="Preço" nome="preco" />
             </div>
             <div>
-                <InputDefault inputTipo="number" valor={parcelas} texto={textoParcelas} tipo="Quantas Parcelas " nome="preco" />
+                <InputDefault inputTipo="number" valor={parcelas} texto={textoParcelas} tipo="Quantas Parcelas " nome="parcelas" /> 
+                
+            </div>
+            <div>
+                <input type="number" value={dias} min={0} max={31} className={styles.input_dias} placeholder="Dias" onChange={textoDias}/>
             </div>
             <div onClick={enviar} >
               <button className={styles.botao_aba}>Teste</button>
