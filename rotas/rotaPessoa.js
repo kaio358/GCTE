@@ -22,5 +22,9 @@ rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
     res.json({pessoa: nomePessoas,escola:  nomeEscola})
 })
 
+rota.post("/pessoa/inserir",(req,res)=>{
+    console.log("Ola");
+})
+
 
 module.exports = rota
