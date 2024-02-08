@@ -27,3 +27,17 @@
 
   
 }
+
+.botao_aba{
+    margin: 20px 0 20px 0;
+    
+    font-size: 18px;
+
+    cursor: pointer;
+    background: #FF6600 ;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+    width: 70%;
+}

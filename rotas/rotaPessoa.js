@@ -23,7 +23,8 @@ rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
 })
 
 rota.post("/pessoa/inserir",(req,res)=>{
-    console.log("Ola");
+    const dados = req.body
+    console.log("Ola",dados);
 })
 
 

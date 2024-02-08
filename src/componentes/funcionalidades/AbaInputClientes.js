@@ -15,10 +15,7 @@ function AbaInputClientes(props){
     function textoNome(novo){
         setNome(novo)
     }
-    const [escola,setEscola] = useState("")
-    function textoEscola(novo){
-        setEscola(novo)
-    }
+ 
     const [endereco,setEndereco] = useState("")
     function textoEndereco(novo){
         setEndereco(novo)
@@ -27,15 +24,24 @@ function AbaInputClientes(props){
     function textoTelefone(novo){
         setTelefone(novo)
     }
+    const [preco,setPreco] = useState("")
+    function textoPreco(novo){
+        setPreco(novo)
+    }
+    const [parcelas,setParcelas] = useState("")
+    function textoParcelas(novo){
+        setParcelas(novo)
+    }
 
     function  enviar() {
         fetch("http://localhost:5000/pessoa/inserir",{
-            method:"Post",
+            method:"post",
             body: JSON.stringify( {
                 nome:nome,
-                escola:escola,
                 endereco:endereco,
-                telefone:telefone
+                telefone:telefone,
+                valor:preco,
+                parcelas:parcelas
             }),
             headers:{
                 'Content-Type':'application/json'
@@ -53,22 +59,19 @@ function AbaInputClientes(props){
                 <InputDefault inputTipo="text" valor={nome} texto={textoNome}  tipo="nome" nome="nome" onChange={nome}/>
             </div>
             <div>
-                
-                <InputDefault inputTipo="text" valor={escola} texto={textoEscola} tipo="Escola" nome="escola" />
-
-            </div>
-            <div>
-                
                 <InputDefault inputTipo="text" valor={endereco} texto={textoEndereco} tipo="Endereço" nome="endereco" />
-               
             </div>
             <div>
-                
                 <InputDefault inputTipo="tel" valor={telefone} texto={textoTelefone} tipo="Telefone" nome="telefone" />
-               
+            </div>
+            <div>
+                <InputDefault inputTipo="number" valor={preco} texto={textoPreco} tipo="Preço" nome="preco" />
+            </div>
+            <div>
+                <InputDefault inputTipo="number" valor={parcelas} texto={textoParcelas} tipo="Quantas Parcelas " nome="preco" />
             </div>
             <div onClick={enviar} >
-                <LinkButton text="Confirmar" tipo="submit" />
+              <button className={styles.botao_aba}>Teste</button>
             </div>
 
         </form>
