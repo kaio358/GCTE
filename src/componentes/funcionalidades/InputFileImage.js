@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import styles from "./InputFileImage.module.css"
-function InputFileImage({img,id}) {
+function InputFileImage({img,id,customClass}) {
     const pictureImage = useRef()
 
     function carrega(e) {
@@ -31,11 +31,11 @@ function InputFileImage({img,id}) {
 
     return(
         <div>
-            <label className={styles.picture} htmlFor={id} tabIndex="0">
+            <label className={` ${styles[customClass]}`} htmlFor={id} tabIndex="0">
                 <span ref={pictureImage} className={styles.picture__image}>{img? <img src={img}/> :"Clique para inserir uma imagem" }</span>
             </label>
 
-            <input type="file" name="picture__input" className={styles.picture__input} id={id} onChange={carrega}/>
+            <input type="file" name="picture__input" className={`${styles.picture__input}`} id={id} onChange={carrega}/>
         </div>
       
     )

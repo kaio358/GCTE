@@ -1,0 +1,29 @@
+.formAbaCliente{
+    position: fixed;
+    left: 25%;
+    top: 12%;
+    padding: 15px;
+    width: 50vw;
+    background-color: #F9F7F3;
+    text-align: center;
+    border: 2px dashed black;
+    border-radius: 5px;
+}
+.formAbaCliente h1{
+    color: #ff6600;
+}
+
+/* .imgInputCliente{
+    border-radius: 50%;
+} */
+
+.iconFecharElemento {
+    position: relative;
+    top: 5px;
+    left: 45%;
+    justify-content: end;
+    font-size: 25px;
+    color:red ;
+
+  
+}

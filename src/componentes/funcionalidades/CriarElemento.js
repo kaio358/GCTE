@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import {ImCancelCircle} from "react-icons/im"
 
 import styles from "./CriarElemento.module.css"
@@ -51,7 +51,7 @@ function CriarElemento(props){
             <h1>Criar novo elemento</h1>
            
             <div>
-                <InputFileImage id={10}/>
+                <InputFileImage id={10} customClass="picture"/>
             </div>
             <div>
                 <InputDefault inputTipo="time" valor={periodo} texto={textoPeriodo} tipo="Periodo" nome="periodoElemento"/>

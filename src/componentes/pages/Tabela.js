@@ -22,6 +22,8 @@ function Tabela(){
     const [valor,setValor] = useState()
 
 
+    const [abaPapel, setAbaPapel] = useState(false)
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/pessoa/escola/${ourNumber}`, {
@@ -56,10 +58,16 @@ function Tabela(){
     function buscaNome(novo){
       setPessoa(novo)
     }
-
+    
     function abrirAba() {
       
+        if(!abaPapel){
+          setAbaPapel(true)
+        }else{
+          setAbaPapel(false)
+        }
     }
+
   
     return(
         <div className={styles.divTab}>
@@ -71,7 +79,8 @@ function Tabela(){
               </div>
 
             </div>
-            {/* <AbaInputClientes/> */}
+            { abaPapel? <AbaInputClientes fecharAbaInput={abrirAba}/>:""}
+            
             <table  className={styles.tabela_estilo}>
                 <thead className={styles.tabela_head}>
                     <tr>
