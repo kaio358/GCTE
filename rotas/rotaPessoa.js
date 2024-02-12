@@ -25,20 +25,25 @@ rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
 
 rota.post("/pessoa/inserir",async (req,res)=>{
     const dados = req.body
-    // const adicionaPessoa = await Pessoa.adiciona({nome:dados.nome,endereco:dados.endereco,telefone:dados.telefone,Escola_idEscola: dados.idEscola})
+    const anoData = new Date()
+
+    const adicionaPessoa = await Pessoa.adiciona({nome:dados.nome,endereco:dados.endereco,telefone:dados.telefone,Escola_idEscola: dados.idEscola})
     for(let i = 0 ; i < dados.parcelas; i++){
        
         let totalMes = parseInt( dados.mes)+ i;
         if (totalMes >= 12 ){
-            dados.mes = 1
+            dados.mes =  (-i) 
+   
         }
-        console.log(totalMes,dados.mes);
+
+
         
-
-        // const adicionaPreco = await Pagamento.adiciona({})
+        const data = (`${anoData.getFullYear()}/${totalMes}/${dados.dias}`)
+    
+        const adicionaPreco = await Pagamento.adiciona({valor:dados.valor, data:data,Pessoa_idPessoa:adicionaPessoa.insertId})
     }
+    // console.log(adicionaPessoa,adicionaPreco);
 
-    // console.log("Ola",dados,adicionaPessoa);
 })
 
 

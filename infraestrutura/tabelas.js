@@ -23,7 +23,7 @@ class Tabelas{
     criarPagamento(){
         const sql = `CREATE TABLE IF NOT EXISTS Pagamento
         (  
-            idpagamento INT NOT NULL,
+            idpagamento INT NOT NULL AUtO_INCREMENT,
             pessoa_idpessoa INT NOT NULL,
             valor REAL NULL,
             data DATE NULL,
