@@ -3,7 +3,7 @@ import {ImCancelCircle} from "react-icons/im"
 
 import InputDefault from "./InputDefault"
 import InputFileImage from "./InputFileImage"
-import LinkButton from "../layout/LinkButton"
+
 
 import styles from "./AbaInputClientes.module.css"
 
@@ -11,6 +11,8 @@ function AbaInputClientes(props){
     function fechaAba() {
         props.fecharAbaInput()
     }
+
+    // Para inserir valores 
     const [nome,setNome] = useState("")
     function textoNome(novo){
         setNome(novo)
@@ -36,25 +38,31 @@ function AbaInputClientes(props){
     function textoDias(e){
         setDias(e.target.value)
     }
+    const [mes,setMes] = useState("")
+    function textoMes(e){
+        setMes(e.target.value)
+    }
 
     function  enviar() {
         fetch("http://localhost:5000/pessoa/inserir",{
-            method:"post",
+            method:"Post",
+            headers:{
+                'Content-Type':'application/json'
+            },
             body: JSON.stringify( {
                 nome:nome,
                 endereco:endereco,
                 telefone:telefone,
                 valor:preco,
                 parcelas:parcelas,
-                dias:dias
-            }),
-            headers:{
-                'Content-Type':'application/json'
-            }
+                dias:dias,
+                mes:mes,
+                idEscola: props.idTabela
+            })
         }).then(resp=>resp.json()).then(dados=>console.log(dados)).catch(erro=>console.log(erro))
     }
     return(
-        <form className={styles.formAbaCliente} >
+        <div className={styles.formAbaCliente} >
             <ImCancelCircle className={styles.iconFecharElemento } onClick={fechaAba}/>
             <h1>Criar novo cliente</h1>
             <div >
@@ -78,12 +86,13 @@ function AbaInputClientes(props){
             </div>
             <div>
                 <input type="number" value={dias} min={0} max={31} className={styles.input_dias} placeholder="Dias" onChange={textoDias}/>
+                <input type="number" value={mes} min={0} max={12} className={styles.input_dias} placeholder="A partir de que mês " onChange={textoMes}/>
             </div>
             <div onClick={enviar} >
-              <button className={styles.botao_aba}>Teste</button>
+              <button className={styles.botao_aba} onClick={fechaAba}>Enviar</button>
             </div>
 
-        </form>
+        </div>
     )
 }
 

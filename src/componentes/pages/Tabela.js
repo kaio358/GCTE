@@ -79,7 +79,7 @@ function Tabela(){
               </div>
 
             </div>
-            { abaPapel? <AbaInputClientes fecharAbaInput={abrirAba}/>:""}
+            { abaPapel? <AbaInputClientes fecharAbaInput={abrirAba} idTabela={ourNumber}/>:""}
             
             <table  className={styles.tabela_estilo}>
                 <thead className={styles.tabela_head}>

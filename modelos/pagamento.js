@@ -25,6 +25,18 @@ class Pagamento{
             })
         })
     } 
+    adiciona(dados){
+        const sql = `INSERT INTO Pagamento set ?`;
+        return new Promise((resolve,reject)=>{
+            conexao.query(sql,dados,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado)
+                }
+            })
+        })
+    }
 }
 
 module.exports = new Pagamento
