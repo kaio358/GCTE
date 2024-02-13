@@ -37,6 +37,19 @@ class Pagamento{
             })
         })
     }
+    confirmar(pagou,id){
+        const sql = `INSERT INTO Pagamento (confirmacao) VALUES (${pagou}) WHERE idPagamento = ${id}`
+        return new Promise((resolve,reject )=>{
+            conexao.query(sql,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado)
+                }
+            })
+        })
+
+    }
 }
 
 module.exports = new Pagamento
