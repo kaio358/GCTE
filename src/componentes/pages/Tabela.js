@@ -52,6 +52,7 @@ function Tabela(){
           .then(dados => {
             
             const arraySemVazias = dados.filter(subarray => subarray.length > 0);
+            // console.log(arraySemVazias);
             setValor(arraySemVazias);
           })
           .catch(erro => console.log(erro));
@@ -103,9 +104,13 @@ function Tabela(){
                      
                         return pessoas.escola.map((e)=>{
                           if(valor) {
+                            
+                            if(valor[0].length > 1 && valor.length <= 1){
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[0][i].valor} confirmacao = {valor[0][i].confirmacao}/>   
+                            }else{
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {valor[i][0].confirmacao}/>   
+                            }
                          
-                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {valor[i][0].confirmacao}/>   
-                   
                           }else{
                             return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} />   
                           }

@@ -40,7 +40,7 @@ rota.post("/pessoa/inserir",async (req,res)=>{
         
         const data = (`${anoData.getFullYear()}/${totalMes}/${dados.dias}`)
     
-        const adicionaPreco = await Pagamento.adiciona({valor:dados.valor, data:data,Pessoa_idPessoa:adicionaPessoa.insertId})
+        const adicionaPreco = await Pagamento.adiciona({valor:dados.valor, data:data,confirmacao:0,Pessoa_idPessoa:adicionaPessoa.insertId})
     }
     // console.log(adicionaPessoa,adicionaPreco);
 
