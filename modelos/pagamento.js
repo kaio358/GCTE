@@ -14,7 +14,7 @@ class Pagamento{
         })
     }   
     valores(id){
-        const sql = `SELECT  idpagamento,valor FROM Pagamento WHERE Pessoa_idPessoa = ${id}`
+        const sql = `SELECT  idpagamento,valor,confirmacao FROM Pagamento WHERE Pessoa_idPessoa = ${id}`
         return new Promise((resolve,reject)=>{
             conexao.query(sql,(erro,resultado)=>{
                 if(erro){
@@ -38,7 +38,9 @@ class Pagamento{
         })
     }
     confirmar(pagou,id){
-        const sql = `INSERT INTO Pagamento (confirmacao) VALUES (${pagou}) WHERE idPagamento = ${id}`
+        // const sql = `UPDATE Pagamento (confirmacao) VALUES (${pagou}) WHERE idPagamento = ${id}`
+        const sql = `UPDATE Pagamento SET confirmacao = ${pagou} WHERE idPagamento = ${id}`;
+
         return new Promise((resolve,reject )=>{
             conexao.query(sql,(erro,resultado)=>{
                 if(erro){
@@ -50,6 +52,7 @@ class Pagamento{
         })
 
     }
+
 }
 
 module.exports = new Pagamento

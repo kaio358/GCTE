@@ -27,7 +27,7 @@ class Tabelas{
             pessoa_idpessoa INT NOT NULL,
             valor REAL NULL,
             data DATE NULL,
-            confirmacao boolean,
+            confirmacao INT,
             PRIMARY KEY (idpagamento), 
             INDEX fk_Pagamento_Pessoa1_idx (pessoa_idpessoa ASC) VISIBLE,
             CONSTRAINT fk_Pagamento_Pessoa1
