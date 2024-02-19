@@ -6,41 +6,31 @@ import { useState, useEffect} from "react";
 
 function Linha_tabela(props){
     const itens = [<AiOutlineLine /> ,<AiOutlineClose className={styles.iconRed} /> ,<AiOutlineCheck className={styles.iconGreen}/>]
-    const [opcao, setOpcao] = useState(props.confirmacao || 0)
-    console.log(props.confirmacao);
+    const [opcao, setOpcao] = useState(0)
     const [timer, setTimer] = useState(null); 
 
-
-
     useEffect(() => {
-
-        const setNewTimer = () => {
-            clearTimeout(timer); 
-            const newTimer = setTimeout(() => {
-              enviarParaServidor();
-            }, 5000);
-            setTimer(newTimer);
-          };
-      
    
-          setNewTimer();
-      
-          return () => {
-            clearTimeout(timer);
-          };
-      }, [opcao]);
+        if (props.confirmacao !== undefined) {
+          setOpcao(props.confirmacao);
+        }
+      }, [props.confirmacao]); 
+
+
 
     function troca() {
-        
-        if(opcao>=itens.length -1){
+        if (opcao >= itens.length - 1) {
             setOpcao(0);
-        }else{
-            setOpcao(parseInt(opcao)+1);
-            
-          
+        } else {
+            setOpcao(opcao + 1);
         }
-    
-   
+        
+        // Redefinir o temporizador após a troca da opção
+        clearTimeout(timer);
+        const newTimer = setTimeout(() => {
+            enviarParaServidor();
+        }, 5000);
+        setTimer(newTimer);
     }
 
     function enviarParaServidor() {

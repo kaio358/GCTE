@@ -52,7 +52,6 @@ function Tabela(){
           .then(dados => {
             
             const arraySemVazias = dados.filter(subarray => subarray.length > 0);
-          
             setValor(arraySemVazias);
           })
           .catch(erro => console.log(erro));
@@ -101,7 +100,7 @@ function Tabela(){
                    
              
                     {pessoas? pessoas.pessoa.map((p,i)=>{        
-                    
+                     
                         return pessoas.escola.map((e)=>{
                           if(valor) {
                          
