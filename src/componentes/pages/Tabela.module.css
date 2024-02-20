@@ -30,22 +30,23 @@
 }
 
 
-/* .parteSuperiorTabela{
-    display: flex;
-    justify-content: center;
-    grid-template-columns: 80% 1fr;
-} */
+
 
 
 
 /*Icone para criar e gerar novas colunas*/
 
-.icon_ger{
-    /* display: inline; */
+.icones_mod{
+    display: flex;
     position: absolute;
     top: 13%;
-  
     right: 10%;
+}
+
+.icon_ger{
+  
+  
+   
     margin: 0 5px;
     
     border: 3px  dashed black;

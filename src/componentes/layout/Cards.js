@@ -11,38 +11,9 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
 
     const [textPeriodo, setTextPeriodo] = useState(periodo)
     const [ textoEscola, setTextoEscola] = useState(escola)
-    const [salvaDados,setSalvaDados] = useState()
+
     const [mudou,setMudou] = useState(false)
     const opacidade = useRef()
-    // useEffect(() => {
-    //     const intervalId = setInterval(() => {
-    //         const horario = new Date(`01/01/2000 ${textPeriodo}`);
-    //         let aux = textPeriodo;
-    //         let cont = 0 
-
-    //         if (!isNaN(horario.getTime())  && cont == 0 ) {
-           
-    //             if (horario.getHours() < 12) {
-    //                 setTextPeriodo("Manhã");
-    //             } else if (horario.getHours() <= 18) {
-    //                 setTextPeriodo("Tarde");
-    //             } else {
-    //                 setTextPeriodo("Noite");
-    //             }
-    //             cont++
-    //         } else {
-            
-    //             cont = 0
-    //             setTextPeriodo(salvaDados);
-    //         }
-    //         setSalvaDados(aux);
-
-    //     }, 6000);
-    
-    //     return () => {
-    //       clearInterval(intervalId);
-    //     };
-    //   }, []);
     
 
     function textoNome(novo){
@@ -65,7 +36,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
   
         if(mudou){
           
-            console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
+            // console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
             fetch(`http://localhost:5000/escola`,{
                 method:'PUT',
                 headers:{

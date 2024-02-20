@@ -42,8 +42,14 @@ rota.post("/pessoa/inserir",async (req,res)=>{
     
         const adicionaPreco = await Pagamento.adiciona({valor:dados.valor, data:data,confirmacao:0,Pessoa_idPessoa:adicionaPessoa.insertId})
     }
-    // console.log(adicionaPessoa,adicionaPreco);
 
+})
+rota.post("/pessoa/atualizar", async (req,res)=>{
+    const dados = req.body.dados
+    const id = req.body.id
+    
+    const PessoaAtualizada = await Pessoa.atualizar(dados,id)
+    console.log(PessoaAtualizada);
 })
 
 

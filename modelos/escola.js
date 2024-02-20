@@ -50,6 +50,7 @@ class Escola{
             }
         })
     }
+
     pegaNomeEscola(id){
         const sql = `SELECT nome,idEscola FROM Escola Where idEscola=${id}`
 

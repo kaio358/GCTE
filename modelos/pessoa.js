@@ -43,6 +43,18 @@ class Pessoa{
             })
         })
     }
+    atualizar(dados, id){
+        const sql = `UPDATE Pessoa set ? WHERE idPessoa = ${id}`
+        return new Promise((resolve,reject)=>{
+            conexao.query(sql,dados,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado)
+                }
+            })
+        })
+    }
 
 }
 

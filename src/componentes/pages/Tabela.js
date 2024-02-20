@@ -7,6 +7,7 @@ import BarraDeBusca from "../funcionalidades/BarraDeBusca";
 import Linha_tabela from "../layout/Linha_tabela";
 
 import icon_papel from "../../imgs/icons/folha-de-papel.png"
+import icon_lapis from "../../imgs/icons/lapis.png"
 import AbaInputClientes from "../funcionalidades/AbaInputClientes";
 
 function Tabela(){
@@ -23,6 +24,7 @@ function Tabela(){
 
 
     const [abaPapel, setAbaPapel] = useState(false)
+    const [abaLapis, setAbaLapis] = useState(false)
 
 
     useEffect(() => {
@@ -70,14 +72,29 @@ function Tabela(){
         }
     }
 
+    function modifcarValores(){
+        if(!abaLapis){
+          setAbaLapis(true)
+        }else{
+          setAbaLapis(false)
+        }
+      
+    }
   
     return(
         <div className={styles.divTab}>
             <h1>Tabela</h1>
             <div className={styles.parteSuperiorTabela}>
               <BarraDeBusca buscaNomes={buscaNome} />
-              <div className={styles.icon_ger} onClick={abrirAba}  >
-                <img src={icon_papel}  />
+              <div className={styles.icones_mod}>
+                <div className={styles.icon_ger} onClick={modifcarValores} >
+                  <img src={icon_lapis}/>
+                </div>
+                <div className={styles.icon_ger} onClick={abrirAba}  >
+                  <img src={icon_papel}  />
+          
+                </div>
+              
               </div>
 
             </div>
@@ -106,13 +123,13 @@ function Tabela(){
                           if(valor) {
                             
                             if(valor[0].length > 1 && valor.length <= 1){
-                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[0][i].valor} confirmacao = {valor[0][i].confirmacao}/>   
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[0][i].valor} confirmacao = {valor[0][i].confirmacao} eventoLapis={abaLapis}/>   
                             }else{
-                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {valor[i][0].confirmacao}/>   
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {valor[i][0].confirmacao} eventoLapis={abaLapis}/>   
                             }
                          
                           }else{
-                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} />   
+                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} eventoLapis={abaLapis}/>   
                           }
                         })
                        
