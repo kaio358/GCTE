@@ -22,6 +22,13 @@ rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
     const nomeEscola = await Escola.pegaNomeEscola(id)
     res.json({pessoa: nomePessoas,escola:  nomeEscola})
 })
+rota.post("/pessoa/pagamento/nome",async(req,res)=>{
+    
+    const idPessoa = req.body.idPessoa
+    const nomePessoa = await Pessoa.pegarNome(idPessoa)
+    res.json(nomePessoa)
+   
+})
 
 rota.post("/pessoa/inserir",async (req,res)=>{
     const dados = req.body
@@ -47,10 +54,15 @@ rota.post("/pessoa/inserir",async (req,res)=>{
 rota.post("/pessoa/atualizar", async (req,res)=>{
     const dados = req.body.dados
     const id = req.body.id
+    const valor = req.body.valor
     
-    const PessoaAtualizada = await Pessoa.atualizar(dados,id)
-    console.log(PessoaAtualizada);
+    const pessoaAtualizada = await Pessoa.atualizar(dados,id)
+    const pagamentoAtualizado = await Pagamento.atualizarValor(valor,id)
+    console.log("Pagamento atualizado : ", pagamentoAtualizado);
+    console.log("Pessoa atualizada : ", pessoaAtualizada);
 })
+
+
 
 
 module.exports = rota

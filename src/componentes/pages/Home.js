@@ -1,6 +1,7 @@
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./Home.module.css"
+import Li_home from "../layout/Li_home"
 
 function Home() {
     const [nome,setNome] = useState()
@@ -10,7 +11,10 @@ function Home() {
     const [total,setTotal] = useState(0)
     const [lista_li,setLista_li] = useState([])
 
+    const [dadosPagamento , setDadosPagamento] = useState()
+
     var cont = 0
+
 
     function criarSaldo(){
         cont ++;
@@ -27,9 +31,45 @@ function Home() {
         criarLi(tipo, cont)
     }
     function criarLi(tipo, cont){
-        let li = <li className={styles[tipo]} key={cont}>Salário <span>{valor}</span><button className={styles.delete_btn}>x</button></li>
-        lista_li.push(li)
+        
+        lista_li.push(<Li_home tipo={tipo} nome={nome} valor={valor}/>)
     }
+
+
+    useEffect(()=>{
+     
+        fetch("http://localhost:5000/pagamentos/data",{
+            method:"GET",
+            headers:{
+                "Content-Type":"application/json"
+            }
+        })
+        .then(resp => resp.json())
+        .then(dados => {
+            setDadosPagamento(dados)
+            return dados
+        } )
+        .then( dados =>{
+            const promises = dados.map(d => {
+                return fetch(`http://localhost:5000/pessoa/pagamento/nome`, {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    idPessoa: d.pessoa_idpessoa
+                  }),
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                })
+                  .then(resp => resp.json());
+            });
+            return Promise.all(promises);
+        })
+        .then(dados => console.log(dados))
+        .catch(erro => console.log(erro))
+       
+
+    },[])
+
     return(
         <div className={styles.containerHome}>
            
@@ -60,6 +100,10 @@ function Home() {
                     }) 
                     :''
                 }
+                {dadosPagamento? dadosPagamento.map(dp=>{
+                    return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao}/>
+                }):'teste'}
+                <Li_home nome={"KAIO"} valor={22} confirmacao={2} chave={55555}/>
        
                 </ul>
 
@@ -77,6 +121,7 @@ function Home() {
                     <input type="number" id="amount" className={styles.inputNumberHome} placeholder="Valor da transação" onChange={(e)=>setValor(e.target.value)} />
                     </div>
                     <button className={styles.btn} onClick={criarSaldo} >Adicionar</button>
+                    
                 </div>
                 </div>
 

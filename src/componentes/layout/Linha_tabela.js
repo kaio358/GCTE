@@ -43,7 +43,8 @@ function Linha_tabela(props){
             method:"POST",
             body: JSON.stringify({
               id: props.id,
-              dados: { "nome":textoNome, "endereco":textoEndeco, "telefone":textoTelefone}
+              dados: { "nome":textoNome, "endereco":textoEndeco, "telefone":textoTelefone},
+              valor: textoValorPago
             }),
             headers:{
               'Content-Type':'application/json'
@@ -103,7 +104,7 @@ function Linha_tabela(props){
             <td colSpan="2">{props.escola}</td>
             {props.eventoLapis?  <td><InputDefault inputTipo="text" tipo="informe o endereço" valor={textoEndeco} texto={modificarTextoEndereco}/></td>:  <td>{textoEndeco}</td>}
             {props.eventoLapis?  <td><InputDefault inputTipo="tel" tipo="informe o telefone" valor={textoTelefone} texto={modificarTextoTelefone}/></td>:  <td>{textoTelefone}</td>}
-            {props.eventoLapis?  <td><InputDefault inputTipo="number" tipo="informe o valor" valor={textoValorPago} texto={modificarTextoValorPago}/></td>:  <td>{props.valorPago}</td>}
+            {props.eventoLapis?  <td><InputDefault inputTipo="number" tipo="informe o valor" valor={textoValorPago} texto={modificarTextoValorPago}/></td>:  <td>{textoValorPago}</td>}
             {props.eventoLapis?  <td>teste</td>:   <td className={styles.itemEspecifico} onClick={()=>{ troca();}} >{itens[opcao]}</td>}
            
         </tr>

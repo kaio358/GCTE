@@ -20,6 +20,13 @@ rota.post("/pagamento/confirmacao",async (req,res)=>{
 
 })
 
+rota.get("/pagamentos/data",async (req,res)=>{
+
+    const pagamentoData = await Pagamento.pegarPorData()
+    res.json(pagamentoData)
+    
+})
+
 
 
 module.exports = rota
