@@ -15,24 +15,9 @@ function Home() {
     const [nomesPag, setNomesPag] = useState()
 
     var cont = 0
-    function adicionaSaldo(){
-        if (dadosPagamento) {
-            
-            const promises = dadosPagamento.map(d =>{
-                
-                if(d.confirmacao <2){
-                    
-                    return  (-d.valor)
-                }else{
-               
-                    return d.valor
-                }
     
-            })
-            return promises
-        }
-     
-    }
+ 
+  
    
     function criarSaldo(){
         cont ++;
@@ -88,7 +73,28 @@ function Home() {
        
 
     },[])
-    
+    useEffect(() => {
+        if (dadosPagamento) {
+            let acumuladoNegativo = 0
+            let acumuladoPositivo = 0
+            const tol = dadosPagamento.reduce((total, dp) =>{ 
+                if(dp.confirmacao == 2){
+                    acumuladoPositivo = acumuladoPositivo  + dp.valor
+                    return total + dp.valor
+                }else{
+                    acumuladoNegativo = acumuladoNegativo  + dp.valor
+                    
+                    return total - dp.valor
+
+                }
+              
+            }, 0);
+            setNegativo(acumuladoNegativo)
+            setPosito(acumuladoPositivo)
+            setTotal(tol)
+            
+        }
+    }, [dadosPagamento]);
     return(
         <div className={styles.containerHome}>
            

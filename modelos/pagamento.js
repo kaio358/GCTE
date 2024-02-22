@@ -51,7 +51,8 @@ class Pagamento{
     }
     confirmar(pagou,id){
         // const sql = `UPDATE Pagamento (confirmacao) VALUES (${pagou}) WHERE idPagamento = ${id}`
-        const sql = `UPDATE Pagamento SET confirmacao = ${pagou} WHERE idPagamento = ${id}`;
+        const sql = `UPDATE Pagamento SET confirmacao = ${pagou} WHERE idPagamento = ${id} AND MONTH(data) = MONTH(CURRENT_DATE()) 
+        AND YEAR(data) = YEAR(CURRENT_DATE())`;
 
         return new Promise((resolve,reject )=>{
             conexao.query(sql,(erro,resultado)=>{
