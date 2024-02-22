@@ -12,10 +12,28 @@ function Home() {
     const [lista_li,setLista_li] = useState([])
 
     const [dadosPagamento , setDadosPagamento] = useState()
+    const [nomesPag, setNomesPag] = useState()
 
     var cont = 0
-
-
+    function adicionaSaldo(){
+        if (dadosPagamento) {
+            
+            const promises = dadosPagamento.map(d =>{
+                
+                if(d.confirmacao <2){
+                    
+                    return  (-d.valor)
+                }else{
+               
+                    return d.valor
+                }
+    
+            })
+            return promises
+        }
+     
+    }
+   
     function criarSaldo(){
         cont ++;
         let tipo 
@@ -32,7 +50,7 @@ function Home() {
     }
     function criarLi(tipo, cont){
         
-        lista_li.push(<Li_home tipo={tipo} nome={nome} valor={valor}/>)
+        lista_li.push(<Li_home tipo={tipo} nome={nome} valor={valor} chave={cont}/>)
     }
 
 
@@ -51,6 +69,7 @@ function Home() {
         } )
         .then( dados =>{
             const promises = dados.map(d => {
+                
                 return fetch(`http://localhost:5000/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
@@ -64,12 +83,12 @@ function Home() {
             });
             return Promise.all(promises);
         })
-        .then(dados => console.log(dados))
+        .then(dados => setNomesPag(dados))
         .catch(erro => console.log(erro))
        
 
     },[])
-
+    
     return(
         <div className={styles.containerHome}>
            
@@ -100,10 +119,22 @@ function Home() {
                     }) 
                     :''
                 }
-                {dadosPagamento? dadosPagamento.map(dp=>{
-                    return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao}/>
+                {dadosPagamento? dadosPagamento.map((dp,i)=>{
+                  
+                    
+                    if(nomesPag){
+                        if(nomesPag[0].length >1 && nomesPag.length <=1){
+                            return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao} nome={nomesPag[0][i].nome}/>
+                        }else{
+                            return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao} nome={nomesPag[i][0].nome}/>
+                        }
+                        
+                    }else{
+
+                        return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao} />
+                    }
                 }):'teste'}
-                <Li_home nome={"KAIO"} valor={22} confirmacao={2} chave={55555}/>
+                {/* <Li_home nome={"KAIO"} valor={22} confirmacao={2} chave={55555}/> */}
        
                 </ul>
 
