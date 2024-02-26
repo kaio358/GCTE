@@ -10,7 +10,13 @@ import LinkButton from "../layout/LinkButton"
 
 function CriarElemento(props){
 
-   
+   const [imagem, setImagem] = useState()
+  
+   function inserirImagem(novo) {
+
+        setImagem(novo)
+        
+   }
 
     const [periodo,setPeriodo] = useState("")
     function textoPeriodo(novo){
@@ -25,22 +31,24 @@ function CriarElemento(props){
         props.fecharAba(false)
     }
     function enviar() {
-
+      
+        const formData = new FormData();
+        formData.append('escolaElemento', escola);
+        formData.append('periodoElemento', periodo);
+        formData.append('imagem', imagem);
             
         fetch('http://localhost:5000/escola', {
             method: 'POST',
-            body: JSON.stringify({
-                escolaElemento: escola,
-                periodoElemento: periodo
-            }),
+            body: formData,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type':'multipart/form-data'
             }
         })
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error(error))
         
+
         abaElemento()
             
      
@@ -51,7 +59,7 @@ function CriarElemento(props){
             <h1>Criar novo elemento</h1>
            
             <div>
-                <InputFileImage id={10} customClass="picture"/>
+                <InputFileImage id={11133} customClass="picture" eventoMudarImagem ={inserirImagem}/>
             </div>
             <div>
                 <InputDefault inputTipo="time" valor={periodo} texto={textoPeriodo} tipo="Periodo" nome="periodoElemento"/>
@@ -62,7 +70,7 @@ function CriarElemento(props){
 
             </div>
             <div onClick={enviar} >
-                <LinkButton text="Confirmar" tipo="submit"/>
+                <LinkButton text="Confirmar" tipo="submit" />
             </div>
 
         </form>

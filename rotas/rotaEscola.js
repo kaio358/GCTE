@@ -3,6 +3,10 @@ const rota = express()
 
 const Escola = require("../modelos/Escola")
 
+const multer = require("multer")
+const storage = multer.memoryStorage()
+const upload = multer({storage:storage})
+
 rota.get('/escola',async (req,res)=>{
     const dados = await Escola.lista()
     res.json(dados)
@@ -10,10 +14,12 @@ rota.get('/escola',async (req,res)=>{
   
 })
 
-rota.post('/escola',(req,res)=>{
+rota.post('/escola',upload.single('image'),(req,res)=>{
     const dados = {"nome":req.body.escolaElemento, "horario": req.body.periodoElemento}
-    
-    Escola.adiciona(dados)
+    console.log(req.file.path, dados);
+    // res.json({dados:dados, imagem: req.file})
+    // const escolaAdciona =   Escola.adiciona(dados)
+    // console.log(escolaAdciona);
     
 
 })

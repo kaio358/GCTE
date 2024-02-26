@@ -125,6 +125,7 @@ function Tabela(){
                             if(valor[0].length > 1 && valor.length <= 1){
                               return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[0][i].valor} confirmacao = {valor[0][i].confirmacao} eventoLapis={abaLapis}/>   
                             }else{
+                              // console.log(valor[i][0].valor);
                               return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {valor[i][0].confirmacao} eventoLapis={abaLapis}/>   
                             }
                          

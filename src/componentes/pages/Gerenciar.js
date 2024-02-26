@@ -24,7 +24,8 @@ function Gerenciar(){
 
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
-    const [idEsc , setIdEsc] = useState()
+    const [idEsc 
+        , setIdEsc] = useState()
 
 
     const [fecharDelet,setFecharDelet] = useState(false)

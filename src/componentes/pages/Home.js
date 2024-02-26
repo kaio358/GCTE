@@ -139,7 +139,7 @@ function Home() {
 
                         return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao} />
                     }
-                }):'teste'}
+                }):''}
                 {/* <Li_home nome={"KAIO"} valor={22} confirmacao={2} chave={55555}/> */}
        
                 </ul>
