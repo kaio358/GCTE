@@ -42,7 +42,30 @@ function Gerenciar(){
             headers:{
                 'Content-Type':'application/json'
             }
-        }).then(resp=>resp.json()).then(data=>setCards(data)).catch(err=>console.log(err))
+        })
+        .then(resp=>resp.json())
+        .then(data=>{
+            setCards(data)
+            return data
+        })
+        .then(dados => {
+            const promises = dados.map(d=> {
+              return fetch(`http://localhost:5000/image/escola/${d.idEscola}`, {
+                method: 'GET',
+              
+              
+              })
+                .then(resp => resp.json());
+            });
+            return Promise.all(promises);
+          })
+          .then(dados => {
+            
+            const arraySemVazias = dados.filter(subarray => subarray.length > 0);
+            console.log(arraySemVazias);
+            // setValor(arraySemVazias);
+          })
+        .catch(err=>console.log(err))
      
     },[])
    

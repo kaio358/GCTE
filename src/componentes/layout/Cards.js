@@ -41,15 +41,16 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
   
         if(mudou){
             const formData = new FormData();
-            formData.append('escolaElemento', textoEscola);
-            formData.append('periodoElemento',textPeriodo);
+            formData.append('id', chave);
+            formData.append('nome', textoEscola);
+            formData.append('horario',textPeriodo);
             formData.append('imagem', imagensTip);
                 
           
             // console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
             fetch(`http://localhost:5000/escola`,{
                 method:'PUT',
-                body:JSON.stringify( {id:chave,nome:textoEscola,horario:textPeriodo})
+                body:formData
             }).then(resp => resp.json())
         }
      
