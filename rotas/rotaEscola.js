@@ -2,6 +2,7 @@ const express = require("express")
 const rota = express()
 
 const Escola = require("../modelos/Escola")
+const Imagens = require("../modelos/Imagens")
 
 const multer = require("multer")
 const storage = multer.memoryStorage()
@@ -14,12 +15,28 @@ rota.get('/escola',async (req,res)=>{
   
 })
 
-rota.post('/escola',upload.single('image'),(req,res)=>{
+rota.post('/escola',upload.single('imagem'), async (req,res)=>{
     const dados = {"nome":req.body.escolaElemento, "horario": req.body.periodoElemento}
-    console.log(req.file.path, dados);
-    // res.json({dados:dados, imagem: req.file})
-    // const escolaAdciona =   Escola.adiciona(dados)
-    // console.log(escolaAdciona);
+    let result = '';
+    if(req.file.originalname.length >45){
+       
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < 45) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          counter += 1;
+        }
+    }else{
+        result = req.file.originalname
+    }
+ 
+    const escolaAdciona =  await Escola.adiciona(dados)
+    const imagem_dados = {"nome":result, "tipo":req.file.mimetype, "dados_imagens":req.file.buffer, "Escola_idEscola":escolaAdciona}  
+  
+    const imagemAdiciona = await Imagens.adiciona(imagem_dados)
+    console.log(imagemAdiciona);
+    
     
 
 })
@@ -34,6 +51,7 @@ rota.put('/escola',(req,res)=>{
     const nome = req.body.nome
     const horario = req.body.horario
     Escola.atualizar(id,nome,horario)
+    
     
 })
 

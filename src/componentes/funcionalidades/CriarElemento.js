@@ -33,6 +33,7 @@ function CriarElemento(props){
     function enviar() {
       
         const formData = new FormData();
+     
         formData.append('escolaElemento', escola);
         formData.append('periodoElemento', periodo);
         formData.append('imagem', imagem);
@@ -40,9 +41,7 @@ function CriarElemento(props){
         fetch('http://localhost:5000/escola', {
             method: 'POST',
             body: formData,
-            headers: {
-                'Content-Type':'multipart/form-data'
-            }
+        
         })
         .then(response => response.json())
         .then(data => console.log(data))

@@ -22,13 +22,16 @@ class Escola{
     }
     adiciona(dados){
         const sql = `INSERT INTO Escola set ?`
-        conexao.query(sql,dados,(erro,resultado)=>{
-            if(erro){
-                console.log(erro);
-            }else{
-                console.log(resultado);
-            }
+        return new Promise((resolve, reject )=>{
+            conexao.query(sql,dados,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado.insertId);
+                }
+            })
         })
+       
     }
     deleta(id){
         const sql = `DELETE FROM Escola WHERE idEscola = ${id}`

@@ -11,11 +11,12 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
 
     const [textPeriodo, setTextPeriodo] = useState(periodo)
     const [ textoEscola, setTextoEscola] = useState(escola)
+    const [imagensTip, setImagensTip] = useState(img)
 
     const [mudou,setMudou] = useState(false)
     const opacidade = useRef()
     
-
+    
     function textoNome(novo){
         setMudou(true)
         setTextoEscola(novo )
@@ -23,6 +24,10 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
     function textoPer(novo){
         setMudou(true)
         setTextPeriodo(novo)
+    }
+    function mudarImagens(novo) {
+        setMudou(true)
+        setImagensTip(novo)
     }
  
 
@@ -35,13 +40,15 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
     if(!eventPai){
   
         if(mudou){
+            const formData = new FormData();
+            formData.append('escolaElemento', textoEscola);
+            formData.append('periodoElemento',textPeriodo);
+            formData.append('imagem', imagensTip);
+                
           
             // console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
             fetch(`http://localhost:5000/escola`,{
                 method:'PUT',
-                headers:{
-                    'Content-type':'application/json'
-                },
                 body:JSON.stringify( {id:chave,nome:textoEscola,horario:textPeriodo})
             }).then(resp => resp.json())
         }
@@ -53,7 +60,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
         
             <div>
                 {eventPai? <AiOutlineClose className={styles.icon_deletar} onClick={deletar}/> : ''}
-                {eventPai ? <InputFileImage img={img}  id={idTabela} />:<img src={img}/>}
+                {eventPai ? <InputFileImage img={img}  id={idTabela} eventoMudarImagem={mudarImagens} />:<img src={img}/>}
             </div>
             <div>
           
