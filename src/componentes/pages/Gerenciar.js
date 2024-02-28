@@ -20,6 +20,9 @@ import icon_papel from "../../imgs/icons/folha-de-papel.png"
 
 function Gerenciar(){
     
+    
+
+
     const url = window.location.href;
 
     const [nome, setNome] = useState('')
@@ -36,6 +39,7 @@ function Gerenciar(){
 
     const [card, setCards] = useState([])
     const [imagens, setImagens] = useState([])
+    const [base64Image, setBase64Image] = useState('');
 
     useEffect(()=>{
         fetch('http://localhost:5000/escola',{
@@ -61,11 +65,24 @@ function Gerenciar(){
           .then(dados => {
             
             const arraySemVazias = dados.filter(subarray => subarray.length > 0);
-            console.log(arraySemVazias);
+            // console.log(arraySemVazias);
             setImagens(arraySemVazias)
            
           })
         .catch(err=>console.log(err))
+
+        const arrayBuffer = imagens[0][0].dados_imagens.data; // Supondo que dados_imagens.data seja um ArrayBuffer
+
+        const blob = new Blob([arrayBuffer], { type: imagens[0][0].tipo });
+        const fileReader = new FileReader();
+    
+        fileReader.onload = function(event) {
+            const base64Data = event.target.result;
+            setBase64Image(base64Data)
+        // console.log(base64Data);
+        };
+    
+        
      
     },[])
    
@@ -162,9 +179,23 @@ function Gerenciar(){
                         if(imagens){
                             if(imagens.length > 1){
                                 if(imagens[0][0].Escola_idEscola == c.idEscola){
+                                    
+                                    
+                               
+                                   
+                                    // return <Cards
+                                    // chave={ c.idEscola} 
+                                    // img={base64Image}
+                                    // periodo={c.horario} 
+                                    // escola={c.nome} idTabela={c.idEscola+5} 
+                                    // eventPai={editou} atualizar={atualizar} 
+                                    // nomes={nomes} 
+                                    // periodos={periodos}
+                                    // iDCard={ids}
+                                    // />
                                     return <Cards
                                     chave={ c.idEscola} 
-                                    img={`data:${imagens[0][0].tipo};base64,${imagens[0][0].dados_imagens.toString('base64')}`}
+                                    img="http://placeholder.com/500"
                                     periodo={c.horario} 
                                     escola={c.nome} idTabela={c.idEscola+5} 
                                     eventPai={editou} atualizar={atualizar} 
