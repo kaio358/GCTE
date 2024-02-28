@@ -15,7 +15,7 @@ function InputFileImage({img,id,customClass,eventoMudarImagem}) {
                 reader.addEventListener("load", function (e) {
                 const readerTarget = e.target;
                 
-                // console.log("esse reader target", readerTarget);
+                console.log("esse reader target", readerTarget);
                 const img = document.createElement("img");
                 img.src = readerTarget.result;
                 img.classList.add(`${styles.picture__img}`);

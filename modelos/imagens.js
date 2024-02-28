@@ -91,15 +91,16 @@ class Imagens{
         return new Promise((resolve,reject)=>{
             
             conexao.query(sql, (erro, resultados) => { 
-                let imageArray = []
+                // let imageArray = []
                 if(erro) { 
                     reject(erro);
                 } else {
-                    for(let valor of resultados){
-                        imageArray.push( `data:${valor.tipo};base64,${valor.dados_imagens.toString('base64')}`)
-                    }
+                    // for(let valor of resultados){
+                    //     imageArray.push( `data:${valor.tipo};base64,${valor.dados_imagens.toString('base64')}`)
+                    // }
     
-                    resolve({image:imageArray});
+                    // resolve({image:imageArray});
+                    resolve(resultados)
                 }
         
             })

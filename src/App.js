@@ -16,7 +16,7 @@ function App() {
         <Route exact path='/' element ={<Home/>} />
         <Route exact path='/gerenciar' element ={<Gerenciar/>} />
         <Route exact path='/tabela' element={<Tabela/>}/>
-        <Route exact path='/mensagens' element={<CaixaDeMensagem/>}/>
+        <Route exact path='/mensagens/*' element={<CaixaDeMensagem/>}/>
       </Routes>
   </Router>
   );

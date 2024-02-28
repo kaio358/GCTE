@@ -24,9 +24,9 @@ function Gerenciar(){
 
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
-    const [idEsc 
-        , setIdEsc] = useState()
+    const [idEsc , setIdEsc] = useState()
 
+    
 
     const [fecharDelet,setFecharDelet] = useState(false)
 
@@ -35,6 +35,7 @@ function Gerenciar(){
     const [novoElemento, setNovoElemento] = useState(false)
 
     const [card, setCards] = useState([])
+    const [imagens, setImagens] = useState([])
 
     useEffect(()=>{
         fetch('http://localhost:5000/escola',{
@@ -52,8 +53,6 @@ function Gerenciar(){
             const promises = dados.map(d=> {
               return fetch(`http://localhost:5000/image/escola/${d.idEscola}`, {
                 method: 'GET',
-              
-              
               })
                 .then(resp => resp.json());
             });
@@ -63,7 +62,8 @@ function Gerenciar(){
             
             const arraySemVazias = dados.filter(subarray => subarray.length > 0);
             console.log(arraySemVazias);
-            // setValor(arraySemVazias);
+            setImagens(arraySemVazias)
+           
           })
         .catch(err=>console.log(err))
      
@@ -158,18 +158,58 @@ function Gerenciar(){
                 
                 {
                    
-                   card? card.map(c=>{
-                       
-                       return <Cards
-                        chave={ c.idEscola} 
-                        img="http://placeholder.com/500"
-                        periodo={c.horario} 
-                        escola={c.nome} idTabela={c.idEscola+5} 
-                        eventPai={editou} atualizar={atualizar} 
-                        nomes={nomes} 
-                        periodos={periodos}
-                        iDCard={ids}
-                        />
+                   card? card.map( (c, i)=>{
+                        if(imagens){
+                            if(imagens.length > 1){
+                                if(imagens[0][0].Escola_idEscola == c.idEscola){
+                                    return <Cards
+                                    chave={ c.idEscola} 
+                                    img={`data:${imagens[0][0].tipo};base64,${imagens[0][0].dados_imagens.toString('base64')}`}
+                                    periodo={c.horario} 
+                                    escola={c.nome} idTabela={c.idEscola+5} 
+                                    eventPai={editou} atualizar={atualizar} 
+                                    nomes={nomes} 
+                                    periodos={periodos}
+                                    iDCard={ids}
+                                    />
+                                }else{
+                                    return <Cards
+                                    chave={ c.idEscola} 
+                                    img="http://placeholder.com/500"
+                                    periodo={c.horario} 
+                                    escola={c.nome} idTabela={c.idEscola+5} 
+                                    eventPai={editou} atualizar={atualizar} 
+                                    nomes={nomes} 
+                                    periodos={periodos}
+                                    iDCard={ids}
+                                    />
+                                }
+                              
+                            }else{
+                                return <Cards
+                                chave={ c.idEscola} 
+                                img="http://placeholder.com/500"
+                                periodo={c.horario} 
+                                escola={c.nome} idTabela={c.idEscola+5} 
+                                eventPai={editou} atualizar={atualizar} 
+                                nomes={nomes} 
+                                periodos={periodos}
+                                iDCard={ids}
+                                />
+                            }
+                        }else{
+                            return <Cards
+                            chave={ c.idEscola} 
+                            img="http://placeholder.com/500"
+                            periodo={c.horario} 
+                            escola={c.nome} idTabela={c.idEscola+5} 
+                            eventPai={editou} atualizar={atualizar} 
+                            nomes={nomes} 
+                            periodos={periodos}
+                            iDCard={ids}
+                            />
+                        }
+                     
                    }):""
                }
                

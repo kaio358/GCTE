@@ -22,9 +22,11 @@ rota.get('/imagens',async (req,res)=>{
     res.json(lista_imagens)
 })
 // pega imagens pelo idEscola
-rota.get('/image/escola/:id', (req,res)=>{
-   
-  console.log("ola",req.params);
+rota.get('/image/escola/:id', async (req,res)=>{
+  const id = req.params.id
+  const imagensConjunto = await Imagens.conjuntoDeImagens(id) 
+  
+  res.json(imagensConjunto)
 })
 
 module.exports = rota
