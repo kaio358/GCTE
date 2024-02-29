@@ -55,6 +55,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
         }
      
     }
+    // console.log(img);
     
     return(
         <div className={styles.card} id={chave} key={chave}>

@@ -83,20 +83,18 @@ function Gerenciar(){
     useEffect(()=>{
     
         if(imagens[0]){
-            // const base64Image = Buffer.from(imagens[0][0].dados_imagens.data).toString('base64');
-            // const dataUrl = `data:image/jpeg;base64,${base64Image}`;
-            // console.log(dataUrl);
-            const arrayBuffer = imagens[0][0].dados_imagens.data; 
-      
-            const blob = new Blob([arrayBuffer], { type: imagens[0][0].tipo });
-            const fileReader = new FileReader();
+            const arrayBufferes = imagens[0][0].dados_imagens.data;
+            const uint8Array = new Uint8Array(arrayBufferes);
+           
+            let binaryString = '';
+            for (let i = 0; i < uint8Array.length; i++) {
+                binaryString += String.fromCharCode(uint8Array[i]);
+            }
+            const base64Imagens = btoa(binaryString);
         
-            fileReader.onload = function(event) {
-                const base64Data = event.target.result;
-                setBase64Image(base64Data)
-            
-            };
-            fileReader.readAsDataURL(blob);
+            const stringBase64 = `data:${imagens[0][0]};base64,${base64Imagens}`
+            setBase64Image(stringBase64)
+       
         }
     },[imagens])
    
