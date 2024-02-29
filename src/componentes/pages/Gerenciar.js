@@ -23,7 +23,7 @@ function Gerenciar(){
     
 
 
-    const url = window.location.href;
+    
 
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
@@ -40,6 +40,8 @@ function Gerenciar(){
     const [card, setCards] = useState([])
     const [imagens, setImagens] = useState([])
     const [base64Image, setBase64Image] = useState('');
+
+
 
     useEffect(()=>{
         fetch('http://localhost:5000/escola',{
@@ -71,20 +73,32 @@ function Gerenciar(){
           })
         .catch(err=>console.log(err))
 
-        const arrayBuffer = imagens[0][0].dados_imagens.data; // Supondo que dados_imagens.data seja um ArrayBuffer
-
-        const blob = new Blob([arrayBuffer], { type: imagens[0][0].tipo });
-        const fileReader = new FileReader();
-    
-        fileReader.onload = function(event) {
-            const base64Data = event.target.result;
-            setBase64Image(base64Data)
-        // console.log(base64Data);
-        };
-    
+     
+        
+        
         
      
     },[])
+
+    useEffect(()=>{
+    
+        if(imagens[0]){
+            // const base64Image = Buffer.from(imagens[0][0].dados_imagens.data).toString('base64');
+            // const dataUrl = `data:image/jpeg;base64,${base64Image}`;
+            // console.log(dataUrl);
+            const arrayBuffer = imagens[0][0].dados_imagens.data; 
+      
+            const blob = new Blob([arrayBuffer], { type: imagens[0][0].tipo });
+            const fileReader = new FileReader();
+        
+            fileReader.onload = function(event) {
+                const base64Data = event.target.result;
+                setBase64Image(base64Data)
+            
+            };
+            fileReader.readAsDataURL(blob);
+        }
+    },[imagens])
    
     
     // para Cards
@@ -180,19 +194,20 @@ function Gerenciar(){
                             if(imagens.length > 1){
                                 if(imagens[0][0].Escola_idEscola == c.idEscola){
                                     
+
                                     
                                
                                    
-                                    // return <Cards
-                                    // chave={ c.idEscola} 
-                                    // img={base64Image}
-                                    // periodo={c.horario} 
-                                    // escola={c.nome} idTabela={c.idEscola+5} 
-                                    // eventPai={editou} atualizar={atualizar} 
-                                    // nomes={nomes} 
-                                    // periodos={periodos}
-                                    // iDCard={ids}
-                                    // />
+                                    return <Cards
+                                    chave={ c.idEscola} 
+                                    img={base64Image}
+                                    periodo={c.horario} 
+                                    escola={c.nome} idTabela={c.idEscola+5} 
+                                    eventPai={editou} atualizar={atualizar} 
+                                    nomes={nomes} 
+                                    periodos={periodos}
+                                    iDCard={ids}
+                                    />
                                     return <Cards
                                     chave={ c.idEscola} 
                                     img="http://placeholder.com/500"
