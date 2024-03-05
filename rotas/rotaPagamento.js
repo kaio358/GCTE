@@ -10,9 +10,10 @@ rota.get("/pagamento/:id",async (req,res)=>{
     res.json(pagamentoValores)
 })
 
-rota.post("/pagamento/confirmacao",async (req,res)=>{
+rota.put("/pagamento/confirmacao",async (req,res)=>{
     const id = req.body.id;
     const pagou = req.body.pagou;
+ 
 
     const confirmacao =  await  Pagamento.confirmar(pagou,id)
 

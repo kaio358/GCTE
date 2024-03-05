@@ -21,6 +21,8 @@ function Tabela(){
 
     const [pessoas,setPessoa] = useState()
     const [valor,setValor] = useState()
+    const [confirmacao,setConfirmacao] = useState()
+    const [atualMesValor,setAtualMesValor] = useState()
 
 
     const [abaPapel, setAbaPapel] = useState(false)
@@ -58,7 +60,25 @@ function Tabela(){
             setValor(arraySemVazias);
           })
           .catch(erro => console.log(erro));
+          
       }, []);
+      useEffect(()=>{
+          if(valor){
+              const mesAtual = new Date().getMonth() + 1; // Adiciona 1 porque os meses em JavaScript são indexados a partir de zero (janeiro é 0)
+
+              // Filtra os objetos cujo mês da data seja igual ao mês atual
+              const objetosFiltrados = valor.flat().filter(objeto => {
+     
+                  const mesData = new Date(objeto.data).getMonth() + 1; // Obtém o mês da data do objeto
+               
+                  return mesData === mesAtual; // Retorna true se o mês da data for igual ao mês atual
+              });
+              setAtualMesValor(objetosFiltrados)
+              const objetosConfirmacao = objetosFiltrados.map(obj=>obj.confirmacao)
+              // console.log(objetosConfirmacao);
+              setConfirmacao(objetosConfirmacao)
+          }
+      },[valor])
     function buscaNome(novo){
       setPessoa(novo)
     }
@@ -122,11 +142,15 @@ function Tabela(){
                         return pessoas.escola.map((e)=>{
                           if(valor) {
                             
+                            
                             if(valor[0].length > 1 && valor.length <= 1){
-                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[0][i].valor} confirmacao = {valor[0][i].confirmacao} eventoLapis={abaLapis}/>   
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={confirmacao? confirmacao[i]: valor[0][i].valor} confirmacao = {valor[0][i].confirmacao} eventoLapis={abaLapis} idPagamento={atualMesValor? atualMesValor[i].idPagamento : 0}/>   
                             }else{
                               // console.log(valor[i][0].valor);
-                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {valor[i][0].confirmacao} eventoLapis={abaLapis}/>   
+                     
+                            
+
+                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {confirmacao? confirmacao[i]:0} eventoLapis={abaLapis} idPagamento={atualMesValor ? atualMesValor[i].idPagamento : 0} />   
                             }
                          
                           }else{

@@ -22,9 +22,6 @@ function Gerenciar(){
     
     
 
-
-    
-
     const [nome, setNome] = useState('')
     const [periodo, setPeriodo] = useState('')
     const [idEsc , setIdEsc] = useState()
@@ -82,18 +79,43 @@ function Gerenciar(){
 
     useEffect(()=>{
     
-        if(imagens[0]){
-            const arrayBufferes = imagens[0][0].dados_imagens.data;
-            const uint8Array = new Uint8Array(arrayBufferes);
-           
-            let binaryString = '';
-            for (let i = 0; i < uint8Array.length; i++) {
-                binaryString += String.fromCharCode(uint8Array[i]);
-            }
-            const base64Imagens = btoa(binaryString);
-        
-            const stringBase64 = `data:${imagens[0][0]};base64,${base64Imagens}`
-            setBase64Image(stringBase64)
+        if(imagens.length){
+            
+
+            // let stringBase64 = ``
+
+            const imagensAdaptado = imagens.map((img,i)=>{
+              
+                let arrayBufferes = 0
+                arrayBufferes = imagens[i][0].dados_imagens.data;
+                if(imagens[i].length > 1){
+                    arrayBufferes = imagens[i][0].dados_imagens.data;
+                }else{
+                    arrayBufferes = imagens[0][i].dados_imagens.data;
+                }
+              
+                const uint8Array = new Uint8Array(arrayBufferes);
+                let binaryString = '';
+                for (let i = 0; i < uint8Array.length; i++) {
+                    binaryString += String.fromCharCode(uint8Array[i]);
+                }
+
+                const base64Imagens = btoa(binaryString);
+                let stringBase64 = ''
+                if (imagens[i].length >1) {
+                    stringBase64 = `data:${imagens[i][0]};base64,${base64Imagens}`
+                } else {
+                    stringBase64 = `data:${imagens[0][i]};base64,${base64Imagens}`
+                }
+               
+                return stringBase64;
+            })
+      
+
+
+     
+         
+            setBase64Image(imagensAdaptado)
        
         }
     },[imagens])
@@ -190,32 +212,19 @@ function Gerenciar(){
                    card? card.map( (c, i)=>{
                         if(imagens){
                             if(imagens.length > 1){
-                                if(imagens[0][0].Escola_idEscola == c.idEscola){
-                                    
-
-                                    
+                            
+                                if(imagens[i][0].Escola_idEscola == c.idEscola){
+                                    return <Cards
+                                    chave={ c.idEscola} 
+                                    img={base64Image[i]}
+                                    periodo={c.horario} 
+                                    escola={c.nome} idTabela={c.idEscola+5} 
+                                    eventPai={editou} atualizar={atualizar} 
+                                    nomes={nomes} 
+                                    periodos={periodos}
+                                    iDCard={ids}
+                                    />
                                
-                                   
-                                    return <Cards
-                                    chave={ c.idEscola} 
-                                    img={base64Image}
-                                    periodo={c.horario} 
-                                    escola={c.nome} idTabela={c.idEscola+5} 
-                                    eventPai={editou} atualizar={atualizar} 
-                                    nomes={nomes} 
-                                    periodos={periodos}
-                                    iDCard={ids}
-                                    />
-                                    return <Cards
-                                    chave={ c.idEscola} 
-                                    img="http://placeholder.com/500"
-                                    periodo={c.horario} 
-                                    escola={c.nome} idTabela={c.idEscola+5} 
-                                    eventPai={editou} atualizar={atualizar} 
-                                    nomes={nomes} 
-                                    periodos={periodos}
-                                    iDCard={ids}
-                                    />
                                 }else{
                                     return <Cards
                                     chave={ c.idEscola} 
@@ -232,7 +241,7 @@ function Gerenciar(){
                             }else{
                                 return <Cards
                                 chave={ c.idEscola} 
-                                img="http://placeholder.com/500"
+                                img={base64Image[i]}
                                 periodo={c.horario} 
                                 escola={c.nome} idTabela={c.idEscola+5} 
                                 eventPai={editou} atualizar={atualizar} 

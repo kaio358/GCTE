@@ -7,7 +7,8 @@ import InputDefault from "../funcionalidades/InputDefault";
 
 function Linha_tabela(props){
     const itens = [<AiOutlineLine /> ,<AiOutlineClose className={styles.iconRed} /> ,<AiOutlineCheck className={styles.iconGreen}/>]
-    const [opcao, setOpcao] = useState(0)
+    console.log(props.confirmacao);
+    const [opcao, setOpcao] = useState(props.confirmacao)
     const [timer, setTimer] = useState(null); 
 
     // Para modifcar textos
@@ -31,7 +32,7 @@ function Linha_tabela(props){
       setTextoTelefone(novo)
     }
     const [textoValorPago, setTextoValorPago] = useState(props.valorPago)
-    console.log(props.valorPago);
+
     function modificarTextoValorPago(novo){
       setMudou(true)
       setTextoValorPago(novo)
@@ -39,7 +40,7 @@ function Linha_tabela(props){
 
     if(!props.eventoLapis){
         if(mudou){
-          console.log("mudou ?");
+       
           fetch("http://localhost:5000/pessoa/atualizar",{
             method:"PUT",
             body: JSON.stringify({
@@ -82,10 +83,11 @@ function Linha_tabela(props){
     }
 
     function enviarParaServidor() {
+    
         fetch("http://localhost:5000/pagamento/confirmacao", {
-          method: "POST",
+          method: "PUT",
           body: JSON.stringify({
-            id: props.id,
+            id: props.idPagamento,
             pagou: opcao
           }),
           headers: {
@@ -96,6 +98,7 @@ function Linha_tabela(props){
         .then(dados => console.log(dados))
         .catch(erro => console.log(erro));
       }
+      // console.log(props.confirmacao);
 
     return(
       
@@ -106,8 +109,8 @@ function Linha_tabela(props){
             {props.eventoLapis?  <td><InputDefault inputTipo="text" tipo="informe o endereço" valor={textoEndeco} texto={modificarTextoEndereco}/></td>:  <td>{textoEndeco}</td>}
             {props.eventoLapis?  <td><InputDefault inputTipo="tel" tipo="informe o telefone" valor={textoTelefone} texto={modificarTextoTelefone}/></td>:  <td>{textoTelefone}</td>}
             {props.eventoLapis?  <td><InputDefault inputTipo="number" tipo="informe o valor" valor={textoValorPago} texto={modificarTextoValorPago}/></td>:  <td>{textoValorPago || props.valorPago}</td>}
-            {props.eventoLapis?  <td>teste</td>:   <td className={styles.itemEspecifico} onClick={()=>{ troca();}} >{itens[opcao]}</td>}
-           
+            {/* {props.confirmacao?  <td className={styles.itemEspecifico} onClick={()=>{ troca();}} >{itens[props.confirmacao]}</td>:   <td className={styles.itemEspecifico} onClick={()=>{ troca();}} >{itens[opcao]}</td>} */}
+            <td className={styles.itemEspecifico} onClick={()=>{ troca();}} >{itens[opcao]}</td>
         </tr>
     )
 }
