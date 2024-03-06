@@ -7,8 +7,9 @@ import InputDefault from "../funcionalidades/InputDefault";
 
 function Linha_tabela(props){
     const itens = [<AiOutlineLine /> ,<AiOutlineClose className={styles.iconRed} /> ,<AiOutlineCheck className={styles.iconGreen}/>]
-    console.log(props.confirmacao);
+    
     const [opcao, setOpcao] = useState(props.confirmacao)
+    // console.log(opcao);
     const [timer, setTimer] = useState(null); 
 
     // Para modifcar textos
@@ -66,29 +67,33 @@ function Linha_tabela(props){
       }, [props.confirmacao]); 
 
 
-
+      let novaOpcao = opcao; 
     function troca() {
+     
+     
         if (opcao >= itens.length - 1) {
             setOpcao(0);
+            novaOpcao = 0;
         } else {
             setOpcao(opcao + 1);
+            novaOpcao+=1;
         }
-        
+   
         // Redefinir o temporizador após a troca da opção
         clearTimeout(timer);
         const newTimer = setTimeout(() => {
-            enviarParaServidor();
+            enviarParaServidor(novaOpcao);
         }, 5000);
         setTimer(newTimer);
     }
-
-    function enviarParaServidor() {
-    
+ 
+    function enviarParaServidor(teste) {
+      console.log(opcao, "fora",teste);
         fetch("http://localhost:5000/pagamento/confirmacao", {
           method: "PUT",
           body: JSON.stringify({
             id: props.idPagamento,
-            pagou: opcao
+            pagou: teste != opcao ? teste : opcao
           }),
           headers: {
             'Content-Type': 'application/json'
