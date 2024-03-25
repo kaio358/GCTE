@@ -30,6 +30,18 @@
     padding: 5px;
 }
 
+/* links da guia */
+
 .link_li{
     text-decoration: none;
+
+}
+
+
+.posicaoAtual{
+    color:#FF6600;
+    border-bottom: 4px solid #FF6600;
+}
+.posicaoNaoAtual{
+    color: #0E65B0;
 }

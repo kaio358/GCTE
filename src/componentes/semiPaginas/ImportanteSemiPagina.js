@@ -1,17 +1,18 @@
 import styles from "../pages/CaixaDeMensagem.module.css"
+// import estilo from "./ImportanteSemiPagina.module.css"
 
 import { Link } from "react-router-dom"
 
 function ImportanteSemiPagina(){
     return(
         <div className={styles.div_caixa_mensagem}>
-            <h1>Importante</h1>
+            <h1>Importante (s)</h1>
             
             <section>
                 <ul className={styles.guia_caixa_de_mensagem}>
-                    <li><Link to="/mensagens/geral" className={styles.link_li}>Geral</Link> </li>
-                    <li><Link to="/mensagens/importante" className={styles.link_li}>Importante </Link></li>
-                    <li><Link to="/mensagens/lido" className={styles.link_li}>Lido(s)</Link></li>
+                    <li><Link to="/mensagens/geral" className={`${styles.link_li} ${styles.posicaoNaoAtual}`}>Geral</Link> </li>
+                    <li><Link to="/mensagens/importante" className={`${styles.link_li} ${styles.posicaoAtual}`}>Importante </Link></li>
+                    <li><Link to="/mensagens/lido" className={`${styles.link_li} ${styles.posicaoNaoAtual}`}>Lido(s)</Link></li>
                 </ul>
                 
          

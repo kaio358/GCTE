@@ -8,6 +8,7 @@ class Tabelas{
         this.criarPagamento()
         this.criarPessoa()
         this.criarImagens()
+        this.criarMensagem()
 
     }
     criarEscola(){
@@ -75,6 +76,16 @@ class Tabelas{
                 console.log(erro);
             }else{
                 console.log('Tabela Imagens criada com sucesso');
+            }
+        })
+    }
+    criarMensagem(){
+        const sql = "CREATE TABLE IF NOT EXISTS Mensagem(idMensagem int AUTO_INCREMENT, importante TINYINT, leram TINYINT, Pagamento_idPagamento int, primary key(idMensagem), Foreign key (Pagamento_idPagamento) REFERENCES Pagamento (idPagamento));"
+        this.conexao.query(sql,erro=>{
+            if(erro){
+                console.log(erro);
+            }else{
+                console.log("Tabela Mensagem criada com sucesso");
             }
         })
     }

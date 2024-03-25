@@ -22,6 +22,9 @@ const rotaPessoa = require("./rotas/rotaPessoa")
 const rotaPagamento = require("./rotas/rotaPagamento")
 
 
+// para conferir pagamento diario
+const cron = require('node-cron');
+const Pagamento = require("./modelos/Pagamento")
 
 
 
@@ -30,7 +33,18 @@ conexao.connect(erro=>{
         console.log(erro);
     }else{
         
+
         tabelas.init(conexao)
+
+        cron.schedule('0 0 * * *', async () => {
+            try {
+                const today = new Date();
+                Pagamento.atualizarDevedor(today)
+                console.log("ola");
+            } catch (error) {
+                console.error('Erro ao verificar pagamentos:', error);
+            }
+        });
         app.use("/",rotaEscola)
         app.use("/",rotaImagens)
         app.use("/", rotaPessoa)

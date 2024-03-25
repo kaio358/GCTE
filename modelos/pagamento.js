@@ -78,6 +78,19 @@ class Pagamento{
             })
         })
     }
+    atualizarDevedor(data){
+        const sql = `UPDATE Pagamento SET confirmacao  = 1 WHERE DATE(${data}) > CURRENT_DATE() AND confirmacao = 0`
+
+        return new Promise((resolve,reject )=>{
+            conexao.query(sql,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado)
+                }
+            })
+        })
+    }
     
 
 }
