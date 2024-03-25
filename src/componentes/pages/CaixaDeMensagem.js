@@ -1,13 +1,11 @@
 import { useState,useEffect } from "react"
-import { BrowserRouter as Router,Routes,Route,Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 
 import Message from "../funcionalidades/Message"
 import styles from "./CaixaDeMensagem.module.css"
 
-import GeralSemiPagina from "../semiPaginas/GeralSemiPagina"
-import ImportanteSemiPagina from "../semiPaginas/ImportanteSemiPagina"
-import LidosSemiPagina from "../semiPaginas/LidosSemiPagina"
+
 
 
 function CaixaDeMensagem() {
@@ -69,26 +67,23 @@ function CaixaDeMensagem() {
 
             <section>
                 <ul className={styles.guia_caixa_de_mensagem}>
-                    <li><Link to="./geral">Geral</Link> </li>
-                    <li><Link to="./importante">Importante </Link></li>
-                    <li><Link to="./lido">Lido(s)</Link></li>
+                    <li><Link to="/mensagens/geral">Geral</Link> </li>
+                    <li><Link to="/mensagens/importante">Importante </Link></li>
+                    <li><Link to="/mensagens/lido">Lido(s)</Link></li>
                 </ul>
-               
+                
+         
             </section>
             <section className={styles.box_message}>
                 <ul>
-                
-                        
-                    <Routes>
-                        <Route exact path='./geral' element ={<GeralSemiPagina/>} />
-                        <Route exact path='./importante' element ={<ImportanteSemiPagina/>} />
-                        <Route exact path='./lido' element={<LidosSemiPagina/>}/>
+                 
                    
-                    </Routes>
+                 
             
                     {/* <Message nome_user={"Kaio Luiz Ferreira"} customCor={"corVer"} mensagem_pago_ou_nao={"Não pagou"}/>
                     <Message nome_user={"Maria Eduarda"} customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/>
                     <Message nome_user={"Fernando"} customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/> */}
+
                     {nomesPag ?
                         nomesPag.map((n,i)=>{
                             if(n.length>1 && nomesPag.length <= 1){

@@ -88,7 +88,6 @@ function Linha_tabela(props){
     }
  
     function enviarParaServidor(teste) {
-      console.log(opcao, "fora",teste);
         fetch("http://localhost:5000/pagamento/confirmacao", {
           method: "PUT",
           body: JSON.stringify({

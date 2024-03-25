@@ -29,3 +29,7 @@
     border-bottom: none;
     padding: 5px;
 }
+
+.link_li{
+    text-decoration: none;
+}
