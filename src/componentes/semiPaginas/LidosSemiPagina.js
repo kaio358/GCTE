@@ -12,7 +12,7 @@ function LidoSemiPagina(){
             <ul className={styles.guia_caixa_de_mensagem}>
                 <li><Link to="/mensagens/geral" className={`${styles.link_li} ${styles.posicaoNaoAtual}`}>Geral</Link> </li>
                 <li><Link to="/mensagens/importante"  className={`${styles.link_li} ${styles.posicaoNaoAtual}`}>Importante </Link></li>
-                <li><Link to="/mensagens/lido"  className={`${styles.link_li} ${styles.posicaoAtual}`}>Lido(s)</Link></li>
+                <li><Link to="/mensagens/lida"  className={`${styles.link_li} ${styles.posicaoAtual}`}>Lida(s)</Link></li>
             </ul>
             
      

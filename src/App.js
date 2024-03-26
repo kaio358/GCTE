@@ -24,7 +24,7 @@ function App() {
     
         <Route exact path='/mensagens' element={<CaixaDeMensagem/>} />
         <Route exact path='/mensagens/importante' element ={<ImportanteSemiPagina/>} />
-        <Route exact path='/mensagens/lido' element={<LidoSemiPagina/>}/>
+        <Route exact path='/mensagens/lida' element={<LidoSemiPagina/>}/>
                         
             
       </Routes>

@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 const conexao = require("./infraestrutura/conexao")
-const tabelas = require("./infraestrutura/tabelas")
+const Tabelas = require("./infraestrutura/tabelas")
 
 const rotaEscola = require("./rotas/rotaEscola")
 const rotaImagens = require("./rotas/rotaImagens")
@@ -34,13 +34,14 @@ conexao.connect(erro=>{
     }else{
         
 
-        tabelas.init(conexao)
+        Tabelas.init(conexao)
 
         cron.schedule('0 0 * * *', async () => {
             try {
                 const today = new Date();
                 Pagamento.atualizarDevedor(today)
-                console.log("ola");
+
+                // console.log("ola");
             } catch (error) {
                 console.error('Erro ao verificar pagamentos:', error);
             }
