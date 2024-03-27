@@ -27,6 +27,9 @@ rota.get("/pagamentos/data",async (req,res)=>{
     res.json(pagamentoData)
     
 })
+rota.post("/pagamento/idPag",async (req,res)=>{
+    
+})
 
 
 

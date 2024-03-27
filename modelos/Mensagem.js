@@ -69,9 +69,10 @@ class Mensagem{
         })
 
     }
-    atualizaImportante(imp,idPag){
+    atualizaOuInseriImportante(idPag){
 
-        const sql = `UPDATE Mensagem set importante = ${imp} WHERE Pagamento_idPagamento = ${idPag} `
+        // const sql = `UPDATE Mensagem set importante = ${imp} WHERE Pagamento_idPagamento = ${idPag} `
+        const sql = `INSERT INTO Mensagem (Pagamento_idPagamento, importante,leram) values (1,1,0) ON DUPLICATE KEY UPDATE importante = 1; `
         return new Promise((resolve,reject)=>{
             conexao.query(sql,(erro,resultado)=>{
                 if(erro){
@@ -82,4 +83,7 @@ class Mensagem{
             })
         })
     }
+
 }
+
+module.exports = new Mensagem

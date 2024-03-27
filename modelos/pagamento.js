@@ -25,8 +25,32 @@ class Pagamento{
             })
         })
     } 
+    pegarPorID(id){
+        const sql = `SELECT  * FROM Pagamento WHERE idPagamento = ${id}`
+        return new Promise((resolve,reject)=>{
+            conexao.query(sql,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado)
+                }
+            })
+        })
+    }
     pegarPorData(){
         const sql = `SELECT * FROM Pagamento WHERE MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE())`
+        return new Promise((resolve, reject)=>{
+            conexao.query(sql,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado)
+                }
+            })
+        })
+    }
+    pegarPorDataENaoPagou(){
+        const sql = `SELECT * FROM Pagamento WHERE DATE(data) < CURRENT_DATE() AND confirmacao = 1`
         return new Promise((resolve, reject)=>{
             conexao.query(sql,(erro,resultado)=>{
                 if(erro){
@@ -78,8 +102,8 @@ class Pagamento{
             })
         })
     }
-    atualizarDevedor(data){
-        const sql = `UPDATE Pagamento SET confirmacao  = 1 WHERE DATE(${data}) > CURRENT_DATE() AND confirmacao = 0`
+    atualizarDevedor(){
+        const sql = `UPDATE Pagamento AS p1 JOIN (SELECT idPagamento FROM Pagamento WHERE DATE(data) < CURRENT_DATE() AND confirmacao = 0) AS p2 ON p1.idPagamento = p2.idPagamento SET p1.confirmacao = 1;`
 
         return new Promise((resolve,reject )=>{
             conexao.query(sql,(erro,resultado)=>{

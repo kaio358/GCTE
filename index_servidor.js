@@ -20,11 +20,12 @@ const rotaEscola = require("./rotas/rotaEscola")
 const rotaImagens = require("./rotas/rotaImagens")
 const rotaPessoa = require("./rotas/rotaPessoa")
 const rotaPagamento = require("./rotas/rotaPagamento")
-
+const rotaMensagem = require("./rotas/rotaMensagem")
 
 // para conferir pagamento diario
 const cron = require('node-cron');
-const Pagamento = require("./modelos/Pagamento")
+const Pagamento = require("./modelos/Pagamento");
+const Mensagem = require("./modelos/Mensagem");
 
 
 
@@ -36,20 +37,29 @@ conexao.connect(erro=>{
 
         Tabelas.init(conexao)
 
-        cron.schedule('0 0 * * *', async () => {
+        cron.schedule('10 18 * * *', async () => {
             try {
                 const today = new Date();
                 Pagamento.atualizarDevedor(today)
+                const pegarPorDataENaoPagou = await Pagamento.pegarPorDataENaoPagou();
+                pegarPorDataENaoPagou.map(async pnp=>{
+              
+                    const mensagem = await Mensagem.atualizaOuInseriImportante(pnp.idPagamento)
+                    console.log(mensagem);
+                })
+               
 
                 // console.log("ola");
             } catch (error) {
                 console.error('Erro ao verificar pagamentos:', error);
             }
         });
+        
         app.use("/",rotaEscola)
         app.use("/",rotaImagens)
         app.use("/", rotaPessoa)
         app.use("/",rotaPagamento)
+        app.use("/",rotaMensagem)
         server.listen(5000, () => {
             console.log("Conectado: http://localhost:5000");
         });
