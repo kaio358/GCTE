@@ -9,7 +9,9 @@ function ImportanteSemiPagina(){
     const [dadosPagamento , setDadosPagamento] = useState()
     const [nomesPag, setNomesPag] = useState()
     const [mensagensPag, setMensagensPag] = useState()
+
     useEffect(()=>{
+      
         fetch("http://localhost:5000/mensagensImportantes",{
             method:"GET",
             headers:{
@@ -18,17 +20,20 @@ function ImportanteSemiPagina(){
         })
         .then(resp => resp.json())
         .then(dados=>{
+
             return dados
         })
         .then(dados=>{
+            
             const promises = dados.map(d=>{
+                
                 return fetch("http://localhost:5000/pagamento/idPag",{
                     method: "POST",
                     headers:{
                         'Content-Type':"application/json"
                     },
                     body: JSON.stringify({
-                        idPagamento: d.idPagamento
+                        idPagamento: d.Pagamento_idPagamento
                     })
                 }).then(resp => resp.json());
             })
@@ -39,12 +44,13 @@ function ImportanteSemiPagina(){
             return dados
         })
         .then(dados=>{
+            // console.log(dados);
             const promises = dados.map(d => {
-                
+              
                 return fetch(`http://localhost:5000/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
-                    idPessoa: d.pessoa_idpessoa
+                    idPessoa: Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa
                   }),
                   headers: {
                     'Content-Type': 'application/json'
@@ -72,6 +78,7 @@ function ImportanteSemiPagina(){
             
         }
     },[dadosPagamento])
+  
     return(
         <div className={styles.div_caixa_mensagem}>
             <h1>Importante (s)</h1>
@@ -87,11 +94,12 @@ function ImportanteSemiPagina(){
             </section>
             <section className={styles.box_message}>
                 {nomesPag ?
+                
                     nomesPag.map((n,i)=>{
                         if(n.length>1 && nomesPag.length <= 1){
-                            return <Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/>
+                            return <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`}> <Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
                         }else{
-                            return <Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/>
+                            return  <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`}><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
                         }
                         })
                     :''}

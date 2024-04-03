@@ -37,15 +37,15 @@ conexao.connect(erro=>{
 
         Tabelas.init(conexao)
 
-        cron.schedule('10 18 * * *', async () => {
+        cron.schedule('0 0 * * *', async () => {
             try {
                 const today = new Date();
                 Pagamento.atualizarDevedor(today)
                 const pegarPorDataENaoPagou = await Pagamento.pegarPorDataENaoPagou();
-                pegarPorDataENaoPagou.map(async pnp=>{
+                pegarPorDataENaoPagou.map(pnp=>{
               
-                    const mensagem = await Mensagem.atualizaOuInseriImportante(pnp.idPagamento)
-                    console.log(mensagem);
+                    const mensagem =  Mensagem.atualizaOuInseriImportante(pnp.idPagamento)
+                   
                 })
                
 

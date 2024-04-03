@@ -10,6 +10,7 @@ import CaixaDeMensagem from './componentes/pages/CaixaDeMensagem';
 
 import ImportanteSemiPagina from './componentes/semiPaginas/ImportanteSemiPagina';
 import LidoSemiPagina from './componentes/semiPaginas/LidosSemiPagina';
+import TextosDeMensagens from './componentes/semiPaginas/TextosDeMensagens';
 function App() {
   return (
     <Router>
@@ -21,7 +22,7 @@ function App() {
         <Route exact path='/gerenciar' element ={<Gerenciar/>} />
         <Route exact path='/tabela' element={<Tabela/>}/>
         <Route exact path='/mensagens/*' element={<CaixaDeMensagem/>}/>
-    
+        <Route exact path='/textoMensagem' element={<TextosDeMensagens/>} />
         <Route exact path='/mensagens' element={<CaixaDeMensagem/>} />
         <Route exact path='/mensagens/importante' element ={<ImportanteSemiPagina/>} />
         <Route exact path='/mensagens/lida' element={<LidoSemiPagina/>}/>

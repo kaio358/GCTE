@@ -28,7 +28,10 @@ rota.get("/pagamentos/data",async (req,res)=>{
     
 })
 rota.post("/pagamento/idPag",async (req,res)=>{
-    
+    const id = req.body.idPagamento
+    const pagamentoPorId = await Pagamento.pegarPorID(id);
+    res.json(pagamentoPorId);
+    // console.log(pagamentoPorId);
 })
 
 

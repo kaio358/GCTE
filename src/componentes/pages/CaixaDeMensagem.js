@@ -86,10 +86,12 @@ function CaixaDeMensagem() {
 
                     {nomesPag ?
                         nomesPag.map((n,i)=>{
+                          
                             if(n.length>1 && nomesPag.length <= 1){
-                                return <Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/>
+
+                                return <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`}><Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/></Link> 
                             }else{
-                                return <Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/>
+                                return <Link  to={`/textoMensagem?${dadosPagamento[0].idPagamento}`}><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link> 
                             }
                         })
                      :''}
