@@ -94,12 +94,15 @@ function ImportanteSemiPagina(){
             </section>
             <section className={styles.box_message}>
                 {nomesPag ?
-                
+                   
                     nomesPag.map((n,i)=>{
+                        console.log(dadosPagamento)
                         if(n.length>1 && nomesPag.length <= 1){
-                            return <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`}> <Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
+
+                            return <Link to={`/textoMensagem?${dadosPagamento[0][i].idPagamento}`}> <Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
                         }else{
-                            return  <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`}><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
+                           
+                            return  <Link to={`/textoMensagem?${dadosPagamento[i][0].idPagamento}`}><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
                         }
                         })
                     :''}

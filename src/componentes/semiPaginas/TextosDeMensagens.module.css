@@ -1,0 +1,9 @@
+.divCentral{
+    margin: 5dvh auto;
+    /* width: 80%; */
+    text-align: center;
+}
+.destaqueTexto{
+    font-weight: 600;
+   
+}
