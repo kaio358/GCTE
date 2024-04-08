@@ -11,7 +11,7 @@ function TextosDeMensagens(){
     const [pag,setPag] = useState()
     const [nome,setNome] =useState()
     const [data, setData] = useState()
-    const [textosProntos, setTextosProntos] = useState(["Não pagou","Pagou"])
+    const [textosProntos, setTextosProntos] = useState(["Em espera" ,"Não pagou","Pagou"])
 
 
     useEffect(()=>{
@@ -47,11 +47,11 @@ function TextosDeMensagens(){
         .then(dados=> setNome(Array.isArray(dados[0])? dados[0][0].nome: dados[0].nome))
         .catch(erro=> console.log(erro))
     },[])
-    
+   
     return(
         <div className={styles.divCentral}>
             <h1>O cliente </h1>
-            <p>O cliente <span className={styles.destaqueTexto} > {nome ? nome : ''} {textosProntos[pag ? pag.confirmacao : 0]}  </span> a tarifa de <span className={styles.destaqueTexto}> {pag ? "R$"+ pag.valor : ''} </span> na data <span  className={styles.destaqueTexto}>{data ? data.getDate(): ""}/{data ?  data.getMonth()+1: ""}/{data ?  data.getFullYear(): ""} </span>  </p>
+            <p>O cliente <span className={styles.destaqueTexto} > {nome ? nome : ''} {textosProntos[pag ? pag.confirmacao : 0]}  </span> a tarifa de <span className={styles.destaqueTexto}> {pag ? "R$"+ pag.valor : ''} </span> na data <span  className={styles.destaqueTexto}>{data ? data.getDate(): ""}/{data ?  data.getMonth()+1: ""}/{data ?  data.getFullYear(): ""} </span>.</p>
         </div>
     )
 }

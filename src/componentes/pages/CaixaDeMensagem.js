@@ -23,6 +23,7 @@ function CaixaDeMensagem() {
         })
         .then(resp => resp.json())
         .then(dados => {
+         
             setDadosPagamento(dados)
             return dados
         } )
@@ -62,6 +63,16 @@ function CaixaDeMensagem() {
             
         }
     },[dadosPagamento])
+
+    function confirLido(idPag) {
+        fetch("http://localhost:5000/mensagemConfirmarLida",{
+            method:"POST",
+            body: JSON.stringify({
+                idPagamento: idPag
+            }),
+            headers:{'Content-Type':'application/json'}
+        }).then(resp=>resp.json())
+    }
     return(
         <div className={styles.div_caixa_mensagem}>
 
@@ -89,9 +100,10 @@ function CaixaDeMensagem() {
                           
                             if(n.length>1 && nomesPag.length <= 1){
 
-                                return <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`}><Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/></Link> 
+                                return <Link to={`/textoMensagem?${dadosPagamento[i][0].idPagamento ? dadosPagamento[i][0].idPagamento : dadosPagamento[i].idPagamento}`} ><Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou} onClick={confirLido(dadosPagamento[i][0].idPagamento ? dadosPagamento[i][0].idPagamento : dadosPagamento[i].idPagamento)}/></Link> 
                             }else{
-                                return <Link  to={`/textoMensagem?${dadosPagamento[0].idPagamento}`}><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link> 
+                        
+                                return <Link  to={`/textoMensagem?${dadosPagamento[i].idPagamento}`} ><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou} onClick={confirLido(dadosPagamento[i].idPagamento)}/> </Link> 
                             }
                         })
                      :''}

@@ -38,7 +38,7 @@ class Pagamento{
         })
     }
     pegarPorData(){
-        const sql = `SELECT * FROM Pagamento WHERE MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE())`
+        const sql = `SELECT * FROM Pagamento WHERE DATE(data) <= DATE(CURRENT_DATE())`
         return new Promise((resolve, reject)=>{
             conexao.query(sql,(erro,resultado)=>{
                 if(erro){

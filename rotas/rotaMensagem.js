@@ -10,5 +10,9 @@ rota.get("/mensagensImportantes",async (req,res)=>{
     res.json(importantes)
 
 })
+rota.post("/mensagemConfirmarLida",(req,res)=>{
+    const id = req.body.idPagamento
+    console.log(id);
+})
 
 module.exports = rota

@@ -91,6 +91,19 @@ class Mensagem{
         })
     }
 
+    atualizarOuInseriLidas(idPag){
+
+        const sql = `INSERT INTO Mensagem (Pagamento_idPagamento, importante,leram) values (${idPag},0,1) ON DUPLICATE KEY UPDATE leram = 1; `
+
+        conexao.query(sql,(erro,resultado)=>{
+            if(erro){
+                console.log(erro);
+            }else { 
+                console.log(resultado);
+            }
+        })
+    }
+
 }
 
 module.exports = new Mensagem
