@@ -1,7 +1,7 @@
-*{
+/* *{
     text-decoration: none;
     color: black;
-}
+} */
 .div_caixa_mensagem{
 
     margin: 50px auto 0 auto;
@@ -9,7 +9,7 @@
 }
 
 .box_message{
-   
+  
     margin: auto;
     border: 2px solid #666;
     border-radius: 5px;
@@ -37,6 +37,7 @@
 
 .link_li{
     text-decoration: none;
+    color: black;
 
 }
 

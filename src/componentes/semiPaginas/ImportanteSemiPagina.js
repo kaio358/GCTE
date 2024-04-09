@@ -40,8 +40,17 @@ function ImportanteSemiPagina(){
             return Promise.all(promises);
         })
         .then(dados=>{
-            setDadosPagamento(dados)
-            return dados
+                   // Verifica se os dados estão em um formato de matriz de matrizes
+                if (Array.isArray(dados) && dados.length > 0 && Array.isArray(dados[0])) {
+                    // Se sim, transforma em uma única matriz
+                    const newData = dados.flat(); // Use flat() para transformar em uma única matriz
+                    setDadosPagamento(newData);
+                    
+                } else {
+                    console.log('Os dados não estão no formato esperado.');
+                    // Trate o caso em que os dados não estão no formato esperado
+                }
+                return dados
         })
         .then(dados=>{
             // console.log(dados);
@@ -94,15 +103,15 @@ function ImportanteSemiPagina(){
             </section>
             <section className={styles.box_message}>
                 {nomesPag ?
-                   
+                 
                     nomesPag.map((n,i)=>{
-                        console.log(dadosPagamento)
+                 
                         if(n.length>1 && nomesPag.length <= 1){
 
-                            return <Link to={`/textoMensagem?${dadosPagamento[0][i].idPagamento}`}> <Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
+                            return <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`} className={styles.link_li}> <Message  nome_user={n[i].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
                         }else{
-                           
-                            return  <Link to={`/textoMensagem?${dadosPagamento[i][0].idPagamento}`}><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
+                        
+                            return  <Link to={`/textoMensagem?${dadosPagamento[i].idPagamento}`} className={styles.link_li}><Message nome_user={n[0].nome} customCor={mensagensPag[i].cor} mensagem_pago_ou_nao={mensagensPag[i].pagou}/> </Link>
                         }
                         })
                     :''}
