@@ -70,24 +70,25 @@ function Tabela(){
           .catch(erro => console.log(erro));
           
       }, []);
-      useEffect(()=>{
-          if(valor){
-              const mesAtual = new Date().getMonth() + 1; // Adiciona 1 porque os meses em JavaScript são indexados a partir de zero (janeiro é 0)
+      // useEffect(()=>{
+      //     if(valor){
+      //         const mesAtual = new Date().getMonth() + 1; // Adiciona 1 porque os meses em JavaScript são indexados a partir de zero (janeiro é 0)
 
-              // Filtra os objetos cujo mês da data seja igual ao mês atual
-              const objetosFiltrados = valor.filter(objeto => {
+      //         // Filtra os objetos cujo mês da data seja igual ao mês atual
+      //         const objetosFiltrados = valor.filter(objeto => {
      
-                  const mesData = new Date(objeto.data).getMonth() + 1; // Obtém o mês da data do objeto
-               
-                  return mesData === mesAtual; // Retorna true se o mês da data for igual ao mês atual
-              });
-
-              setAtualMesValor(objetosFiltrados)
-              const objetosConfirmacao = objetosFiltrados.map(obj=>obj.confirmacao)
-   
-              setConfirmacao(objetosConfirmacao)
-          }
-      },[valor])
+      //             const mesData = new Date(objeto.data).getMonth() + 1; // Obtém o mês da data do objeto
+                  
+      //             return mesData === mesAtual; // Retorna true se o mês da data for igual ao mês atual
+      //         });
+            
+      //         setAtualMesValor(objetosFiltrados)
+      //         const objetosConfirmacao = objetosFiltrados.map(obj=>obj.confirmacao)
+              
+      //         setConfirmacao(objetosConfirmacao)
+  
+      //     }
+      // },[valor])
     function buscaNome(novo){
       setPessoa(novo)
     }
@@ -109,6 +110,7 @@ function Tabela(){
         }
       
     }
+    console.log(valor);
   
     return(
         <div className={styles.divTab}>
@@ -149,26 +151,30 @@ function Tabela(){
                     {pessoas? pessoas.pessoa.map((p,i)=>{        
                      
                         return pessoas.escola.map((e)=>{
-                          if(valor) {
-                      
-                       
-                            if(valor[0]?.length > 1 && valor.length <= 1){
-                              return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={ valor[0][i].valor} confirmacao = { confirmacao? confirmacao[i]: valor[0][i].confirmacao} eventoLapis={abaLapis} idPagamento={(atualMesValor) ? atualMesValor[i]?.idPagamento  : 0}/>   
-                            }else{
-                              // console.log(confirmacao? confirmacao[i] : "seila", "teste");
-                              // console.log(valor[i][0].confirmacao);
-                              if(valor.length > 1){
-                                return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i].valor} confirmacao = {confirmacao? confirmacao[i]: valor[i].confirmacao} eventoLapis={abaLapis} idPagamento={(atualMesValor) ? atualMesValor[i]?.idPagamento  : 0} />   
-                              }else{
+                          
+                            const linhaProps = {
+                                id: p.idpessoa,
+                                nome: p.nome,
+                                escola: e.nome,
+                                endereco: p.endereco,
+                                telefone: p.telefone,
+                                eventoLapis: abaLapis,
+                                idPagamento: atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0
+                            };
+                    
+                            // if (valor) {
+                        
+                              
+                            //     const valorPago = valor[0]?.length > 1 && valor.length <= 1 ? valor[0][i].valor :  (valor.length > 1) ? valor[i].valor : valor[i][0].valor;
 
-                                return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {confirmacao? confirmacao[i]: valor[i][0].confirmacao} eventoLapis={abaLapis} idPagamento={(atualMesValor) ? atualMesValor[i]?.idPagamento  : 0} />   
-                              }
-
-                            }
-                         
-                          }else{
-                            return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} eventoLapis={abaLapis}/>   
-                          }
+                            //     const confirmacaoValor = confirmacao ? confirmacao[i] : valor.length > 1 ? valor[i].confirmacao : valor[i][0].confirmacao;
+                            //     linhaProps.valorPago = valorPago;
+                            //     linhaProps.confirmacao = confirmacaoValor;
+                            // }
+                    
+                            // return  atualMesValor && i <= atualMesValor.length ? <Linha_tabela {...linhaProps} /> : '';
+                            return <Linha_tabela {...linhaProps} />;
+                    
                         })
                        
                     }) : ""}
@@ -178,4 +184,37 @@ function Tabela(){
         </div>
     )
 }
+
+
+
+
 export default Tabela
+
+
+
+
+
+
+                // if(valor) {
+                      //   console.log(atualMesValor ? atualMesValor : 0);
+                        
+                      //   if(valor[0]?.length > 1 && valor.length <= 1){
+                      //     return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={ valor[0][i].valor} confirmacao = { confirmacao? confirmacao[i]: valor[0][i].confirmacao} eventoLapis={abaLapis} idPagamento={atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0}
+                      //     />   
+                      //   }else{
+                      //     // console.log(confirmacao? confirmacao[i] : "seila", "teste");
+                      //     // console.log(valor[i][0].confirmacao);
+                      //     if(valor.length > 1){
+                      //       return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i].valor} confirmacao = {confirmacao? confirmacao[i]: valor[i].confirmacao} eventoLapis={abaLapis} idPagamento={atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0}
+                      //       />   
+                      //     }else{
+
+                      //       return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {confirmacao? confirmacao[i]: valor[i][0].confirmacao} eventoLapis={abaLapis} idPagamento={atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0}
+                      //       />   
+                      //     }
+
+                      //   }
+                      
+                      // }else{
+                      //   return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} eventoLapis={abaLapis}/>   
+                  // }

@@ -49,6 +49,18 @@ class Pagamento{
             })
         })
     }
+    pegarValorPorMesmaData(id){
+        const sql = `SELECT * FROM Pagamento WHERE MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE()) AND Pessoa_idPessoa = ${id}`
+        return new Promise((resolve, reject)=>{
+            conexao.query(sql,(erro,resultado)=>{
+                if(erro){
+                    reject(erro)
+                }else{
+                    resolve(resultado)
+                }
+            })
+        })
+    }
     pegarPorDataENaoPagou(){
         const sql = `SELECT * FROM Pagamento WHERE DATE(data) < CURRENT_DATE() AND confirmacao = 1`
         return new Promise((resolve, reject)=>{

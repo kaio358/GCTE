@@ -62,9 +62,9 @@ function Gerenciar(){
             return Promise.all(promises);
           })
           .then(dados => {
+            // filter(subarray => subarray.length > 0)
+            const arraySemVazias = dados.flat();
             
-            const arraySemVazias = dados.filter(subarray => subarray.length > 0);
-            // console.log(arraySemVazias);
             setImagens(arraySemVazias)
            
           })
@@ -85,14 +85,9 @@ function Gerenciar(){
             // let stringBase64 = ``
 
             const imagensAdaptado = imagens.map((img,i)=>{
-              
-                let arrayBufferes = 0
-                arrayBufferes = imagens[i][0].dados_imagens.data;
-                if(imagens[i].length > 1){
-                    arrayBufferes = imagens[i][0].dados_imagens.data;
-                }else{
-                    arrayBufferes = imagens[0][i].dados_imagens.data;
-                }
+        
+                let arrayBufferes = img.dados_imagens.data;
+               
               
                 const uint8Array = new Uint8Array(arrayBufferes);
                 let binaryString = '';
@@ -102,12 +97,9 @@ function Gerenciar(){
 
                 const base64Imagens = btoa(binaryString);
                 let stringBase64 = ''
-                if (imagens[i].length >1) {
-                    stringBase64 = `data:${imagens[i][0]};base64,${base64Imagens}`
-                } else {
-                    stringBase64 = `data:${imagens[0][i]};base64,${base64Imagens}`
-                }
-               
+             
+                stringBase64 = `data:${img};base64,${base64Imagens}`
+          
                 return stringBase64;
             })
       
@@ -211,10 +203,12 @@ function Gerenciar(){
                    
                    card? card.map( (c, i)=>{
                         if(imagens){
-                            if(imagens.length > 1){
-                            
-                                if(imagens[i][0].Escola_idEscola == c.idEscola){
-                                    return <Cards
+
+                       
+                         
+                            if(imagens[i]?.Escola_idEscola == c.idEscola){
+                                  
+                                return <Cards
                                     chave={ c.idEscola} 
                                     img={base64Image[i]}
                                     periodo={c.horario} 
@@ -225,8 +219,8 @@ function Gerenciar(){
                                     iDCard={ids}
                                     />
                                
-                                }else{
-                                    return <Cards
+                            }else{
+                                return <Cards
                                     chave={ c.idEscola} 
                                     img="http://placeholder.com/500"
                                     periodo={c.horario} 
@@ -235,21 +229,9 @@ function Gerenciar(){
                                     nomes={nomes} 
                                     periodos={periodos}
                                     iDCard={ids}
-                                    />
-                                }
-                              
-                            }else{
-                                return <Cards
-                                chave={ c.idEscola} 
-                                img={base64Image[i]}
-                                periodo={c.horario} 
-                                escola={c.nome} idTabela={c.idEscola+5} 
-                                eventPai={editou} atualizar={atualizar} 
-                                nomes={nomes} 
-                                periodos={periodos}
-                                iDCard={ids}
                                 />
                             }
+                  
                         }else{
                             return <Cards
                             chave={ c.idEscola} 
@@ -288,3 +270,6 @@ function Gerenciar(){
     )
 }
 export default Gerenciar
+
+
+

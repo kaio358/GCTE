@@ -88,6 +88,7 @@ function Linha_tabela(props){
     }
  
     function enviarParaServidor(teste) {
+  
         fetch("http://localhost:5000/pagamento/confirmacao", {
           method: "PUT",
           body: JSON.stringify({
@@ -103,7 +104,7 @@ function Linha_tabela(props){
         .catch(erro => console.log(erro));
       }
       // console.log(props.confirmacao);
-
+    
     return(
       
         <tr>
