@@ -7,7 +7,7 @@ rota.get("/pagamento/:id",async (req,res)=>{
     const id = req.params.id
     // const pagamentoValores = await Pagamento.valores(id)
     const pagamentoPeloMes = await Pagamento.pegarValorPorMesmaData(id)
-    // console.log(pagamentoPeloMes);
+
 
     res.json(pagamentoPeloMes)
 })
@@ -19,7 +19,6 @@ rota.put("/pagamento/confirmacao",async (req,res)=>{
 
     const confirmacao =  await  Pagamento.confirmar(pagou,id)
 
-    console.log(confirmacao);
 
 })
 

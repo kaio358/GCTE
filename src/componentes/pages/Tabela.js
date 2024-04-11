@@ -21,9 +21,8 @@ function Tabela(){
 
     const [pessoas,setPessoa] = useState()
     const [valor,setValor] = useState()
-    const [confirmacao,setConfirmacao] = useState()
-    const [atualMesValor,setAtualMesValor] = useState()
 
+    const [idpessoa, setIDPessoa] = useState()
 
     const [abaPapel, setAbaPapel] = useState(false)
     const [abaLapis, setAbaLapis] = useState(false)
@@ -70,25 +69,15 @@ function Tabela(){
           .catch(erro => console.log(erro));
           
       }, []);
-      // useEffect(()=>{
-      //     if(valor){
-      //         const mesAtual = new Date().getMonth() + 1; // Adiciona 1 porque os meses em JavaScript são indexados a partir de zero (janeiro é 0)
-
-      //         // Filtra os objetos cujo mês da data seja igual ao mês atual
-      //         const objetosFiltrados = valor.filter(objeto => {
-     
-      //             const mesData = new Date(objeto.data).getMonth() + 1; // Obtém o mês da data do objeto
-                  
-      //             return mesData === mesAtual; // Retorna true se o mês da data for igual ao mês atual
-      //         });
-            
-      //         setAtualMesValor(objetosFiltrados)
-      //         const objetosConfirmacao = objetosFiltrados.map(obj=>obj.confirmacao)
-              
-      //         setConfirmacao(objetosConfirmacao)
+      useEffect(()=>{
+    
+          if(valor){
+            const objetoIDPessoa = valor.map(obj=>obj.pessoa_idpessoa)
+            setIDPessoa(objetoIDPessoa)
+          }
   
-      //     }
-      // },[valor])
+          
+        },[valor]);
     function buscaNome(novo){
       setPessoa(novo)
     }
@@ -110,7 +99,8 @@ function Tabela(){
         }
       
     }
-    console.log(valor);
+    // console.log(valor, " Oi "+ atualMesValor, "Ola "+ confirmacao);
+  
   
     return(
         <div className={styles.divTab}>
@@ -159,21 +149,23 @@ function Tabela(){
                                 endereco: p.endereco,
                                 telefone: p.telefone,
                                 eventoLapis: abaLapis,
-                                idPagamento: atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0
+                                // idPagamento: atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0
                             };
                     
-                            // if (valor) {
-                        
+                            if (valor) {
+                            
                               
-                            //     const valorPago = valor[0]?.length > 1 && valor.length <= 1 ? valor[0][i].valor :  (valor.length > 1) ? valor[i].valor : valor[i][0].valor;
-
-                            //     const confirmacaoValor = confirmacao ? confirmacao[i] : valor.length > 1 ? valor[i].confirmacao : valor[i][0].confirmacao;
-                            //     linhaProps.valorPago = valorPago;
-                            //     linhaProps.confirmacao = confirmacaoValor;
-                            // }
+                                // const valorPago = valor[0]?.length > 1 && valor.length <= 1 ? valor[0][i].valor :  (valor.length > 1) ? valor[i].valor : valor[i][0].valor;
+                                const valorPago = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].valor : 0;;
+                                const confirmacaoValor = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].confirmacao : 0;
+                                linhaProps.valorPago = valorPago;
+                                linhaProps.confirmacao = confirmacaoValor;
+                                linhaProps.idPagamento =  i<valor.length ? valor[i].idPagamento : 0;
+                            }
                     
-                            // return  atualMesValor && i <= atualMesValor.length ? <Linha_tabela {...linhaProps} /> : '';
-                            return <Linha_tabela {...linhaProps} />;
+                            return  idpessoa?.includes(p.idpessoa) ? <Linha_tabela {...linhaProps} /> : '';
+                            
+                           
                     
                         })
                        
