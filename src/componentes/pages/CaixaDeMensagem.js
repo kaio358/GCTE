@@ -92,9 +92,9 @@ function CaixaDeMensagem() {
                    
                  
             
-                    {/* <Message nome_user={"Kaio Luiz Ferreira"} customCor={"corVer"} mensagem_pago_ou_nao={"Não pagou"}/>
+                    <Message nome_user={"Kaio Luiz Ferreira"} customCor={"corVer"} mensagem_pago_ou_nao={"Não pagou"}/>
                     <Message nome_user={"Maria Eduarda"} customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/>
-                    <Message nome_user={"Fernando"} customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/> */}
+                    <Message nome_user={"Fernando"} customCor={"corGreen"} mensagem_pago_ou_nao={"Pagou"}/>
 
                     {nomesPag ?
                         nomesPag.map((n,i)=>{

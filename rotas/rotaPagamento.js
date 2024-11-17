@@ -12,15 +12,23 @@ rota.get("/pagamento/:id",async (req,res)=>{
     res.json(pagamentoPeloMes)
 })
 
-rota.put("/pagamento/confirmacao",async (req,res)=>{
-    const id = req.body.id;
-    const pagou = req.body.pagou;
- 
+rota.put("/pagamento/confirmacao", async (req, res) => {
+    const { id, pagou } = req.body; 
 
-    const confirmacao =  await  Pagamento.confirmar(pagou,id)
+    
+    if (!id || typeof pagou === 'undefined') {
+        return res.status(400).json({ erro: "Campos 'id' e 'pagou' são obrigatórios." });
+    }
 
+    try {
+        const resultado = await Pagamento.confirmar(pagou, id);
+        res.status(200).json({ mensagem: "Pagamento atualizado com sucesso.", resultado });
+    } catch (erro) {
+        console.error(erro);
+        res.status(500).json({ erro: "Erro ao atualizar o pagamento." });
+    }
+});
 
-})
 
 rota.get("/pagamentos/data",async (req,res)=>{
 

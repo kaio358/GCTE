@@ -58,7 +58,8 @@ function Linha_tabela(props){
           .catch(erro=> console.log(erro))
         }
     }
-
+    console.log(props.idPagamento);
+    
     useEffect(() => {
    
         if (props.confirmacao !== undefined) {
@@ -86,9 +87,10 @@ function Linha_tabela(props){
         }, 5000);
         setTimer(newTimer);
     }
- 
+   
     function enviarParaServidor(teste) {
-  
+    
+      
         fetch("http://localhost:5000/pagamento/confirmacao", {
           method: "PUT",
           body: JSON.stringify({

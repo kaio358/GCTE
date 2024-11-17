@@ -1,16 +1,15 @@
 
 
 class Tabelas{
-    init(conexao){
-        this.conexao = conexao
-       
-        this.criarEscola()
-        this.criarPagamento()
-        this.criarPessoa()
-        this.criarImagens()
-        this.criarMensagem()
-
+    init(conexao) {
+        this.conexao = conexao;
+        this.criarEscola();   
+        this.criarPessoa();   
+        this.criarPagamento(); 
+        this.criarMensagem();
+        this.criarImagens(); 
     }
+    
     criarEscola(){
         const sql = `CREATE TABLE IF NOT EXISTS Escola (idEscola INT NOT NULL AUTO_INCREMENT, nome VARCHAR(255) NULL,horario TIME NULL,PRIMARY KEY (idEscola))`
         this.conexao.query(sql,erro=>{

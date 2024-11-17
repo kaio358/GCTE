@@ -135,41 +135,71 @@ function Tabela(){
                     </tr>
                 </thead>
                 <tbody>
-        
+                      {pessoas? pessoas.pessoa.map((p,i)=>{        
+                          
+                          return pessoas.escola.map((e)=>{
+                            
+                              const linhaProps = {
+                                  id: p.idpessoa,
+                                  nome: p.nome,
+                                  escola: e.nome,
+                                  endereco: p.endereco,
+                                  telefone: p.telefone,
+                                  eventoLapis: abaLapis,
+                                  // idPagamento: atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0
+                              };
+                      
+                              if (valor) {
+                              
+                                
+                                  // const valorPago = valor[0]?.length > 1 && valor.length <= 1 ? valor[0][i].valor :  (valor.length > 1) ? valor[i].valor : valor[i][0].valor;
+                                  const valorPago = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].valor : 0;;
+                                  const confirmacaoValor = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].confirmacao : 0;
+                                  linhaProps.valorPago = valorPago;
+                                  linhaProps.confirmacao = confirmacaoValor;
+                                  linhaProps.idPagamento =  i<valor.length ? valor[i].idPagamento : 0;
+                              }
+                      
+                              return  idpessoa?.includes(p.idpessoa) ? <Linha_tabela {...linhaProps} /> : '';
+                              
+                              
+                      
+                          })
+                          
+                      }) : ""}
                    
              
-                    {pessoas? pessoas.pessoa.map((p,i)=>{        
-                     
-                        return pessoas.escola.map((e)=>{
+                    {/* {pessoas && pessoas.pessoa.map((pessoa) => {
                           
-                            const linhaProps = {
-                                id: p.idpessoa,
-                                nome: p.nome,
-                                escola: e.nome,
-                                endereco: p.endereco,
-                                telefone: p.telefone,
-                                eventoLapis: abaLapis,
-                                // idPagamento: atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0
-                            };
-                    
-                            if (valor) {
-                            
-                              
-                                // const valorPago = valor[0]?.length > 1 && valor.length <= 1 ? valor[0][i].valor :  (valor.length > 1) ? valor[i].valor : valor[i][0].valor;
-                                const valorPago = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].valor : 0;;
-                                const confirmacaoValor = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].confirmacao : 0;
-                                linhaProps.valorPago = valorPago;
-                                linhaProps.confirmacao = confirmacaoValor;
-                                linhaProps.idPagamento =  i<valor.length ? valor[i].idPagamento : 0;
-                            }
-                    
-                            return  idpessoa?.includes(p.idpessoa) ? <Linha_tabela {...linhaProps} /> : '';
-                            
-                           
-                    
-                        })
+                          const escola = pessoas.escola?.find((e) => e.id === pessoa.escola_id);
+
                        
-                    }) : ""}
+                          const linhaProps = {
+                              id: pessoa.idpessoa,
+                              nome: pessoa.nome,
+                              escola: escola?.nome || "Não encontrada",
+                              endereco: pessoa.endereco,
+                              telefone: pessoa.telefone,
+                              eventoLapis: abaLapis,
+                              valorPago: 0,
+                              confirmacao: 0,
+                              idPagamento: null,
+                          };
+
+                          
+                          if (valor && idpessoa?.includes(pessoa.idpessoa)) {
+                              const index = idpessoa.indexOf(pessoa.idpessoa);
+                              if (index >= 0 && valor[index]) {
+                                  linhaProps.valorPago = valor[index].valor || 0;
+                                  linhaProps.confirmacao = valor[index].confirmacao || 0;
+                                  linhaProps.idPagamento = valor[index].idPagamento || null;
+                              }
+                          }
+
+                          // Retorne a linha da tabela apenas se houver correspondência válida
+                          return <Linha_tabela key={pessoa.idpessoa} {...linhaProps} />;
+                      })} */}
+
                 </tbody>
                
             </table>
@@ -181,32 +211,3 @@ function Tabela(){
 
 
 export default Tabela
-
-
-
-
-
-
-                // if(valor) {
-                      //   console.log(atualMesValor ? atualMesValor : 0);
-                        
-                      //   if(valor[0]?.length > 1 && valor.length <= 1){
-                      //     return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={ valor[0][i].valor} confirmacao = { confirmacao? confirmacao[i]: valor[0][i].confirmacao} eventoLapis={abaLapis} idPagamento={atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0}
-                      //     />   
-                      //   }else{
-                      //     // console.log(confirmacao? confirmacao[i] : "seila", "teste");
-                      //     // console.log(valor[i][0].confirmacao);
-                      //     if(valor.length > 1){
-                      //       return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i].valor} confirmacao = {confirmacao? confirmacao[i]: valor[i].confirmacao} eventoLapis={abaLapis} idPagamento={atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0}
-                      //       />   
-                      //     }else{
-
-                      //       return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} valorPago={valor[i][0].valor} confirmacao = {confirmacao? confirmacao[i]: valor[i][0].confirmacao} eventoLapis={abaLapis} idPagamento={atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0}
-                      //       />   
-                      //     }
-
-                      //   }
-                      
-                      // }else{
-                      //   return <Linha_tabela id={ p.idpessoa} nome={p.nome} escola={e.nome} endereco={p.endereco} telefone={p.telefone} eventoLapis={abaLapis}/>   
-                  // }
