@@ -135,39 +135,39 @@ function Tabela(){
                     </tr>
                 </thead>
                 <tbody>
-                      {pessoas? pessoas.pessoa.map((p,i)=>{        
-                          
-                          return pessoas.escola.map((e)=>{
-                            
-                              const linhaProps = {
-                                  id: p.idpessoa,
-                                  nome: p.nome,
-                                  escola: e.nome,
-                                  endereco: p.endereco,
-                                  telefone: p.telefone,
-                                  eventoLapis: abaLapis,
-                                  // idPagamento: atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0
-                              };
-                      
-                              if (valor) {
-                              
-                                
-                                  // const valorPago = valor[0]?.length > 1 && valor.length <= 1 ? valor[0][i].valor :  (valor.length > 1) ? valor[i].valor : valor[i][0].valor;
-                                  const valorPago = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].valor : 0;;
-                                  const confirmacaoValor = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].confirmacao : 0;
-                                  linhaProps.valorPago = valorPago;
-                                  linhaProps.confirmacao = confirmacaoValor;
-                                  linhaProps.idPagamento =  i<valor.length ? valor[i].idPagamento : 0;
-                              }
-                      
-                              return  idpessoa?.includes(p.idpessoa) ? <Linha_tabela {...linhaProps} /> : '';
-                              
-                              
-                      
-                          })
-                          
-                      }) : ""}
-                   
+                {pessoas? pessoas.pessoa.map((p,i)=>{        
+                     
+                     return pessoas.escola.map((e)=>{
+                       
+                         const linhaProps = {
+                             id: p.idpessoa,
+                             nome: p.nome,
+                             escola: e.nome,
+                             endereco: p.endereco,
+                             telefone: p.telefone,
+                             eventoLapis: abaLapis,
+                             // idPagamento: atualMesValor && i < atualMesValor.length ? atualMesValor[i].idPagamento : 0
+                         };
+                 
+                         if (valor) {
+                           
+                           
+                           
+                             // const valorPago = valor[0]?.length > 1 && valor.length <= 1 ? valor[0][i].valor :  (valor.length > 1) ? valor[i].valor : valor[i][0].valor;
+                             const valorPago = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].valor : 0;;
+                             const confirmacaoValor = idpessoa?.includes(p.idpessoa)  ? valor[idpessoa.indexOf(p.idpessoa)].confirmacao : 0;
+                             linhaProps.valorPago = valorPago;
+                             linhaProps.confirmacao = confirmacaoValor;
+                             linhaProps.idPagamento =  idpessoa?.includes(p.idpessoa) ? valor[i].idPagamento : 0;
+                         }
+                 
+                         return  idpessoa?.includes(p.idpessoa) ? <Linha_tabela {...linhaProps} /> : '';
+                         
+                        
+                 
+                     })
+                    
+                 }) : ""}
              
                     {/* {pessoas && pessoas.pessoa.map((pessoa) => {
                           
