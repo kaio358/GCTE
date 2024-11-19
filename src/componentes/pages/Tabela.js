@@ -29,6 +29,12 @@ function Tabela(){
 
 
     useEffect(() => {
+      fetch(`http://localhost:5000/teste`,{
+        method:'POST',
+        body: JSON.stringify({
+          idEscola:ourNumber
+        })
+      })
         fetch(`http://localhost:5000/pessoa/escola/${ourNumber}`, {
           method: 'GET',
           headers: {

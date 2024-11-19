@@ -11,6 +11,7 @@ class Pessoa{
                 if(erro){
                     reject(erro)
                 }else{
+                 
                     
                     resolve(resultado)
                 }

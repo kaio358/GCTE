@@ -21,6 +21,9 @@ const rotaImagens = require("./rotas/rotaImagens")
 const rotaPessoa = require("./rotas/rotaPessoa")
 const rotaPagamento = require("./rotas/rotaPagamento")
 const rotaMensagem = require("./rotas/rotaMensagem")
+const rotaTransacao = require("./rotas/rotaTransacao")
+
+
 
 // para conferir pagamento diario
 const cron = require('node-cron');
