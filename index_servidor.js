@@ -63,6 +63,7 @@ conexao.connect(erro=>{
         app.use("/", rotaPessoa)
         app.use("/",rotaPagamento)
         app.use("/",rotaMensagem)
+        app.use("/",rotaTransacao)
         server.listen(5000, () => {
             console.log("Conectado: http://localhost:5000");
         });

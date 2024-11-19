@@ -49,6 +49,7 @@ class Pagamento{
             })
         })
     }
+    // pelo mês 
     pegarValorPorMesmaData(id){
         const sql = `SELECT * FROM Pagamento WHERE MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE()) AND Pessoa_idPessoa = ${id}`
         return new Promise((resolve, reject)=>{

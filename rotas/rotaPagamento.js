@@ -3,6 +3,7 @@ const rota = express()
 
 const Pagamento = require("../modelos/Pagamento")
 
+
 rota.get("/pagamento/:id",async (req,res)=>{
     const id = req.params.id
     // const pagamentoValores = await Pagamento.valores(id)
@@ -11,7 +12,7 @@ rota.get("/pagamento/:id",async (req,res)=>{
 
     res.json(pagamentoPeloMes)
 })
-
+// atualiza 
 rota.put("/pagamento/confirmacao", async (req, res) => {
     const { id, pagou } = req.body; 
 
@@ -36,6 +37,7 @@ rota.get("/pagamentos/data",async (req,res)=>{
     res.json(pagamentoData)
     
 })
+// talvez essa rota não use mais
 rota.post("/pagamento/idPag",async (req,res)=>{
     const id = req.body.idPagamento
     const pagamentoPorId = await Pagamento.pegarPorID(id);

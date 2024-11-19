@@ -5,6 +5,7 @@ const Pessoa = require("../modelos/Pessoa")
 const Escola = require("../modelos/Escola")
 const Pagamento = require("../modelos/Pagamento")
 
+// talvez essa rota não use mais
 rota.get("/pessoa/escola/:idEscola",async (req,res)=>{
     const id =  req.params.idEscola
     const lista_pessoas = await Pessoa.lista(id)
@@ -22,6 +23,9 @@ rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
     const nomeEscola = await Escola.pegaNomeEscola(id)
     res.json({pessoa: nomePessoas,escola:  nomeEscola})
 })
+
+
+
 rota.post("/pessoa/pagamento/nome",async(req,res)=>{
     
     const idPessoa = req.body.idPessoa
@@ -45,12 +49,14 @@ rota.post("/pessoa/inserir",async (req,res)=>{
 
 
         
-        const data = (`${anoData.getFullYear()}/${totalMes}/${dados.dias}`)
+    const data = (`${anoData.getFullYear()}/${totalMes}/${dados.dias}`)
     
-        const adicionaPreco = await Pagamento.adiciona({valor:dados.valor, data:data,confirmacao:0,Pessoa_idPessoa:adicionaPessoa.insertId})
+    const adicionaPreco = await Pagamento.adiciona({valor:dados.valor, data:data,confirmacao:0,Pessoa_idPessoa:adicionaPessoa.insertId})
     }
 
 })
+
+//  atualiza usuario 
 rota.put("/pessoa/atualizar", async (req,res)=>{
     const dados = req.body.dados
     const id = req.body.id

@@ -58,6 +58,7 @@ function AbaInputClientes(props){
                 dias:dias,
                 mes:mes,
                 idEscola: props.idTabela
+
             })
         }).then(resp=>resp.json()).then(dados=>console.log(dados)).catch(erro=>console.log(erro))
     }
@@ -85,7 +86,7 @@ function AbaInputClientes(props){
                 
             </div>
             <div>
-                <input type="number" value={dias} min={0} max={31} className={styles.input_dias} placeholder="Dias" onChange={textoDias}/>
+                <input type="number" value={dias} min={0} max={31} className={styles.input_dias} placeholder="Dia(s)" onChange={textoDias}/>
                 <input type="number" value={mes} min={0} max={12} className={styles.input_dias} placeholder="A partir de que mês " onChange={textoMes}/>
             </div>
             <div onClick={enviar} >

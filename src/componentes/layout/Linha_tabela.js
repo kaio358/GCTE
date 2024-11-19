@@ -58,7 +58,7 @@ function Linha_tabela(props){
           .catch(erro=> console.log(erro))
         }
     }
-    console.log(props.idPagamento);
+  
     
     useEffect(() => {
    
