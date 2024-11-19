@@ -21,6 +21,7 @@ const rotaImagens = require("./rotas/rotaImagens")
 const rotaPessoa = require("./rotas/rotaPessoa")
 const rotaPagamento = require("./rotas/rotaPagamento")
 const rotaMensagem = require("./rotas/rotaMensagem")
+const rotaTransacao = require("./modelos/Transacao")
 
 // para conferir pagamento diario
 const cron = require('node-cron');
@@ -60,6 +61,7 @@ conexao.connect(erro=>{
         app.use("/", rotaPessoa)
         app.use("/",rotaPagamento)
         app.use("/",rotaMensagem)
+        app.use("/",rotaTransacao)
         server.listen(5000, () => {
             console.log("Conectado: http://localhost:5000");
         });

@@ -29,6 +29,7 @@ function Tabela(){
 
 
     useEffect(() => {
+        fetch("`http://localhost:5000/teste")
         fetch(`http://localhost:5000/pessoa/escola/${ourNumber}`, {
           method: 'GET',
           headers: {

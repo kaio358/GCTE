@@ -30,7 +30,7 @@ class Transacao {
                         if (commitErr) return conexao.rollback(() => reject(commitErr));
 
                         resolve(pessoasComPagamentos);
-                    });
+                    });''
                 } catch (error) {
                     conexao.rollback(() => reject(error));
                 }
