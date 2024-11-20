@@ -5,16 +5,24 @@ const Transacao = require("../modelos/Transacao")
 
 rota.get("/pegarValores/:id", async(req,res)=>{
     const idEscola = req.params.id
-    // console.log(idEscola);
+
     
     const transacaoPegarValor =  await Transacao.pegarValores(idEscola)
+   
+    
     res.json(transacaoPegarValor)
-    // console.log( "oi ?",await Transacao.pegarValores(idEscola));
+   
     
 })
 
 
-
+rota.get("/dadosParaMensagem", async (req,res)=>{
+    const transacaoDadosParaMensagem = await Transacao.dadosParaMensagem()
+ 
+    
+    res.json(transacaoDadosParaMensagem);
+    
+})
 
 
 module.exports = rota;

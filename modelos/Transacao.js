@@ -46,7 +46,40 @@ class Transacao {
         });
     }
 
-    
+    dadosParaMensagem(){
+        const sqlPagamentos = `SELECT * FROM Pagamento WHERE DATE(data) <= DATE(CURRENT_DATE())`
+        return new Promise((resolve,reject)=>{
+            conexao.beginTransaction(async (err)=>{
+                if (err) return reject(err)
+                try{
+                    const pagamentos = await this.executarQuery(sqlPagamentos)
+                   
+                    
+                   
+                    let pessoasArray = []
+                    for(let pagamento of pagamentos){
+                        
+                        
+                         const sqlNomePessoa = `SELECT nome FROM  Pessoa WHERE idPessoa = ?`
+                         const pessoas = await this.executarQuery(sqlNomePessoa,[pagamento.pessoa_idpessoa])
+                         pessoasArray.push({
+                            pagamento,
+                            pessoas
+                         })
+                    }
+                    // Commit da transação
+                    conexao.commit((commitErr) => {
+                        if (commitErr) return conexao.rollback(() => reject(commitErr));
+
+                        resolve(pessoasArray);
+                    });
+                }catch(error){
+                    conexao.rollback(() => reject(error));
+                 }
+              
+            })
+        })
+    }
 
 
 
