@@ -50,9 +50,9 @@ function CaixaDeMensagem() {
             <section className={styles.box_message}>
                 <ul>
                     {dadosPagamento.length > 0 && dadosPagamento.map((p, i) => {
-                        console.log(p);
+                        // console.log(p , p.pessoas[0].nome , mensagensPag[i].cor, mensagensPag[i].pagou);
                         
-                        <Link
+                        return <Link
                             to={`/textoMensagem?${p.pagamento.idpagamento}`}
                             onClick={() => confirLido(p.pagamento.idpagamento)}
                             className={styles.link_li}

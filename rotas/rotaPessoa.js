@@ -34,27 +34,41 @@ rota.post("/pessoa/pagamento/nome",async(req,res)=>{
    
 })
 
-rota.post("/pessoa/inserir",async (req,res)=>{
-    const dados = req.body
-    const anoData = new Date()
+rota.post("/pessoa/inserir", async (req, res) => {
+    const dados = req.body;
+    const anoData = new Date();
+    const anoAtual = anoData.getFullYear();
+    const mesAtual = anoData.getMonth() + 1; // Ajustando o mês para 1-12 (Date.getMonth() retorna 0-11)
 
-    const adicionaPessoa = await Pessoa.adiciona({nome:dados.nome,endereco:dados.endereco,telefone:dados.telefone,Escola_idEscola: dados.idEscola})
-    for(let i = 0 ; i < dados.parcelas; i++){
-       
-        let totalMes = parseInt( dados.mes)+ i;
-        if (totalMes >= 12 ){
-            dados.mes =  (-i) 
-   
+    const adicionaPessoa = await Pessoa.adiciona({
+        nome: dados.nome,
+        endereco: dados.endereco,
+        telefone: dados.telefone,
+        Escola_idEscola: dados.idEscola
+    });
+
+    for (let i = 0; i < dados.parcelas; i++) {
+        let totalMes = mesAtual + i;
+        let anoCorreto = anoAtual;
+
+        if (totalMes > 12) {
+            totalMes -= 12;
+            anoCorreto++;
         }
 
+        const data = (`${anoCorreto}/${totalMes < 10 ? '0' + totalMes : totalMes}/${dados.dias}`);
 
-        
-    const data = (`${anoData.getFullYear()}/${totalMes}/${dados.dias}`)
-    
-    const adicionaPreco = await Pagamento.adiciona({valor:dados.valor, data:data,confirmacao:0,Pessoa_idPessoa:adicionaPessoa.insertId})
+        const adicionaPreco = await Pagamento.adiciona({
+            valor: dados.valor,
+            data: data,
+            confirmacao: 0,
+            Pessoa_idPessoa: adicionaPessoa.insertId
+        });
     }
 
-})
+    res.status(201).send({ message: 'Dados inseridos com sucesso!' });
+});
+
 
 //  atualiza usuario 
 rota.put("/pessoa/atualizar", async (req,res)=>{
