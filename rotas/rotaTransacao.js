@@ -24,5 +24,13 @@ rota.get("/dadosParaMensagem", async (req,res)=>{
     
 })
 
+rota.post("/dadosDeBusca",async (req,res)=>{
+    const {idEscola, nome} = req.body
+    // console.log(idEscola,nome);
+    
+    const transacaoBusca = await Transacao.pessoaEspecificaDaEscola(idEscola,nome)
+    res.json(transacaoBusca)
+})
+
 
 module.exports = rota;

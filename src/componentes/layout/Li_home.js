@@ -5,20 +5,27 @@ import { useEffect, useState } from "react"
 function Li_home(props){
     const [tipo, setTipo] = useState("")
     useEffect(()=>{
-        if(props.confirmacao == 1){
-            setTipo("minus")
-        }else if(props.confirmacao == 2){
+       
+        if(props.confirmacao == 2){
             setTipo("plus")
+        } else{
+            setTipo("minus")
         }
     },[])
  
+    // Converte para um objeto Date 
+    const dataObj = new Date(props.data); 
+    // Formata a data para o padrão brasileiro 
+    const dataFormatada = dataObj.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric'})
+   
     
     return ( 
         <li className={ `${styles.li_comp} ${styles[tipo]}` } key={props.chave}>
             
             <span>{props.nome}</span>
+            <span>{dataFormatada}</span>
             <span>{props.valor}</span>
-            <button className={styles.delete_btn}>x</button>
+            {/* <button className={styles.delete_btn}>x</button> */}
         </li>
     )
 }

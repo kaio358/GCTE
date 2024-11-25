@@ -20,22 +20,32 @@ function Home() {
   
    
     function criarSaldo(){
+       
+        
         cont ++;
+        
         let tipo 
+        let conf 
         setTotal(parseFloat(total)+parseFloat(valor))
         if(valor<0){
             tipo = 'minus'
+            conf = 1
             setNegativo(parseFloat(negativo)+parseFloat(valor*(-1)))
         }else{
             tipo = 'plus'
+            conf =2
             setPosito(parseFloat(positivo)+ parseFloat(valor))
         }
-    
-        criarLi(tipo, cont)
-    }
-    function criarLi(tipo, cont){
         
-        lista_li.push(<Li_home tipo={tipo} nome={nome} valor={valor} chave={cont}/>)
+        
+       
+        criarLi(tipo, conf,cont)
+    }
+    function criarLi(tipo, conf,cont){
+        const data = new Date()
+        
+        
+        lista_li.push(<Li_home tipo={tipo} confirmacao={conf} nome={nome} valor={valor} chave={cont} data={data}/>)
     }
 
 
@@ -49,12 +59,15 @@ function Home() {
         })
         .then(resp => resp.json())
         .then(dados => {
+           
             setDadosPagamento(dados)
             return dados
         } )
         .then( dados =>{
+            
             const promises = dados.map(d => {
-                
+                    
+                    
                 return fetch(`http://localhost:5000/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
@@ -126,13 +139,14 @@ function Home() {
                     :''
                 }
                 {dadosPagamento? dadosPagamento.map((dp,i)=>{
-                  
+                    // console.log(dp.data);
+                    
                     
                     if(nomesPag){
                         if(nomesPag[0].length >1 && nomesPag.length <=1){
-                            return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao} nome={nomesPag[0][i].nome}/>
+                            return <Li_home chave={dp.idPagamento} data={dp.data} valor={dp.valor} confirmacao = {dp.confirmacao} nome={nomesPag[0][i].nome}/>
                         }else{
-                            return <Li_home chave={dp.idPagamento} valor={dp.valor} confirmacao = {dp.confirmacao} nome={nomesPag[i][0].nome}/>
+                            return <Li_home chave={dp.idPagamento} data={dp.data} valor={dp.valor} confirmacao = {dp.confirmacao} nome={nomesPag[i][0].nome}/>
                         }
                         
                     }else{

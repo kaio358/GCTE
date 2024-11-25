@@ -15,14 +15,7 @@ rota.get("/pessoa/escola/:idEscola",async (req,res)=>{
     res.json({pessoa: lista_pessoas,escola:  nomeEscola})
 })
 
-rota.get("/pessoa/nome/:nome/:id",async(req,res)=>{
-    const nome = req.params.nome
-    const id = req.params.id
 
-    const nomePessoas = await Pessoa.nomeLista(nome,id)
-    const nomeEscola = await Escola.pegaNomeEscola(id)
-    res.json({pessoa: nomePessoas,escola:  nomeEscola})
-})
 
 
 
@@ -30,6 +23,8 @@ rota.post("/pessoa/pagamento/nome",async(req,res)=>{
     
     const idPessoa = req.body.idPessoa
     const nomePessoa = await Pessoa.pegarNome(idPessoa)
+
+    
     res.json(nomePessoa)
    
 })
@@ -47,9 +42,10 @@ rota.post("/pessoa/inserir", async (req, res) => {
         Escola_idEscola: dados.idEscola
     });
 
+    let anoCorreto = anoAtual;
     for (let i = 0; i < dados.parcelas; i++) {
         let totalMes = mesAtual + i;
-        let anoCorreto = anoAtual;
+        
 
         if (totalMes > 12) {
             totalMes -= 12;

@@ -38,6 +38,8 @@ function Tabela(){
       }, []);
  
     function buscaNome(novo){
+      // console.log(novo);
+      
       setPessoa(novo)
     }
     
@@ -94,7 +96,7 @@ function Tabela(){
                 </thead>
                 <tbody>
                       {pessoas? pessoas.map((p,i)=>{        
-                        console.log(p);
+                        // console.log(p);
                         
                           
                                                      

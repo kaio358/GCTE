@@ -1,22 +1,37 @@
 
+import { useLocation } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import styles from "./BarraDeBusca.module.css"
 import { useState } from "react";
 function BarraDeBusca({buscaNomes}) {
+
+    const localizacao = useLocation() 
+
+    const idteste = localizacao.search;
+    const ourNumber = idteste.match(/\d+/)[0];
+
     const [procuraNome, setProcuraNome] = useState()
     function escrevendo(event){
         setProcuraNome(event.target.value)
     }
     function procurar(){
-      
-        fetch(`http://localhost:5000/pessoa/nome/${procuraNome}/${2}`,{
-            method:'GET',
-            headers:{
-                'Content-type':'application/json'
-            }
+     
+        
+        fetch(`http://localhost:5000/dadosDeBusca`,{
+            method:"POST", 
+            headers: { "Content-Type": "application/json"},
+            body:JSON.stringify({
+                idEscola:ourNumber,
+                nome:procuraNome
+            })
         })
-        .then(resp=> resp.json())
-        .then(dados=>buscaNomes(dados))
+        .then(resp=>resp.json())
+        .then(dados=>{
+            console.log(dados);
+            buscaNomes(dados)
+            
+        })
+        
     }
 
     return(

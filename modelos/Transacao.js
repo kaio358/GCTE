@@ -81,8 +81,45 @@ class Transacao {
         })
     }
 
-
-
+    pessoaEspecificaDaEscola(idEscola, nome) {
+       
+        const sqlPessoa = `SELECT * FROM Pessoa WHERE nome LIKE ? AND Escola_idEscola = ?`;
+        const sqlEscola = `SELECT nome, idEscola FROM Escola WHERE idEscola = ?`;
+    
+        return new Promise((resolve, reject) => {
+            conexao.beginTransaction(async (err) => {
+                if (err) return reject(err);
+                try {
+                    
+                    const nomeParam = `%${nome}%`;
+    
+                    const pessoas = await this.executarQuery(sqlPessoa, [nomeParam, idEscola]);
+                    const escola = await this.executarQuery(sqlEscola, [idEscola]);
+    
+                    const arrayBusca = [];
+                    for(const pessoa of pessoas){
+                        const sqlPagamentos = `SELECT * FROM Pagamento WHERE Pessoa_idPessoa = ?  AND MONTH(data) = MONTH(CURRENT_DATE()) AND YEAR(data) = YEAR(CURRENT_DATE())`;
+                        const pagamentos = await this.executarQuery(sqlPagamentos, [pessoa.idpessoa]);
+                        
+                        arrayBusca.push({
+                            pessoa,
+                            escola,
+                            pagamentos
+                        })
+                    }
+    
+                    conexao.commit((commitErr) => {
+                        if (commitErr) return conexao.rollback(() => reject(commitErr));
+    
+                        resolve(arrayBusca);
+                    });
+                } catch (error) {
+                    conexao.rollback(() => reject(error));
+                }
+            });
+        });
+    }
+    
     // Função utilitária para executar queries com Promises
     executarQuery(sql, params) {
         return new Promise((resolve, reject) => {
@@ -92,6 +129,7 @@ class Transacao {
             });
         });
     }
+    
 }
 
 module.exports = new Transacao();
