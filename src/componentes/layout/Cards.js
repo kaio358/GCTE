@@ -3,7 +3,7 @@ import {AiOutlineClose} from "react-icons/ai"
 
 import InputDefault from '../funcionalidades/InputDefault'
 import InputFileImage from '../funcionalidades/InputFileImage'
-import LinkButton from '../layout/LinkButton'
+import LinkButton from './LinkButton'
 import styles from './Cards.module.css'
 
 

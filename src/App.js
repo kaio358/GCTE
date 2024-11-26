@@ -11,7 +11,11 @@ import CaixaDeMensagem from './componentes/pages/CaixaDeMensagem';
 import ImportanteSemiPagina from './componentes/semiPaginas/ImportanteSemiPagina';
 import LidoSemiPagina from './componentes/semiPaginas/LidosSemiPagina';
 import TextosDeMensagens from './componentes/semiPaginas/TextosDeMensagens';
+
+
+
 function App() {
+
   return (
     <Router>
 
