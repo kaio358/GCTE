@@ -38,7 +38,7 @@ function CriarElemento(props){
         formData.append('periodoElemento', periodo);
         formData.append('imagem', imagem);
             
-        fetch('http://localhost:5000/escola', {
+        fetch('http://44.211.217.237:5000/escola', {
             method: 'POST',
             body: formData,
         

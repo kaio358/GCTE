@@ -42,7 +42,7 @@ function Linha_tabela(props){
     if(!props.eventoLapis){
         if(mudou){
        
-          fetch("http://localhost:5000/pessoa/atualizar",{
+          fetch("http://44.211.217.237:5000/pessoa/atualizar",{
             method:"PUT",
             body: JSON.stringify({
               id: props.id,

@@ -9,7 +9,7 @@ function CaixaDeMensagem() {
 
     useEffect(() => {
         // Fetch novo e antigo combinados
-        fetch("http://localhost:5000/dadosParaMensagem", {
+        fetch("http://44.211.217.237:5000/dadosParaMensagem", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -29,7 +29,7 @@ function CaixaDeMensagem() {
     }, []);
 
     function confirLido(idPag) {
-        fetch("http://localhost:5000/mensagemConfirmarLida", {
+        fetch("http://44.211.217.237:5000/mensagemConfirmarLida", {
             method: "POST",
             body: JSON.stringify({
                 idPagamento: idPag

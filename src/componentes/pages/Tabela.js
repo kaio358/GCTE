@@ -25,7 +25,7 @@ function Tabela(){
     useEffect(() => {
       // console.log(ourNumber);
       
-      fetch(`http://localhost:5000/pegarValores/${ourNumber}`,{
+      fetch(`http://44.211.217.237:5000/pegarValores/${ourNumber}`,{
         method:'GET',
         headers: {
           'Content-Type': 'application/json'
