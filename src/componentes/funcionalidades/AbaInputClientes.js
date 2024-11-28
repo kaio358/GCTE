@@ -44,7 +44,7 @@ function AbaInputClientes(props){
     }
 
     function  enviar() {
-        fetch("http://localhost:5000/pessoa/inserir",{
+        fetch("http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/pessoa/inserir",{
             method:"Post",
             headers:{
                 'Content-Type':'application/json'

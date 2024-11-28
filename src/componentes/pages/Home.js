@@ -51,7 +51,7 @@ function Home() {
 
     useEffect(()=>{
      
-        fetch("http://localhost:5000/pagamentos/data",{
+        fetch("http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/pagamentos/data",{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -68,7 +68,7 @@ function Home() {
             const promises = dados.map(d => {
                     
                     
-                return fetch(`http://localhost:5000/pessoa/pagamento/nome`, {
+                return fetch(`http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
                     idPessoa: d.pessoa_idpessoa

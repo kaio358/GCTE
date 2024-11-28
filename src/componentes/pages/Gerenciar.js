@@ -41,7 +41,7 @@ function Gerenciar(){
 
 
     useEffect(()=>{
-        fetch('http://localhost:5000/escola',{
+        fetch('http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/escola',{
             method:"GET",
             headers:{
                 'Content-Type':'application/json'
@@ -54,7 +54,7 @@ function Gerenciar(){
         })
         .then(dados => {
             const promises = dados.map(d=> {
-              return fetch(`http://localhost:5000/image/escola/${d.idEscola}`, {
+              return fetch(`http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/image/escola/${d.idEscola}`, {
                 method: 'GET',
               })
                 .then(resp => resp.json());
@@ -136,7 +136,7 @@ function Gerenciar(){
     }
     function deletar() {
        
-        fetch(`http://localhost:5000/escola`,{
+        fetch(`http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/escola`,{
         method:"DELETE",
         headers:{
             'Content-Type':'application/json'

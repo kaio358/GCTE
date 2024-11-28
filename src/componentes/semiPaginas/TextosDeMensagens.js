@@ -15,7 +15,7 @@ function TextosDeMensagens(){
 
 
     useEffect(()=>{
-        fetch("http://localhost:5000/pagamento/idPag",{
+        fetch("http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/pagamento/idPag",{
                 method: "POST",
                 headers:{
                     'Content-Type':"application/json"
@@ -31,7 +31,7 @@ function TextosDeMensagens(){
                 setPag(Array.isArray(d)? d[0] : d)
                 setData(Array.isArray(d)? new Date(d[0].data) : new Date(d.data))
                 // console.log(Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa);
-                return fetch(`http://localhost:5000/pessoa/pagamento/nome`, {
+                return fetch(`http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
                     idPessoa: Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa

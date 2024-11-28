@@ -48,7 +48,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
                 
           
             // console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
-            fetch(`http://localhost:5000/escola`,{
+            fetch(`http://ec2-44-201-229-29.compute-1.amazonaws.com:5000/escola`,{
                 method:'PUT',
                 body:formData
             }).then(resp => resp.json())
