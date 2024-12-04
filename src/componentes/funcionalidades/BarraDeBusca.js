@@ -17,7 +17,7 @@ function BarraDeBusca({buscaNomes}) {
     function procurar(){
      
         
-        fetch(`http://44.211.217.237:5000/dadosDeBusca`,{
+        fetch(`http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/dadosDeBusca`,{
             method:"POST", 
             headers: { "Content-Type": "application/json"},
             body:JSON.stringify({

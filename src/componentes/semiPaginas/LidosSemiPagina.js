@@ -14,7 +14,7 @@ function LidoSemiPagina(){
 
     useEffect(()=>{
       
-        fetch("http://44.211.217.237:5000/mensagensLidas",{
+        fetch("http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/mensagensLidas",{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -29,7 +29,7 @@ function LidoSemiPagina(){
             
             const promises = dados.map(d=>{
                 
-                return fetch("http://44.211.217.237:5000/pagamento/idPag",{
+                return fetch("http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/pagamento/idPag",{
                     method: "POST",
                     headers:{
                         'Content-Type':"application/json"
@@ -59,7 +59,7 @@ function LidoSemiPagina(){
             // console.log(dados);
             const promises = dados.map(d => {
               
-                return fetch(`http://44.211.217.237:5000/pessoa/pagamento/nome`, {
+                return fetch(`http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
                     idPessoa: Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa

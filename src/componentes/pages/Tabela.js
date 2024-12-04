@@ -25,7 +25,7 @@ function Tabela(){
     useEffect(() => {
       // console.log(ourNumber);
       
-      fetch(`http://44.211.217.237:5000/pegarValores/${ourNumber}`,{
+      fetch(`http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/pegarValores/${ourNumber}`,{
         method:'GET',
         headers: {
           'Content-Type': 'application/json'

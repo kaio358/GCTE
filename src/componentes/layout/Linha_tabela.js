@@ -42,7 +42,7 @@ function Linha_tabela(props){
     if(!props.eventoLapis){
         if(mudou){
        
-          fetch("http://44.211.217.237:5000/pessoa/atualizar",{
+          fetch("http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/pessoa/atualizar",{
             method:"PUT",
             body: JSON.stringify({
               id: props.id,
@@ -91,7 +91,7 @@ function Linha_tabela(props){
     function enviarParaServidor(teste) {
     
       
-        fetch("http://localhost:5000/pagamento/confirmacao", {
+        fetch("http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/pagamento/confirmacao", {
           method: "PUT",
           body: JSON.stringify({
             id: props.idPagamento,
