@@ -9,7 +9,7 @@ function CaixaDeMensagem() {
 
     useEffect(() => {
         // Fetch novo e antigo combinados
-        fetch("http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/dadosParaMensagem", {
+        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/dadosParaMensagem", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -29,7 +29,7 @@ function CaixaDeMensagem() {
     }, []);
 
     function confirLido(idPag) {
-        fetch("http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/mensagemConfirmarLida", {
+        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/mensagemConfirmarLida", {
             method: "POST",
             body: JSON.stringify({
                 idPagamento: idPag

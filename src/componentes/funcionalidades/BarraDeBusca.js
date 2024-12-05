@@ -17,7 +17,7 @@ function BarraDeBusca({buscaNomes}) {
     function procurar(){
      
         
-        fetch(`http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/dadosDeBusca`,{
+        fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/dadosDeBusca`,{
             method:"POST", 
             headers: { "Content-Type": "application/json"},
             body:JSON.stringify({

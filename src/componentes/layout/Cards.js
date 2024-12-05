@@ -48,7 +48,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
                 
           
             // console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
-            fetch(`http://44.211.217.237:5000/escola`,{
+            fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/escola`,{
                 method:'PUT',
                 body:formData
             }).then(resp => resp.json())

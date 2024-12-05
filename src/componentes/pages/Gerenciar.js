@@ -41,7 +41,7 @@ function Gerenciar(){
 
 
     useEffect(()=>{
-        fetch('http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/escola',{
+        fetch('http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/escola',{
             method:"GET",
             headers:{
                 'Content-Type':'application/json'
@@ -54,7 +54,7 @@ function Gerenciar(){
         })
         .then(dados => {
             const promises = dados.map(d=> {
-              return fetch(`http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/image/escola/${d.idEscola}`, {
+              return fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/image/escola/${d.idEscola}`, {
                 method: 'GET',
               })
                 .then(resp => resp.json());

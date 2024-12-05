@@ -38,7 +38,7 @@ function CriarElemento(props){
         formData.append('periodoElemento', periodo);
         formData.append('imagem', imagem);
             
-        fetch('http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/escola', {
+        fetch('http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/escola', {
             method: 'POST',
             body: formData,
         
