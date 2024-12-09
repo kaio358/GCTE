@@ -4,6 +4,8 @@ import {AiOutlineLine,AiOutlineClose,AiOutlineCheck} from "react-icons/ai";
 import { useState, useEffect} from "react";
 import InputDefault from "../funcionalidades/InputDefault";
 
+const caminho = process.env.REACT_APP_API_URL;
+
 
 function Linha_tabela(props){
     const itens = [<AiOutlineLine /> ,<AiOutlineClose className={styles.iconRed} /> ,<AiOutlineCheck className={styles.iconGreen}/>]
@@ -42,7 +44,7 @@ function Linha_tabela(props){
     if(!props.eventoLapis){
         if(mudou){
        
-          fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com0/pessoa/atualizar",{
+          fetch(`${caminho}/pessoa/atualizar`,{
             method:"PUT",
             body: JSON.stringify({
               id: props.id,
@@ -91,7 +93,7 @@ function Linha_tabela(props){
     function enviarParaServidor(teste) {
     
       
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pagamento/confirmacao", {
+        fetch(`${caminho}/pagamento/confirmacao`, {
           method: "PUT",
           body: JSON.stringify({
             id: props.idPagamento,

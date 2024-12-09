@@ -10,6 +10,9 @@ import icon_papel from "../../imgs/icons/folha-de-papel.png"
 import icon_lapis from "../../imgs/icons/lapis.png"
 import AbaInputClientes from "../funcionalidades/AbaInputClientes";
 
+
+const caminho = process.env.REACT_APP_API_URL;
+
 function Tabela(){
     const localizacao = useLocation() 
 
@@ -25,7 +28,7 @@ function Tabela(){
     useEffect(() => {
       // console.log(ourNumber);
       
-      fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pegarValores/${ourNumber}`,{
+      fetch(`${caminho}/pegarValores/${ourNumber}`,{
         method:'GET',
         headers: {
           'Content-Type': 'application/json'

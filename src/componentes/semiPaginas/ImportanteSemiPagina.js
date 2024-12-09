@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react"
 import styles from "../pages/CaixaDeMensagem.module.css"
-// import estilo from "./ImportanteSemiPagina.module.css"
+
 
 import Message from "../funcionalidades/Message"
 import { Link } from "react-router-dom"
+
+const caminho = process.env.REACT_APP_API_URL;
 
 function ImportanteSemiPagina(){
     const [dadosPagamento , setDadosPagamento] = useState()
@@ -12,7 +14,7 @@ function ImportanteSemiPagina(){
 
     useEffect(()=>{
       
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/mensagensImportantes",{
+        fetch(`${caminho}/mensagensImportantes`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -27,7 +29,7 @@ function ImportanteSemiPagina(){
             
             const promises = dados.map(d=>{
                 
-                return fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pagamento/idPag",{
+                return fetch(`${caminho}/pagamento/idPag`,{
                     method: "POST",
                     headers:{
                         'Content-Type':"application/json"
@@ -56,7 +58,7 @@ function ImportanteSemiPagina(){
             // console.log(dados);
             const promises = dados.map(d => {
               
-                return fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pessoa/pagamento/nome`, {
+                return fetch(`${caminho}/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
                     idPessoa: Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa

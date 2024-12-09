@@ -7,6 +7,7 @@ import styles from "./CriarElemento.module.css"
 import InputDefault from "./InputDefault"
 import InputFileImage from "./InputFileImage"
 import LinkButton from "../layout/LinkButton"
+const caminho = process.env.REACT_APP_API_URL;
 
 function CriarElemento(props){
 
@@ -38,7 +39,7 @@ function CriarElemento(props){
         formData.append('periodoElemento', periodo);
         formData.append('imagem', imagem);
             
-        fetch('http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/escola', {
+        fetch(`${caminho}/escola`, {
             method: 'POST',
             body: formData,
         

@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import styles from "./BarraDeBusca.module.css"
 import { useState } from "react";
+const caminho = process.env.REACT_APP_API_URL;
+
 function BarraDeBusca({buscaNomes}) {
 
     const localizacao = useLocation() 
@@ -17,7 +19,7 @@ function BarraDeBusca({buscaNomes}) {
     function procurar(){
      
         
-        fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/dadosDeBusca`,{
+        fetch(`${caminho}/dadosDeBusca`,{
             method:"POST", 
             headers: { "Content-Type": "application/json"},
             body:JSON.stringify({

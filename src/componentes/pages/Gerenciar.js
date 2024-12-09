@@ -18,6 +18,9 @@ import ensino_medio from "../../imgs/ensino_medio.jpg"
 import icon_lapis from "../../imgs/icons/lapis.png"
 import icon_papel from "../../imgs/icons/folha-de-papel.png"
 
+const caminho = process.env.REACT_APP_API_URL;
+
+
 function Gerenciar(){
     
     
@@ -40,8 +43,9 @@ function Gerenciar(){
 
 
 
+
     useEffect(()=>{
-        fetch('http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/escola',{
+        fetch(`${caminho}/escola`,{
             method:"GET",
             headers:{
                 'Content-Type':'application/json'
@@ -54,7 +58,7 @@ function Gerenciar(){
         })
         .then(dados => {
             const promises = dados.map(d=> {
-              return fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/image/escola/${d.idEscola}`, {
+              return fetch(`${caminho}/image/escola/${d.idEscola}`, {
                 method: 'GET',
               })
                 .then(resp => resp.json());
@@ -136,7 +140,7 @@ function Gerenciar(){
     }
     function deletar() {
        
-        fetch(`http://ec2-3-86-103-43.compute-1.amazonaws.com:5000/escola`,{
+        fetch(`${caminho}/escola`,{
         method:"DELETE",
         headers:{
             'Content-Type':'application/json'

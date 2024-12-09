@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 
 import styles from "./TextosDeMensagens.module.css"
 
+const caminho = process.env.REACT_APP_API_URL;
+
 function TextosDeMensagens(){
     const localizacao = useLocation() 
     const idteste = localizacao.search;
@@ -15,7 +17,7 @@ function TextosDeMensagens(){
 
 
     useEffect(()=>{
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pagamento/idPag",{
+        fetch(`${caminho}/pagamento/idPag`,{
                 method: "POST",
                 headers:{
                     'Content-Type':"application/json"
@@ -31,7 +33,7 @@ function TextosDeMensagens(){
                 setPag(Array.isArray(d)? d[0] : d)
                 setData(Array.isArray(d)? new Date(d[0].data) : new Date(d.data))
                 // console.log(Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa);
-                return fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pessoa/pagamento/nome`, {
+                return fetch(`${caminho}/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
                     idPessoa: Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa

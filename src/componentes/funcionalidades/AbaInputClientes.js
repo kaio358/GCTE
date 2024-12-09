@@ -6,6 +6,7 @@ import InputFileImage from "./InputFileImage"
 
 
 import styles from "./AbaInputClientes.module.css"
+const caminho = process.env.REACT_APP_API_URL;
 
 function AbaInputClientes(props){
     function fechaAba() {
@@ -44,7 +45,7 @@ function AbaInputClientes(props){
     }
 
     function  enviar() {
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pessoa/inserir",{
+        fetch(`${caminho}/pessoa/inserir`,{
             method:"Post",
             headers:{
                 'Content-Type':'application/json'

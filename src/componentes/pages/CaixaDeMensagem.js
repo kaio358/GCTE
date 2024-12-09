@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Message from "../funcionalidades/Message";
 import styles from "./CaixaDeMensagem.module.css";
+const caminho = process.env.REACT_APP_API_URL;
 
 function CaixaDeMensagem() {
     const [dadosPagamento, setDadosPagamento] = useState([]);
@@ -9,7 +10,7 @@ function CaixaDeMensagem() {
 
     useEffect(() => {
         // Fetch novo e antigo combinados
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/dadosParaMensagem", {
+        fetch(`${caminho}/dadosParaMensagem`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -29,7 +30,7 @@ function CaixaDeMensagem() {
     }, []);
 
     function confirLido(idPag) {
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/mensagemConfirmarLida", {
+        fetch(`${caminho}/mensagemConfirmarLida`, {
             method: "POST",
             body: JSON.stringify({
                 idPagamento: idPag

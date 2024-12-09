@@ -6,6 +6,8 @@ import styles from "../pages/CaixaDeMensagem.module.css"
 import Message from "../funcionalidades/Message"
 import { Link } from "react-router-dom"
 
+const caminho = process.env.REACT_APP_API_URL;
+
 function LidoSemiPagina(){
 
     const [dadosPagamento , setDadosPagamento] = useState()
@@ -14,7 +16,7 @@ function LidoSemiPagina(){
 
     useEffect(()=>{
       
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/mensagensLidas",{
+        fetch(`${caminho}/mensagensLidas`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -29,7 +31,7 @@ function LidoSemiPagina(){
             
             const promises = dados.map(d=>{
                 
-                return fetch("http:/GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pagamento/idPag",{
+                return fetch(`${caminho}/pagamento/idPag`,{
                     method: "POST",
                     headers:{
                         'Content-Type':"application/json"
@@ -59,7 +61,7 @@ function LidoSemiPagina(){
             // console.log(dados);
             const promises = dados.map(d => {
               
-                return fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pessoa/pagamento/nome`, {
+                return fetch(`${caminho}/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
                     idPessoa: Array.isArray(d)? d[0].pessoa_idpessoa : d.pessoa_idpessoa

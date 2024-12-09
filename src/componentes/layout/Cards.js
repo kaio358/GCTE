@@ -6,6 +6,8 @@ import InputFileImage from '../funcionalidades/InputFileImage'
 import LinkButton from './LinkButton'
 import styles from './Cards.module.css'
 
+const caminho = process.env.REACT_APP_API_URL;
+
 
 function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,chave, iDCard}){
 
@@ -48,7 +50,7 @@ function Cards({img,periodo,escola,idTabela, eventPai,atualizar,nomes,periodos,c
                 
           
             // console.log("Teste", {id:chave,nome:textoEscola,horario:textPeriodo});
-            fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/escola`,{
+            fetch(`${caminho}/escola`,{
                 method:'PUT',
                 body:formData
             }).then(resp => resp.json())

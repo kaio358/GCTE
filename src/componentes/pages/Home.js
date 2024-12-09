@@ -3,6 +3,8 @@ import { useEffect, useState } from "react"
 import styles from "./Home.module.css"
 import Li_home from "../layout/Li_home"
 
+const caminho = process.env.REACT_APP_API_URL;
+
 function Home() {
     const [nome,setNome] = useState()
     const [valor,setValor] = useState()
@@ -51,7 +53,7 @@ function Home() {
 
     useEffect(()=>{
      
-        fetch("http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pagamentos/data",{
+        fetch(`${caminho}/pagamentos/data`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json"
@@ -68,7 +70,7 @@ function Home() {
             const promises = dados.map(d => {
                     
                     
-                return fetch(`http://GCTE-LoadBalancer-2114462684.us-east-1.elb.amazonaws.com/pessoa/pagamento/nome`, {
+                return fetch(`${caminho}/pessoa/pagamento/nome`, {
                   method: 'POST',
                   body: JSON.stringify({
                     idPessoa: d.pessoa_idpessoa
